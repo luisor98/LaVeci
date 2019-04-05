@@ -1,7 +1,4 @@
 class OmniauthController < ApplicationController
-
-  skip_before_action :verify_authenticity_token
-
   def facebook
     create_omniauth
   end
