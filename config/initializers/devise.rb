@@ -255,6 +255,8 @@ Devise.setup do |config|
   # It allows dynamic configuring on community basis
   facebook_api_version = FacebookSdkVersion::SERVER
 
+  OmniAuth.config.logger = Rails.logger
+
   config.omniauth :facebook,
                   setup: Person::OmniauthService::SetupPhase,
                   client_options: {
