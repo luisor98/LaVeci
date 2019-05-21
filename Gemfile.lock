@@ -463,6 +463,7 @@ GEM
       rails (>= 3.2)
       rainbow (~> 2.1)
     redcarpet (3.4.0)
+    redis (4.1.1)
     ref (2.0.0)
     regexp_parser (1.4.0)
     request_store (1.3.2)
