@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   # Keep before /:locale/ routes, because there is locale 'vi', which matches '_lp_preview'
   # and regexp anchors are not allowed in routing requirements.
-  get '/_lp_preview' => 'landing_page#preview'
+  get '/_lp_preview' => 'landing_page#preview', as: :landing_page_preview
 
   locale_regex_string = Sharetribe::AVAILABLE_LOCALES.map { |l| l[:ident] }.concat(Sharetribe::REMOVED_LOCALES.to_a).join("|")
   locale_matcher = Regexp.new(locale_regex_string)
@@ -349,6 +349,12 @@ Rails.application.routes.draw do
       resource :community_seo_settings, only: [:show, :update]
       resource :domain, only: [:show]
       resource :community_seo_settings, only: [:show, :update]
+      resources :landing_page_versions do
+        member do
+          get :release
+        end
+        resources :sections, controller: 'landing_page_versions/sections'
+      end
     end
 
     resources :invitations, only: [:new, :create ] do
