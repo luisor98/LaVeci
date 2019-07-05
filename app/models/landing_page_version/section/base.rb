@@ -13,7 +13,6 @@ module LandingPageVersion::Section
     validates :landing_page_version, presence: true
     validates :id, presence: true
     validates :kind, presence: true
-    validates :variation, presence: true
     validate :not_overwrite_another_section
 
     def save
@@ -43,6 +42,8 @@ module LandingPageVersion::Section
     def persisted?
       previous_id.present? && find_existing_section_by_id(id)
     end
+
+    def asset_added(asset); end
 
     private
 

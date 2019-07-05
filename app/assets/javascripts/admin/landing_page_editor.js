@@ -60,6 +60,12 @@ window.ST = window.ST || {};
 
       upHidden.val(newUpValue);
       downHidden.val(newDownValue);
+      var form = $("form.edit_landing_page_version");
+      $.ajax({
+        url: form.attr('action'),
+        type: 'PATCH',
+        data: form.serialize()
+      })
     });
 
     return {
@@ -74,6 +80,11 @@ window.ST = window.ST || {};
     $('#section_variation').val(variation);
     if (!variation) {
       return false;
+    }
+    if (!variation) {
+      $("#section_variation").attr('disabled', true);
+    } else {
+      $("#section_variation").attr('disabled', false);
     }
     $(this).closest('form').submit();
   };
