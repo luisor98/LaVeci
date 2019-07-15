@@ -5,12 +5,10 @@ module CustomLandingPage
     def initialize(community:, params:)
       @params = params
       @community = community
-      @editor_service = CustomLandingPage::EditorService.new(community: community, params: params)
-      @asset_resolver = CustomLandingPage::LinkResolver::AssetResolver.new(APP_CONFIG[:clp_asset_url], community.ident)
     end
 
     def landing_page_version
-      @editor_service.landing_page_version
+      @landing_page_version ||= landing_page_versions_scope.find(params[:landing_page_version_id])
     end
 
     def new_section
@@ -35,25 +33,15 @@ module CustomLandingPage
       section.destroy! if section.removable?
     end
 
-    def asset_url(section_id, image_key)
-      section = landing_page_version.sections.detect{|s| s.id == section_id }
-      return nil unless section
-
-      result = @asset_resolver.call('assets', section.background_image['id'], landing_page_version.parsed_content)
-      result['file'] = result['src'].split('/').last
-      result
-    rescue StandardError => e
-      nil
-    end
-
     private
 
     def create_or_update(update: false)
       section_from_params
       section.update = update
       if params['bg_image'].present?
-        asset = LandingPageAsset.new(community: community, image: params[:bg_image])
-        if asset.save
+        community.landing_page_hero_background.attach(create_blob(params[:bg_image]))
+        asset = community.landing_page_hero_background
+        if asset.valid?
           section.asset_added(asset)
         end
       end
@@ -84,6 +72,22 @@ module CustomLandingPage
       section.landing_page_version = landing_page_version
       section.id = params[:id] if params[:id].present?
       section
+    end
+
+    # NOTE: we want to store these assets like s3://%{clp_s3_bucket}/sites/%{sitename}/heroBG.jpg
+    # but since ActiveStorage does not support key prefixes, have to explicitly defined required key
+    # and perform upload here
+    def create_blob(http_uploaded_file)
+      io = http_uploaded_file.open
+
+      blob = ActiveStorage::Blob.new
+      blob.filename = http_uploaded_file.original_filename
+      blob.content_type = http_uploaded_file.content_type
+      blob.key = File.join('sites', community.ident, ActiveStorage::Blob.generate_unique_secure_token)
+      blob.upload(io)
+
+      blob.save
+      blob
     end
   end
 end
