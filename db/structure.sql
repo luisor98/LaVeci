@@ -1405,6 +1405,9 @@ CREATE TABLE `stripe_payments` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `buyer_commission_cents` int(11) DEFAULT '0',
+  `stripe_payment_intent_id` varchar(255) DEFAULT NULL,
+  `stripe_payment_intent_status` varchar(255) DEFAULT NULL,
+  `stripe_payment_intent_client_secret` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2426,6 +2429,6 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190319122745'),
 ('20190627055931'),
 ('20190705083608'),
-('20190705100256');
-
+('20190705100256'),
+('20190718081745');
 
