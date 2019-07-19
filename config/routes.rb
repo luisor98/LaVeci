@@ -385,6 +385,11 @@ Rails.application.routes.draw do
           put :reorder
         end
       end
+      resources :preauthorize_transactions, only: [], defaults: { format: :json } do
+        member do
+          post :stripe_confirm_intent
+        end
+      end
     end
 
     resources :listing_images do
