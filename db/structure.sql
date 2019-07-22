@@ -314,6 +314,7 @@ CREATE TABLE `communities` (
   `linkedin_connect_id` varchar(255) DEFAULT NULL,
   `linkedin_connect_secret` varchar(255) DEFAULT NULL,
   `pre_approved_listings` tinyint(1) DEFAULT '0',
+  `allow_free_conversations` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_communities_on_uuid` (`uuid`),
   KEY `index_communities_on_domain` (`domain`) USING BTREE,
@@ -2430,5 +2431,6 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190627055931'),
 ('20190705083608'),
 ('20190705100256'),
-('20190718081745');
+('20190718081745'),
+('20190717105844');
 
