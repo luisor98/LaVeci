@@ -66,7 +66,7 @@ module LandingPageVersion::Section
     end
 
     def attributes
-      Hash[ATTRIBUTES.map {|x| [x, nil]}]
+      Hash[ATTRIBUTES.map {|x| [x.to_s, nil]}]
     end
 
     def removable?
@@ -75,15 +75,17 @@ module LandingPageVersion::Section
 
     def asset_added(new_asset)
       assets = landing_page_version.parsed_content['assets']
-      item = assets.find{|x| x['id'] == 'default_hero_background' }
+      image_id = background_image['id']
+      item = assets.find{|x| x['id'] == image_id }
       unless item
-        item = {'id' => 'default_hero_background'}
+        item = {'id' => image_id}
         assets << item
       end
       blob = new_asset.blob
       item['src'] = blob_path(blob)
       item['content_type'] = blob.content_type
-      item['absoulte_path'] = true
+      item['absolute_path'] = true
+      item['asset_id'] = new_asset.id
       item
     end
 

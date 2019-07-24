@@ -111,6 +111,10 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
 
   describe 'hero' do
     describe '#update' do
+      def stubbed_upload(filename, content_type)
+        fixture_file_upload("#{Rails.root}/spec/fixtures/#{filename}", content_type, :binary)
+      end
+
       it 'works' do
         section_id = 'hero'
         put :update, params: { landing_page_version_id: landing_page_version.id,
@@ -125,6 +129,81 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
         sections = lpv.parsed_content['sections']
         section = sections.find{|x| x['id'] == section_id}
         expect(section['background_image_variation']).to eq 'light'
+      end
+
+      it 'stores background image and asset_id' do
+        section_id = 'hero'
+        put :update, params: { landing_page_version_id: landing_page_version.id,
+                               id: section_id,
+                               bg_image: stubbed_upload('Bison_skull_pile.png', 'image/png'),
+                               section: {
+            kind: 'hero',
+            id: 'hero',
+            previous_id: 'hero',
+            background_image_variation: 'light'
+        }}
+        lpv = LandingPageVersion.find(landing_page_version.id)
+        sections = lpv.parsed_content['sections']
+        section = sections.find{|x| x['id'] == section_id}
+        expect(section['background_image_variation']).to eq 'light'
+
+        default_bg = {"id"=>"default_hero_background", "type"=>"assets"}
+        expect(section['background_image']).to eq default_bg
+
+        assets = lpv.parsed_content['assets']
+        expect(assets.size).to eq 1
+        asset = assets.first
+        expect(asset['id']).to eq("default_hero_background")
+        expect(asset['absolute_path']).to eq true
+        expect(asset['asset_id']).to_not be_nil
+        expect(asset['src']).to match(/#{community.ident}\/.+\/Bison_skull_pile.png/)
+      end
+    end
+
+    describe '#update of existing section' do
+      it 'keeps existing attrs as is' do
+        existing_hero_sample = {
+          "id": "hero",
+          "kind": "hero",
+          "variation": { "type": "marketplace_data", "id": "search_type" },
+          "title": { "type": "marketplace_data", "id": "slogan" },
+          "subtitle": { "type": "marketplace_data", "id": "description" },
+          "background_image": { "type": "assets", "id": "hero_background_image" },
+          "background_image_variation": "dark",
+          "search_button": { "type": "translation", "id": "search_button" },
+          "search_path": { "type": "path", "id": "search" },
+          "search_placeholder": { "type": "marketplace_data", "id": "search_placeholder"},
+          "search_location_with_keyword_placeholder": { "type": "marketplace_data",  "id": "search_location_with_keyword_placeholder" },
+          "signup_path": { "type": "path", "id": "signup" },
+          "signup_button": { "type": "translation", "id": "signup_button" },
+          "search_button_color": { "type": "marketplace_data", "id": "primary_color" },
+          "search_button_color_hover": { "type": "marketplace_data", "id": "primary_color_darken" },
+          "signup_button_color": { "type": "marketplace_data", "id": "primary_color" },
+          "signup_button_color_hover": { "type": "marketplace_data", "id": "primary_color_darken" }
+        }
+
+        e_lpv = landing_page_version
+        sections = e_lpv.parsed_content['sections'].reject{|s| s['id'] == 'hero'}
+        sections << existing_hero_sample
+        e_lpv.parsed_content['sections'] = sections
+        e_lpv.update_content(e_lpv.parsed_content)
+
+        section_id = 'hero'
+        put :update, params: { landing_page_version_id: e_lpv.id,
+                               id: section_id,
+                               section: {
+            kind: 'hero',
+            id: 'hero',
+            previous_id: 'hero',
+            background_image_variation: 'light'
+        }}
+        lpv = LandingPageVersion.find(e_lpv.id)
+        sections = lpv.parsed_content['sections']
+        section = sections.find{|x| x['id'] == section_id}
+        expect(section['background_image_variation']).to eq 'light'
+
+        existing_bg_image = { "type" => "assets", "id" => "hero_background_image" }
+        expect(section['background_image']).to eq existing_bg_image
       end
     end
   end
@@ -141,7 +220,7 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
           theme: 'marketplace_color',
           previous_id: 'footer',
           copyright: 'Fist of Humiliation',
-          social_links_attributes: {
+          social_attributes: {
             '0': {
               id: 'youtube',
               provider: 'youtube',
@@ -157,7 +236,7 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
               enabled: '1'
             }
           },
-          footer_menu_links_attributes: {
+          links_attributes: {
             '0': {
               id: '0',
               title: 'About',
@@ -188,11 +267,13 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
         expect(second_link['label']).to eq 'Contact us'
         expect(second_link['href']['value']).to eq 'https://example.com/contact_us'
         social = section['social']
-        expect(social.size).to eq 2
-        first_social = social.first
+        expect(social.size).to eq 8
+        enabled_social = social.select{|s| s['enabled']}
+        expect(enabled_social.size).to eq 2
+        first_social = enabled_social.first
         expect(first_social['service']).to eq 'youtube'
         expect(first_social['url']).to eq 'https://youtube.com/abc'
-        second_social = social.last
+        second_social = enabled_social.last
         expect(second_social['service']).to eq 'facebook'
         expect(second_social['url']).to eq 'https://facebook.com/abc'
 
@@ -204,7 +285,7 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
           theme: 'marketplace_color',
           previous_id: 'footer',
           copyright: 'Fist of Humiliation',
-          social_links_attributes: {
+          social_attributes: {
             '0': {
               id: 'youtube',
               provider: 'youtube',
@@ -220,7 +301,7 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
               enabled: '1'
             }
           },
-          footer_menu_links_attributes: {
+          links_attributes: {
             '0': {
               id: '0',
               title: 'About',
@@ -235,6 +316,66 @@ describe Admin::LandingPageVersions::SectionsController, type: :controller do
         section = sections.find{|x| x['id'] == section_id}
         links = section['links']
         expect(links.size).to eq 1
+      end
+
+      it 'keeps existing attributes as is' do
+        section_id = 'footer'
+
+        footer = landing_page_version.parsed_content['sections'].find{|s| s['id'] == 'footer' }
+        footer["social_media_icon_color"] = { "type": "marketplace_data", "id": "primary_color_darken" }
+        footer["social_media_icon_color_hover"] = { "type": "marketplace_data", "id": "primary_color" }
+        landing_page_version.update_content(landing_page_version.parsed_content)
+
+        put :update, params: { landing_page_version_id: landing_page_version.id,
+                               id: section_id,
+                               section: {
+          id: 'footer',
+          kind: 'footer',
+          theme: 'marketplace_color',
+          previous_id: 'footer',
+          copyright: 'Fist of Humiliation',
+          social_attributes: {
+            '0': {
+              id: 'youtube',
+              provider: 'youtube',
+              url: 'https://youtube.com/abc',
+              sort_priority: '0',
+              enabled: '1'
+            },
+            '1': {
+              id: 'facebook',
+              provider: 'facebook',
+              url: 'https://facebook.com/abc',
+              sort_priority: '1',
+              enabled: '1'
+            }
+          },
+          links_attributes: {
+            '0': {
+              id: '0',
+              title: 'About',
+              url: 'https://example.com/about',
+              sort_priority: '0',
+              _destroy: ''
+            },
+            '1': {
+              id: '1',
+              title: 'Contact us',
+              url: 'https://example.com/contact_us',
+              sort_priority: '1',
+              _destroy: ''
+            }
+          }
+        }}
+        lpv = LandingPageVersion.find(landing_page_version.id)
+        sections = lpv.parsed_content['sections']
+        section = sections.find{|x| x['id'] == section_id}
+
+        color = {"type" => "marketplace_data", "id" => "primary_color_darken" }
+        expect(section["social_media_icon_color"]).to eq color
+
+        hover_color = { "type" => "marketplace_data", "id" => "primary_color" }
+        expect(section["social_media_icon_color_hover"]).to eq hover_color
       end
     end
   end
