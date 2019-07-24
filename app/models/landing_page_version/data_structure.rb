@@ -23,7 +23,7 @@ module LandingPageVersion::DataStructure
             'landing_page_version' => self,
             'previous_id' => content_section['id']
           ))
-        rescue UnknownAttributeError # rubocop:disable Lint/HandleExceptions
+        rescue ActiveModel::UnknownAttributeError # rubocop:disable Lint/HandleExceptions
           # rescue unimplemented stuf
         end
       end
