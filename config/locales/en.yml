@@ -459,7 +459,7 @@ en:
           started: Started
           last_activity: "Latest activity"
           initiated_by: Starter
-          other_party: "Other party"
+          other_party: "Provider"
         status:
           conversation: Conversation
           free: "Free transaction"
@@ -507,7 +507,7 @@ en:
           started: Started
           last_activity: "Latest Activity"
           initiated_by: Starter
-          other_party: "Other party"
+          other_party: "Provider"
         participants: "Conversation: %{starter} with %{author}"
         profile: "%{author}'s Profile"
         search_by_keyword: "Search for a name, email or keyword"
@@ -1521,7 +1521,7 @@ en:
       buyer_cannot_pay_error: "The payment has been declined by PayPal. Please contact their Customer Service for more information: %{customer_service_link}"
       pending_review_error: "The payment was submitted but was flagged by PayPal as 'requiring a review'. When PayPal completes the review, the payment will be automatically authorized."
       seller_express_checkout_disabled: "PayPal Express Checkout has been disabled for the listing author's PayPal account. Please contact the author and let them know that there's an issue with their PayPal account, and advise them to contact PayPal Customer Service."
-      seller_express_checkout_disabled_no_free: "PayPal Express Checkout has been disabled for the listing author's PayPal account. Please contact the %{service_name} team to ask them to contact and advise the listing author to contact PayPal Customer Service."
+      seller_express_checkout_disabled_no_free: "PayPal Express Checkout has been disabled for the listing author's PayPal account. Please ask the %{service_name} team to contact the listing author and advise them to contact PayPal Customer Service."
       generic_error: "An error occurred during the payment process. Could not finalize your PayPal payment."
       cancel_error: "An error occurred during cancellation. Could not finalize cancel."
       accept_authorization_error: "An error occurred while trying to accept preauthorized Paypal payment. Please, try again."
@@ -1861,7 +1861,7 @@ en:
       payment_successful: "Payment successful"
       payment_canceled: "Payment cancelled"
       error_in_payment: "Error in payment. If you didn't complete the payment yet, try again. If you did, please send us feedback."
-      cannot_receive_payment: "The other party can't receive the payment due some error. Please contact the %{service_name} team to clarify the situation"
+      cannot_receive_payment: "The provider can't receive the payment due some error. Please contact the %{service_name} team to clarify the situation"
       payment_waiting_for_later_accomplishment: "When you have paid, we'll notify the seller and you will get a receipt in email"
       password_recovery_sent: "Instructions to change your password were sent to your email."
       person_activated: "User activated"
