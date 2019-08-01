@@ -71,6 +71,7 @@ module LandingPageVersion::Section
       :links,
       :social,
       :copyright,
+      :logo
     ].freeze
 
     DEFAULTS = {
@@ -90,7 +91,8 @@ module LandingPageVersion::Section
         {service: "pinterest", url: ""},
         {service: "soundcloud", url: ""}
       ],
-      copyright: ""
+      copyright: "",
+      logo: { type: "marketplace_data", id: "logo" }
     }.freeze
 
     PERMITTED_PARAMS = [
@@ -186,6 +188,10 @@ module LandingPageVersion::Section
           index += 1
         end
       end
+    end
+
+    def i18n_key
+      'footer'
     end
 
     class << self
