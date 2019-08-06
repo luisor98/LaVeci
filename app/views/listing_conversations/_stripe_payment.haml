@@ -38,7 +38,7 @@
     .row
       .col-4
         %label= t(".address_country")
-        = select_tag 'shipping_address[country_code]', options_for_select(CountryI18nHelper.translated_shipping_countries, @current_community.country), {}
+        = text_field_tag 'shipping_address[country]', CountryI18nHelper.translate_country(@current_community.country)
 
       .col-8
         .us-only.hidden
