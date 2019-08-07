@@ -46,26 +46,8 @@ window.ST = window.ST || {};
     return true;
   };
 
-  var initCountry = function() {
-    $(document).on("blur change keyup", "#shipping_address_country", function() {
-      var US_VARIATIONS = ["US", "USA", "UNITEDSTATES", "UNITEDSTATESOFAMERICA"];
-      var country = $(this).val();
-      if (country) {
-        country = country.toUpperCase().replace(/[.\s]+/g, '');
-      }
-      if (US_VARIATIONS.indexOf(country) >= 0) {
-        $(".us-only").show();
-      } else {
-        $(".us-only").hide();
-      }
-    });
-    $("#shipping_address_country").trigger("change");
-  };
-
   var initCharge = function(options){
     stripe = Stripe(options.publishable_key);
-
-    initCountry();
 
     var card = createCard();
 
@@ -169,8 +151,6 @@ window.ST = window.ST || {};
     stripe = Stripe(options.publishable_key);
     var card = createCard();
     var form = $("#transaction-form");
-
-    initCountry();
 
     form.on('stripe-submit', formSubmit);
     spinner = form.find('.paypal-button-loading-img');

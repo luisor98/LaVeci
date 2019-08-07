@@ -36,14 +36,15 @@
         = text_field_tag 'shipping_address[city]', '', 'stripe-shipping-address': true
 
     .row
-      .col-4
+      .col-12
+        %label= t(".address_state")
+        = text_field_tag 'shipping_address[state_or_province]', ''
+
+    .row
+      .col-12
         %label= t(".address_country")
         = text_field_tag 'shipping_address[country]', CountryI18nHelper.translate_country(@current_community.country)
 
-      .col-8
-        .us-only.hidden
-          %label= t(".address_state")
-          = select_tag 'shipping_address[state_or_province]', options_for_select(CountryI18nHelper.us_states), 'stripe-shipping-address': true, prompt: "Select state"
     .row
       .col-12
 
