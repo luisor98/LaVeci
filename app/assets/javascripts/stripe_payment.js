@@ -20,6 +20,7 @@ window.ST = window.ST || {};
 
   var createCard = function() {
     var elements = stripe.elements();
+
     var card = elements.create('card', {style: style});
     card.mount('#card-element');
     card.addEventListener('change', function(event) {
