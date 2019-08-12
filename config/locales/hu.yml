@@ -116,6 +116,7 @@ hu:
         logo_mobile_icon_instructions_text_with_dimensions: ~
         cover_photo_visibility: "A borítókép a nyitóoldalon jelenik meg azok számára akik nincsenek bejelentkezve."
         cover_photo_instructions_text_with_dimensions: "A kép újr lesz méretve %{width}x%{height} pixel nagyságúra és a magasabb képek félbe lesznek vágva. %{see_how_it_looks_like}"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "A kis borítókép az összes oldalon megjelenik a nyitóoldal kivételével ahol a felhasználók nincsenek bejelentkezve."
         small_cover_photo_instructions_text_with_dimensions: "A kép újra lesz méretve %{width}x%{height} pixel nagyságúra és a magasabb képek félbe lesznek vágva."
         main_content_width: "A fedőkép  kiválasztásakor vegye figyelembe, hogy az oldal maximálisan %{main_width} pixel szélességű. Ellenőrizze kisebb képernyőn is a fedőkép megjelenítését (pl: egy sokkal keskenyebb keresőablakot használva)."
@@ -747,6 +748,7 @@ hu:
       emails_title: E-mailek
       subscription: Feliratkozás
       preview: "A honlap előnézete"
+      whats_new: ~
     listing_shapes:
       availability_title: Elérhetőség
       read_more: "Még több információ az automatikus elérhetőség menedzsmentről"
@@ -1728,6 +1730,23 @@ hu:
       messages: Üzenetek
     logged_in_notifications_icon:
       notifications: Megjegyzések
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: Admin
       go_to_your_profile_page: Profil
@@ -1932,6 +1951,7 @@ hu:
       description:
         detailed_description: "Részletes leírás"
         youtube_info: "Amennyiben a leírása tartalmaz YouTube linket, a videók a leírás alatt kerülnek lejátszásra."
+        youtube_info_markdown: ~
       destination:
         destination: Célállomás
       form_content:
@@ -2485,6 +2505,8 @@ hu:
       image_is_processing: "A profilképe feldolgozása folyamatban van. Kérjük, frissítse az oldalt egy kis idő elteltével."
       shown_in_your_public_profile: ~
       editing_profile_of: ~
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: Mentés
   shipping_address:
     shipping_address: "Szállítási cím"

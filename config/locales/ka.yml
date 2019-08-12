@@ -112,6 +112,7 @@ ka:
         logo_mobile_icon_instructions_text_with_dimensions: ~
         cover_photo_visibility: "გარეკანის ფოტო ჩანს მთავარ გვერდზე იმ მომხარებლებისთვის, ვინც სისტემაში არ არიან შესულები"
         cover_photo_instructions_text_with_dimensions: "ფოტოს შეეცვლება ზომები %{width}x%{height} პიქსელის ზომაზე ხოლო მაღალი სურათები გაიჭრება შუაზე. %{see_how_it_looks_like}"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "პატარა გარეკანის სურათი ნაჩვენები იქნება ყველა გვერდზე გარდა მთავარი გვერდისა იმ მომხმარებლებისთვის ვინც არ არიან სისტემაში შესულები."
         small_cover_photo_instructions_text_with_dimensions: "ფოტოს შეეცვლება ზომები %{width}x%{height} პიქსელის ზომაზე ხოლო მაღალი სურათები გაიჭრება შუაზე."
         main_content_width: "გარეკანის ფოტოს არჩევისას დაიმახსოვრე, რომ გვერდის მთავარი შიგთავსი იყოს %{main_width} პიქსელის ყველაზე ფართო. არ დაგავიწყდეს ასევე იმის შემოწმება, თუ როგორ გამოიყურება გარეკანის სურათი პატარა ეკრანებზე (მაგ. უფრო ვიწრო ბრაუზერის გამოყენებისას)."
@@ -741,6 +742,7 @@ ka:
       emails_title: "ელ. ფოსტები"
       subscription: გამოწერა
       preview: "საიტის გადახედვა"
+      whats_new: ~
     listing_shapes:
       availability_title: ხელმისაწვდომობა
       read_more: "წაიკითხეთ მეტი ავტომატური ხელმისაწვდომობის მართვაზე."
@@ -1716,6 +1718,23 @@ ka:
       messages: წერილები
     logged_in_notifications_icon:
       notifications: შეტყობინებები
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: ადმინი
       go_to_your_profile_page: პროფილი
@@ -1919,6 +1938,7 @@ ka:
       description:
         detailed_description: "დეტალური აღწერა"
         youtube_info: "თუ თქვენი დახასიათება მოიცავს YouTube-ს ბმულს, ვიდეო ნაჩვენები იქნება ქვემოთ დახასიათებაში."
+        youtube_info_markdown: ~
       destination:
         destination: დანიშნულება
       form_content:
@@ -2470,6 +2490,8 @@ ka:
       image_is_processing: "თქვენი პროფილის სურათი იტვირთება. დაელოდეთ ცოტა ხანი, 1-2 წუთში მზად იქნება."
       shown_in_your_public_profile: ~
       editing_profile_of: ~
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: "ინფორმაციის შენახვა"
   shipping_address:
     shipping_address: "ტრანსპორტირების მისამართი"

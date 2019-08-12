@@ -102,6 +102,7 @@ sq-AL:
         logo_mobile_icon_instructions_text_with_dimensions: ~
         cover_photo_visibility: ~
         cover_photo_instructions_text_with_dimensions: ~
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: ~
         small_cover_photo_instructions_text_with_dimensions: ~
         main_content_width: ~
@@ -731,6 +732,7 @@ sq-AL:
       emails_title: ~
       subscription: ~
       preview: ~
+      whats_new: ~
     listing_shapes:
       availability_title: ~
       read_more: ~
@@ -1696,6 +1698,23 @@ sq-AL:
       messages: ~
     logged_in_notifications_icon:
       notifications: ~
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: ~
       go_to_your_profile_page: ~
@@ -1896,6 +1915,7 @@ sq-AL:
       description:
         detailed_description: ~
         youtube_info: ~
+        youtube_info_markdown: ~
       destination:
         destination: ~
       form_content:
@@ -2445,6 +2465,8 @@ sq-AL:
       image_is_processing: ~
       shown_in_your_public_profile: ~
       editing_profile_of: ~
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: ~
   shipping_address:
     shipping_address: ~

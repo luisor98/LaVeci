@@ -125,6 +125,7 @@ hr:
             Naslovna fotografija biti će prikazana na početnoj stranici korisnicima koji nisu 
             prijavljeni.
         cover_photo_instructions_text_with_dimensions: "Fotografija će biti smanjena na %{width}x%{height} piksel veličinu a veće slike će biti rezane u sredini. %{see_how_it_looks_like}."
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "Umanjena naslovna fotografija biti će prikazana na svim stranicama osim na početnoj stranici za korisnike koji nisu prijavljeni."
         small_cover_photo_instructions_text_with_dimensions: "Fotografija će biti smanjena na %{width}x%{height} piksel veličinu a veće slike će biti rezane u sredini."
         main_content_width: "Kada odabirete profilne fotografije molimo imajte na umu da glavni sadržaj stranice je najviše %{main_width} piksela širine. Zapamtite također provjeriti kako Vaša profilna fotografija izgleda na manjim zaslonima (npr. koristeći uži prozor preglednika)."
@@ -754,6 +755,7 @@ hr:
       emails_title: Emailovi
       subscription: Pretplata
       preview: "Prikaz stranice"
+      whats_new: ~
     listing_shapes:
       availability_title: Dostupnost
       read_more: "Pročitaj više o automatskoj  usluzi  dostupnosti "
@@ -1742,6 +1744,23 @@ hr:
       messages: Poruke
     logged_in_notifications_icon:
       notifications: Obavijesti
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: Administrator
       go_to_your_profile_page: Profil
@@ -1948,6 +1967,7 @@ hr:
       description:
         detailed_description: "Detaljni opis"
         youtube_info: "Ako vaš opis sadrži i linkove sa Youtubea, videi će biti prikazani ispod opisa."
+        youtube_info_markdown: ~
       destination:
         destination: Odredište
       form_content:
@@ -2500,6 +2520,8 @@ hr:
       image_is_processing: "Molimo za strpljenje. Obrađujemo vašu profilnu sliku. Biti će spremna za minutu ili dvije."
       shown_in_your_public_profile: "(prikaži u svom javnom profilu)"
       editing_profile_of: "Trenutno uređujete profil %{name}"
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: "Spremite informacije"
   shipping_address:
     shipping_address: "Adresa isporuke"

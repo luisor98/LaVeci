@@ -117,6 +117,7 @@ pt-BR:
         logo_mobile_icon_instructions_text_with_dimensions: ~
         cover_photo_visibility: "Foto da capa apresentada na página inicial para usuários não conectados."
         cover_photo_instructions_text_with_dimensions: "A foto será redimensionada para %{width} x %{height} pixel e imagens mais altas serão cortadas no meio. %{see_how_it_looks_like}"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "Foto pequena da capa mostrado para usuários não conectados."
         small_cover_photo_instructions_text_with_dimensions: "A foto será redimensionada para %{width} x %{height} pixel e imagens mais altas serão cortadas no meio."
         main_content_width: "Ao escolher fotos de capa, por favor, note que o conteúdo principal da página é %{main_width} pixels de largura, no máximo. Lembre-se de verificar também como a sua foto da capa parece nas telas menores (por exemplo, usando uma janela do navegador mais estreita)."
@@ -746,6 +747,7 @@ pt-BR:
       emails_title: E-mails
       subscription: Assinatura
       preview: "Visualização do site"
+      whats_new: ~
     listing_shapes:
       availability_title: Disponibilidade
       read_more: "Leia mais sobre o gerenciamento automático de disponibilidade."
@@ -1725,6 +1727,23 @@ pt-BR:
       messages: Mensagens
     logged_in_notifications_icon:
       notifications: Notificações
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: Administrador
       go_to_your_profile_page: Perfil
@@ -1906,7 +1925,7 @@ pt-BR:
       listing_is_rejected: ~
       approve_listing: ~
       reject_listing: ~
-      delete_listing: ~
+      delete_listing: "Apagar anúncio"
     map:
       open_in_google_maps: "Abrir no Google Maps"
     error:
@@ -1929,6 +1948,7 @@ pt-BR:
       description:
         detailed_description: "Descrição detalhada"
         youtube_info: "Se a sua descrição contiver links para o YouTube os vídeos serão mostrados abaixo da descrição."
+        youtube_info_markdown: ~
       destination:
         destination: Destino
       form_content:
@@ -2483,6 +2503,8 @@ pt-BR:
       image_is_processing: "Seu imagem de perfil está sendo preparada. Por favor, atualize a página daqui a pouco."
       shown_in_your_public_profile: "(mostrado no seu perfil público)"
       editing_profile_of: ~
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: "Salvar informações"
   shipping_address:
     shipping_address: "Endereço para envio"

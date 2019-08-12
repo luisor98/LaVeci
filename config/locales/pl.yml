@@ -127,6 +127,7 @@ pl:
         logo_mobile_icon_instructions_text_with_dimensions: "Ten kwadratowy logotyp będzie pojawiał się, gdy ludzie  zapiszą Twoją stronę na głównej witrynie ich urządzenia mobilnego. Rekomendowane rozmiary to: %{width} na %{height} pikseli."
         cover_photo_visibility: "Zdjęcie w tle jest wyświetlane na stronie głównej dla użytkowników, którzy nie są zalogowani."
         cover_photo_instructions_text_with_dimensions: "Zdjęcie będzie zmniejszone do %{width} na %{height} pikseli i wyższe zdjęcia będą przycięte w środku. %{see_how_it_looks_like}"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "Małe zdjęcie profilowe jest wyświetlane na wszystkich stronach poza stroną główną dla użytkowników, którzy nie są zalogowani."
         small_cover_photo_instructions_text_with_dimensions: "Zdjęcie będzie zmniejszone do %{width} na %{height} pikseli i wyższe zdjęcia będą ucięte w połowie."
         main_content_width: "Wybierając zdjęcie tytułowe zwróć uwagę, że szerokość głównej strony jest maksymalnie %{main_width} pikseli. Pamiętaj także, aby sprawdzić, jak Twoje zdjęcie tytułowe wygląda na mniejszych ekranach (np. używając węższych okien przeglądarki)."
@@ -756,6 +757,7 @@ pl:
       emails_title: E-maile
       subscription: Subskrypcja
       preview: "Podgląd strony"
+      whats_new: ~
     listing_shapes:
       availability_title: Dostępność
       read_more: "Czytaj więcej na temat automatycznego zarządzania dostępnością."
@@ -1749,6 +1751,23 @@ pl:
       messages: Wiadomości
     logged_in_notifications_icon:
       notifications: Powiadomienia
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: Administrator
       go_to_your_profile_page: Profil
@@ -1955,6 +1974,7 @@ pl:
       description:
         detailed_description: "Szczegółowy opis"
         youtube_info: "Jeśli Twój opis zawiera łącza YouTube, wideo będzie pokazane poniżej opisu."
+        youtube_info_markdown: ~
       destination:
         destination: Lokalizacja
       form_content:
@@ -2509,6 +2529,8 @@ pl:
       image_is_processing: "Trzymaj się mocno. Przetwarzamy właśnie Twoje zdjęcie profilowe. Będzie gotowe za minutę lub dwie."
       shown_in_your_public_profile: "(pokazane na Twoim publicznym profilu)"
       editing_profile_of: "Edytujesz profil %{name}"
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: "Zapisz informacje"
   shipping_address:
     shipping_address: "Adres dostawy"

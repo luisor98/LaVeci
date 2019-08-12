@@ -112,6 +112,7 @@ th-TH:
         logo_mobile_icon_instructions_text_with_dimensions: ~
         cover_photo_visibility: รูปภาพหน้าปกจะแสดงในหน้าแรกสำหรับผู้ใช้ที่ยังไม่ได้ล็อคอิน
         cover_photo_instructions_text_with_dimensions: "ขนาดโลโก้จะถูกย่อขนาดเหลือ %{width} x %{height} px ภาพที่มีขนาดสูงกว่าจะถูกตัดจากตรงกลาง %{see_how_it_looks_like}"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "ภาพปกขนาดเล็กจะถูกแสดงในหน้าเว็บทั้งหมด ยกเว้นในหน้าแรกสำหรับผู้ใช้ที่ยังไม่ได้ล็อคอิน"
         small_cover_photo_instructions_text_with_dimensions: "รูปภาพจะถูกย่อขนาดเหลือ %{width} x %{height} px ภาพที่มีขนาดสูงกว่าจะถูกตัดจากตรงกลาง "
         main_content_width: "เมื่อเลือกภาพปก โปรดทราบว่าความกว้างสูงสุดของเนื้อหาหลักคือ%{main_width} px  อย่าลืมตรวจสอบว่าภาพปกของคุณจะมีลักษณะใดบนหน้าจอขนาดเล็ก (เช่น โดยใช้ หน้าต่างเบราว์เซอร์ที่แคบขึ้น)"
@@ -741,6 +742,7 @@ th-TH:
       emails_title: อีเมล์
       subscription: ~
       preview: ~
+      whats_new: ~
     listing_shapes:
       availability_title: ~
       read_more: อ่านเพิ่มเติมเกี่ยวกับการจัดการความพร้อมใช้งานโดยอัตโนมัติ
@@ -1716,6 +1718,23 @@ th-TH:
       messages: ข้อความ
     logged_in_notifications_icon:
       notifications: แจ้งเตือน
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: ผู้ดูแล
       go_to_your_profile_page: โปรไฟล์
@@ -1916,6 +1935,7 @@ th-TH:
       description:
         detailed_description: คำอธิบายโดยละเอียด
         youtube_info: "หากคำอธิบายของคุณ มีลิงค์ YouTube ด้วย วิดีโอของ YouTube จะปรากฎที่ด้านล่างคำอธิบายค่ะ"
+        youtube_info_markdown: ~
       destination:
         destination: จุดหมายปลายทาง
       form_content:
@@ -2467,6 +2487,8 @@ th-TH:
       image_is_processing: "โปรดรอซักครู เรากำลังประมวลผลรูปโปรไฟล์ของคุณ จะพร้อมภายใน 1-2 นาที"
       shown_in_your_public_profile: ~
       editing_profile_of: ~
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: บันทึกข้อมูล
   shipping_address:
     shipping_address: ที่อยู่ในการจัดส่ง

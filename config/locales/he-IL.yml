@@ -108,6 +108,7 @@ he-IL:
         logo_mobile_icon_instructions_text_with_dimensions: ~
         cover_photo_visibility: "תמונת השער מוצגת בדף הבית עבור משתמשים שאינם מחוברים."
         cover_photo_instructions_text_with_dimensions: "התמונה תשנה את גודלה ל - ‎%{height}‎‎%{width}‎ פיקסל ותמונות גבוהות יותר ייחתכו באמצע. ‎%{see_how_it_looks_like}‎"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "תמונת שער קטנה מוצגת בכל הדפים, למעט בדף הבית עבור משתמשים שאינם מחוברים."
         small_cover_photo_instructions_text_with_dimensions: "התמונה תשנה את גודלה ל - ‎%{height}‎‎%{width}‎ פיקסל ותמונות גבוהות יותר ייחתכו באמצע."
         main_content_width: "בעת בחירת תמונות רקע, שים לב שהתוכן הראשי בדף הוא‎%{main_width}‎ פיקסלים לכל היותר. זכור גם לבדוק כיצד נראית תמונת השער שלך במסכים הקטנים יותר (למשל באמצעות חלון דפדפן צר יותר)."
@@ -737,6 +738,7 @@ he-IL:
       emails_title: ~
       subscription: ~
       preview: ~
+      whats_new: ~
     listing_shapes:
       availability_title: ~
       read_more: ~
@@ -1704,6 +1706,23 @@ he-IL:
       messages: הודעות
     logged_in_notifications_icon:
       notifications: התראות
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: "מנהל מערכת"
       go_to_your_profile_page: "פרופיל משתמש"
@@ -1904,6 +1923,7 @@ he-IL:
       description:
         detailed_description: תיאור
         youtube_info: "אם התיאור שלך מכיל קישורים ליוטיוב, הסרטונים יפתחו מתחת לתיאור."
+        youtube_info_markdown: ~
       destination:
         destination: יעד
       form_content:
@@ -2456,6 +2476,8 @@ he-IL:
       image_is_processing: ~
       shown_in_your_public_profile: ~
       editing_profile_of: ~
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: "שמור פרטים"
   shipping_address:
     shipping_address: "כתובת למשלוח"

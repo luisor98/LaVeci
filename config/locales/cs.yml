@@ -122,6 +122,7 @@ cs:
         logo_mobile_icon_instructions_text_with_dimensions: "Toto čtvercové logo se zobrazí, když uživatelé budou mít vaši stránku na domovské obrazovce mobilního zařízení.Doporučené rozměry jsou %{width} x%{height} pixelů"
         cover_photo_visibility: "Úvodní fotka se zobrazí na domovské stránce nepřihlášeným uživatelům."
         cover_photo_instructions_text_with_dimensions: "Fotografie budou přizpůsobeny velikosti %{width}x%{height} pixelů a větší snímky budou ořezány. %{see_how_it_looks_like}"
+        cover_photo_ready_made: ~
         small_cover_photo_visibility: "Malá úvodní fotka se zobrazí nepřihlášeným uživatelům na všech stránkách kromě domovské stránky."
         small_cover_photo_instructions_text_with_dimensions: "Fotografie bude přizpůsobena velikosti %{width}x%{height} pixelů a větší obrázky budou ořezány."
         main_content_width: "Při výběru úvodních fotek vezměte na vědomí, že rozlišení hlavní stránky je maximálně %{main_width} pixelů na šířku. Nezapomeňte také zkontrolovat, jak bude Vaše úvodní fotografie vypadat na menších obrazovkách. (např. použitím užších oken vyhledávačů)."
@@ -751,6 +752,7 @@ cs:
       emails_title: Emaily
       subscription: Předplatné
       preview: "Náhled stránky"
+      whats_new: ~
     listing_shapes:
       availability_title: Dostupnost
       read_more: "Přečtěte si více o automatické správě dostupnosti."
@@ -1734,6 +1736,23 @@ cs:
       messages: Zprávy
     logged_in_notifications_icon:
       notifications: Upozornění
+    markdown_help:
+      title: ~
+      description: ~
+      formatting: ~
+      result: ~
+      h1: ~
+      h2: ~
+      h3: ~
+      italic: ~
+      bold: ~
+      underline: ~
+      strikethrough: ~
+      inline_link: ~
+      list: ~
+      one: ~
+      two: ~
+      three: ~
     mobile_logged_in:
       admin: Správce
       go_to_your_profile_page: Profil
@@ -1939,6 +1958,7 @@ cs:
       description:
         detailed_description: "Detailní popis"
         youtube_info: "Pokud váš popis obsahuje odkazy na YouTube, videa budou zobrazena pod popisem."
+        youtube_info_markdown: ~
       destination:
         destination: "Místo určení"
       form_content:
@@ -2492,6 +2512,8 @@ cs:
       image_is_processing: "Váš profilový obrázek se připravuje. Prosíme, aktualizujte stránku po chvíli."
       shown_in_your_public_profile: "( zobrazeno ve vašem veřejném profilu)"
       editing_profile_of: "Nyní upravujete profil %{name}"
+      format_markdown_link: ~
+      format_markdown: ~
     save_information: "Uložit informace"
   shipping_address:
     shipping_address: "Doručovací adresa"
