@@ -39,7 +39,7 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
        started_at
        last_activity_at
        starter_user_id
-       other_party_user_id
+       provider_user_id
      }.to_csv(force_quotes: true)
      transactions.each do |transaction|
        yielder << [
