@@ -56,7 +56,7 @@ module CustomLandingPage
     end
 
     def section_params
-      params.require(:section).permit(section_factory_class.permitted_params)
+      upload_assets(params.require(:section).permit(section_factory_class.permitted_params))
     end
 
     def section_factory_class
@@ -76,12 +76,13 @@ module CustomLandingPage
         LandingPageVersion::Section::Footer
       when LandingPageVersion::Section::LISTINGS
         LandingPageVersion::Section::Listings
+      when LandingPageVersion::Section::CATEGORIES
+        LandingPageVersion::Section::Categories
       end
     end
 
     def section_from_params
-      @section = section_factory_class.new_from_content(section_params)
-      section.landing_page_version = landing_page_version
+      @section = section_factory_class.new_from_content({landing_page_version: landing_page_version}.merge(section_params))
       section.id = params[:id] if params[:id].present?
       section
     end
@@ -100,6 +101,23 @@ module CustomLandingPage
 
       blob.save
       blob
+    end
+
+    # replace file params with asset objects
+    def upload_assets(permitted_params)
+      params = permitted_params.is_a?(Hash) ? permitted_params : permitted_params.to_unsafe_hash
+      patch = {}
+      params.each do |key, value|
+        if value.respond_to?(:open)
+          patch[key] = community.landing_page_assets.attach(create_blob(value)).first
+        elsif value.is_a?(Hash) || value.is_a?(ActionController::Parameters)
+          upload_assets(value)
+        end
+      end
+      patch.each do |old_key, new_value|
+        params[old_key] = new_value
+      end
+      params
     end
   end
 end

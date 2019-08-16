@@ -37,6 +37,11 @@ module CustomLandingPage
         [
           I18n.t('admin.communities.landing_pages.sections.listings'),
           LandingPageVersion::Section::LISTINGS,
+        ],
+        [
+          I18n.t('admin.communities.landing_pages.sections.categories'),
+          LandingPageVersion::Section::CATEGORIES,
+          {data: { }}
         ]
       ]
     end
