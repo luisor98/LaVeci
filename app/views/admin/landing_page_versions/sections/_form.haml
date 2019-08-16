@@ -11,6 +11,10 @@
     = render 'listings', presenter: presenter, form: form
   - elsif presenter.section_categories?
     = render 'categories', presenter: presenter, form: form
+  - elsif presenter.section_locations?
+    = render 'locations', presenter: presenter, form: form
+  - elsif presenter.section_video?
+    = render 'video', presenter: presenter, form: form
 
   .row
     .col-12

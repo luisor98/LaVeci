@@ -78,6 +78,10 @@ module CustomLandingPage
         LandingPageVersion::Section::Listings
       when LandingPageVersion::Section::CATEGORIES
         LandingPageVersion::Section::Categories
+      when LandingPageVersion::Section::LOCATIONS
+        LandingPageVersion::Section::Locations
+      when LandingPageVersion::Section::VIDEO
+        LandingPageVersion::Section::Video
       end
     end
 

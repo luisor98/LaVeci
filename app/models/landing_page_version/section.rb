@@ -4,6 +4,8 @@ module LandingPageVersion::Section
   FOOTER = 'footer'.freeze
   LISTINGS = 'listings'.freeze
   CATEGORIES = 'categories'.freeze
+  LOCATIONS = 'locations'.freeze
+  VIDEO = 'video'.freeze
 
   VARIATION_SINGLE_COLUMN = 'single_column'.freeze
   VARIATION_MULTI_COLUMN = 'multi_column'.freeze
