@@ -36,9 +36,13 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
        status
        currency
        sum
+       commission_from_provider
+       minimum_commission_from_provider
+       commission_from_buyer
+       minimum_commission_from_buyer
        started_at
        last_activity_at
-       starter_user_id
+       buyer_user_id
        provider_user_id
      }.to_csv(force_quotes: true)
      transactions.each do |transaction|
@@ -49,6 +53,10 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
          transaction.status,
          transaction.payment_total.is_a?(Money) ? transaction.payment_total.currency : "N/A",
          transaction.payment_total,
+         transaction.commission_from_seller,
+         transaction.minimum_commission,
+         transaction.commission_from_buyer,
+         transaction.minimum_buyer_fee,
          transaction.created_at,
          transaction.last_activity,
          transaction.starter ? transaction.starter.id : "DELETED",
