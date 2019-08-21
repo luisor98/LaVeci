@@ -505,7 +505,7 @@ en:
             pending_ext: "Waiting Stripe payment"
             payment_intent_requires_action: Pending
             payment_intent_action_expired: Expired
-            payment_intent_failed: Stripe payment failed
+            payment_intent_failed: "Stripe payment failed"
         not_available: "Not available"
       conversations:
         conversations: Conversations
@@ -2779,6 +2779,7 @@ en:
       shorter: "%b %e at %H:%M"
       short_date: "%b %e, %Y"
       hours_only: "%l:%M %P"
+      csv: "%Y-%m-%d %H:%M:%S"
   timestamps:
     day_ago: "%{count} day ago"
     days_ago: "%{count} days ago"
