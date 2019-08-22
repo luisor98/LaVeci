@@ -55,7 +55,7 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
          transaction.payment_total,
          transaction.commission_from_seller,
          transaction.minimum_commission,
-         transaction.commission_from_buyer,
+         transaction.commission_from_buyer || 0,
          transaction.minimum_buyer_fee,
          transaction.created_at,
          transaction.last_activity,
