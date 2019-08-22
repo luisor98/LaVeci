@@ -57,8 +57,8 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
          transaction.minimum_commission,
          transaction.commission_from_buyer,
          transaction.minimum_buyer_fee,
-         transaction.created_at && I18n.l(transaction.created_at, format: :csv),
-         transaction.last_activity && I18n.l(transaction.last_activity, format: :csv),
+         transaction.created_at && I18n.l(transaction.created_at, format: '%Y-%m-%d %H:%M:%S'),
+         transaction.last_activity && I18n.l(transaction.last_activity, format: '%Y-%m-%d %H:%M:%S'),
          transaction.starter ? transaction.starter.id : "DELETED",
          transaction.author ? transaction.author.id : "DELETED"
        ].to_csv(force_quotes: true)
