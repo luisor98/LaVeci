@@ -55,7 +55,7 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
          transaction.payment_total,
          transaction.commission_from_seller,
          transaction.minimum_commission,
-         transaction.commission_from_buyer,
+         transaction.commission_from_buyer || 0,
          transaction.minimum_buyer_fee,
          transaction.created_at && I18n.l(transaction.created_at, format: '%Y-%m-%d %H:%M:%S'),
          transaction.last_activity && I18n.l(transaction.last_activity, format: '%Y-%m-%d %H:%M:%S'),
