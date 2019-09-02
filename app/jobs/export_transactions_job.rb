@@ -37,9 +37,7 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
        currency
        sum
        commission_from_provider
-       minimum_commission_from_provider
        commission_from_buyer
-       minimum_commission_from_buyer
        started_at
        last_activity_at
        buyer_user_id
@@ -53,10 +51,8 @@ class ExportTransactionsJob < Struct.new(:current_user_id, :community_id, :expor
          transaction.status,
          transaction.payment_total.is_a?(Money) ? transaction.payment_total.currency : "N/A",
          transaction.payment_total,
-         transaction.commission_from_seller,
-         transaction.minimum_commission,
-         transaction.commission_from_buyer || 0,
-         transaction.minimum_buyer_fee,
+         transaction.commission,
+         transaction.buyer_commission,
          transaction.created_at && I18n.l(transaction.created_at, format: '%Y-%m-%d %H:%M:%S'),
          transaction.last_activity && I18n.l(transaction.last_activity, format: '%Y-%m-%d %H:%M:%S'),
          transaction.starter ? transaction.starter.id : "DELETED",
