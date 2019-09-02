@@ -110,6 +110,10 @@ module NavigationHelpers
       edit_admin_landing_page_version_section_path(locale: 'en', landing_page_version_id: @current_landing_page.id, id: 'hero')
     when /the big cover photo home page/
       '/?big_cover_photo=true'
+    when /the landing page admin page/
+      admin_landing_page_versions_path(:locale => "en")
+    when /^the landing page section of "(.*)" admin page$/
+      edit_admin_landing_page_version_section_path(locale: 'en', landing_page_version_id: @current_landing_page.id, id: 'hero')
     else
       begin
         page_name =~ /the (.*) page/

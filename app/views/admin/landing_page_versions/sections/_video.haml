@@ -1,15 +1,8 @@
 - content_for :javascript do
   ST.LandingPageSectionEditor.initForm();
 
-= form.hidden_field :previous_id
-= form.hidden_field :kind
+= render partial: 'id_field', locals: {presenter: presenter, form: form}
 
-.row
-  .col-12
-    = form.label :id
-    = form.text_field :id, disabled: presenter.section.persisted?, required: true
-    - if presenter.id_error?
-      %label.error= t("errors.messages.section_with_this_id_already_exists")
 .row
   .col-12
     = form.label :youtube_video_id
@@ -22,13 +15,11 @@
       = form.radio_button :autoplay, false
       = t(".autoplay_no")
     %label
-      = form.radio_button :autoplay, LandingPageVersion::Section::Video::AUTOPLAY_YES
-      = t(".autoplay_yes")
-    %label
-      = form.radio_button :autoplay, LandingPageVersion::Section::Video::AUTOPLAY_MUTED
+      = form.radio_button :autoplay, LandingPageVersion::Section::Video::AUTOPLAY_MUTED, checked: !!form.object.autoplay
       = t(".autoplay_muted")
 
 .row
   .col-12
     = form.label :text
+    = render partial: 'layouts/info_text', locals: { text: t(".info")}
     = form.text_field :text
