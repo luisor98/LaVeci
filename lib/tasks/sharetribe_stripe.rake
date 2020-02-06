@@ -18,9 +18,15 @@ namespace :sharetribe do
       end
 
       desc "Updates capabilities of marketplace"
-      task :update_marketplace, [:marketplace_id] => [:environment] do |t, args|
+      task :update_marketplace, [:marketplace_id, :force] => [:environment] do |t, args|
         marketplace_id = args[:marketplace_id]
-        confirm!("Are you sure you want to update all stripe accounts for this marketplace id='#{marketplace_id}'?")
+        force = (args[:force] == "true") || false
+
+        if force
+          puts "Updating accounts in marketplace id #{marketplace_id}..."
+        else
+          confirm!("Are you sure you want to update all stripe accounts for this marketplace id='#{marketplace_id}'?")
+        end
 
         capabilities_update = StripeService::CapabilitiesUpdate.new(community_id: marketplace_id)
         capabilities_update.update
