@@ -117,6 +117,10 @@ RUN mkdir -p \
        client/app/ \
        public/assets \
        public/webpack
+
+# TMP install screen
+RUN apt-get install -y screen
+
 USER app
 
 # If assets.tar.gz file exists in project root
