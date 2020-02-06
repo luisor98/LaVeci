@@ -12,6 +12,7 @@ doc/api
 doc/app
 public/images/listing_images
 index/
+index.log
 db/development_structure.sql
 old_databases.sql
 .bundle
