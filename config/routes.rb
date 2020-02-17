@@ -229,7 +229,11 @@ Rails.application.routes.draw do
         end
       end
       namespace :users do
-        resources :manage_users, path: 'manage-users', only: %i[index]
+        resources :manage_users, path: 'manage-users', only: %i[index] do
+          member do
+            get :resend_confirmation
+          end
+        end
 
         resources :signup_login, path: 'signup-and-login', only: %i[index] do
           collection do

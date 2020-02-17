@@ -6,6 +6,10 @@ module Admin2::Users
 
     end
 
+    def resend_confirmation
+      @service.resend_confirmation
+    end
+
     private
 
     def set_service

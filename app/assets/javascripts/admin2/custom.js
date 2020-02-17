@@ -19,6 +19,14 @@ function validateCommunityEdit(community_id) {
 
 $(function(){
 
+    $(document).on('click', '.confirm-user', function () {
+        var name = $(this).data('name'),
+            url = $(this).data('url');
+        $('#userUnconfirmedModalLabel').html(name);
+        $('#btn-send-confirm-user').attr('href', url);
+        $('#userUnconfirmedModal').modal('show');
+    });
+
     $('.country-currency').on('change', function() {
         var url = $(this).data('url'),
             currency = $(this).val();

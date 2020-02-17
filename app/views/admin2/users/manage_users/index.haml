@@ -48,7 +48,8 @@
               - if accepted_or_banned
                 = l(membership.created_at, format: :short_date)
               - elsif membership.pending_email_confirmation?
-                %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
+                = link_to 'Unconfirmed', '#', class: %i[confirm-user], data: { name: "Unconfirmed user: #{@presenter.person_name(member)}", url: resend_confirmation_admin2_users_manage_user_path(membership) }
+                -# %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
 
             - if @presenter.require_verification_to_post_listings
               %td
@@ -65,9 +66,12 @@
                     unban_url: unban_admin_community_community_membership_path(@presenter.community.id, membership.id)},
                     class: %i[form-check-input admin-members-ban-toggle]
             %td
-              %a{:href => "#"} Edit
+              - edit_class = banned ? 'is-disabled' : ''
+              - post_klass = @presenter.can_post_listing(membership) ? '' : 'is-disabled'
+              = link_to 'Edit', person_settings_path(member), class: edit_class
               |
-              %a{:href => "#", :target => "_blank"} Post listing as
+              = link_to 'Post listing as', new_person_listing_path(person_id: member.username), class: post_klass
+
         -#%tr
           %td
             %a{:href => "#", :target => "_blank"} Dai Roach
@@ -172,11 +176,12 @@
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
-        %h5#userUnconfirmedModalLabel.modal-title Unconfirmed user: $FIRSTNAME $LASTNAME
+        %h5#userUnconfirmedModalLabel.modal-title
+          Unconfirmed user: $FIRSTNAME $LASTNAME
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
         This user hasn't confirmed their email address. It might be possible that the user didn't receive the confirmation email. Click the resend button if you want to send it again.
       .modal-footer
         %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
-        %button.btn.btn-primary{:type => "button"} Re-send confirmation email
+        = link_to 'Re-send confirmation email', '#', remote: true, class: %i[btn btn-primary], id: 'btn-send-confirm-user'
