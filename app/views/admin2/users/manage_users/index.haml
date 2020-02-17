@@ -1,0 +1,182 @@
+- content_for :title do
+  = t('admin2.sidebar.users.manage_users')
+
+.content-card-header.content-table
+  .content-card-header-left
+    %input#searchUsers.search-header{"aria-describedby" => "searchUsers", :placeholder => "Search users by name, display name or email...", :type => "text"}
+
+  .content-card-header-right
+    %select#userStatus.tiny-select{"aria-describedby" => "userStatus"}
+      %option All users (1,217)
+      %option Accepted (1,202)
+      %option Admins (3)
+      %option Disabled (9)
+      %option Pending (3)
+      %option Posting allowed (3)
+      %option Unconfirmed (3)
+    %a.content-card-header-link{:href => "#"} Export to CSV
+
+.content-card-section-container{:style => "padding: 0; max-width: none;"}
+  .table-responsive
+    %table.table.table-hover.manageusers
+      %thead
+        %tr
+          %th{:scope => "col"}
+            %a{:href => "#"} Name
+          %th{:scope => "col"}
+            %a{:href => "#"} Email
+          %th{:scope => "col"}
+            %a{:href => "#"} Joined ▼
+          - if @presenter.require_verification_to_post_listings
+            %th{:scope => "col"} Posting
+          %th{:scope => "col"} Admin
+          %th{:scope => "col"} Disable
+          %th{:scope => "col"} Actions
+      %tbody
+        - @presenter.memberships.each do |membership|
+          - accepted_or_banned = membership.accepted? || membership.banned?
+          - banned = membership.banned?
+          - member = membership.person
+          - unfinished_transactions = @presenter.has_membership_unfinished_transactions(membership)
+          %tr
+            %td
+              = link_to @presenter.person_name(member), member, target: :_blank
+            %td
+              - email = member.confirmed_notification_emails.any? ? member.confirmed_notification_email_addresses.first : member.emails.first.try(:address)
+              = mail_to email
+            %td
+              - if accepted_or_banned
+                = l(membership.created_at, format: :short_date)
+              - elsif membership.pending_email_confirmation?
+                %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
+
+            - if @presenter.require_verification_to_post_listings
+              %td
+                - if accepted_or_banned
+                  = check_box_tag "posting-allowed[#{member.id}]", member.id, membership.can_post_listings, class: %i[form-check-input admin-members-can-post-listings]
+            %td
+              - if accepted_or_banned
+                = check_box_tag "is_admin[#{member.id}]", member.id, member.is_marketplace_admin?(@presenter.community), :class => %i[form-check-input admin-members-is-admin], disabled: member.eql?(@current_user) || member.banned?
+
+            %td
+              - if accepted_or_banned
+                = check_box_tag "is_banned[#{member.id}]", member.id, member.banned?,
+                    data: {ban_url: ban_admin_community_community_membership_path(@presenter.community.id, membership.id),
+                    unban_url: unban_admin_community_community_membership_path(@presenter.community.id, membership.id)},
+                    class: %i[form-check-input admin-members-ban-toggle]
+            %td
+              %a{:href => "#"} Edit
+              |
+              %a{:href => "#", :target => "_blank"} Post listing as
+        -#%tr
+          %td
+            %a{:href => "#", :target => "_blank"} Dai Roach
+          %td et.magnis.dis@dapibus.com
+          %td
+            %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
+          %td
+            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %a{:href => "#"} Edit
+            |
+            %a{:href => "#", :target => "_blank"} Post listing as
+        -#%tr
+          %td{:style => "opacity:0.4"}
+            %a{:href => "#", :target => "_blank"} Jin Vang
+          %td{:style => "opacity:0.4"} nulla.at@sed.com
+          %td{:style => "opacity:0.4"} Feb 10, 2019
+          %td{:style => "opacity:0.4"}
+            %input.form-check-input{:type => "checkbox"}/
+          %td{:style => "opacity:0.4"}
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
+          %td
+            %a{:href => "#", :style => "opacity:0.4"} Edit
+            |
+            %a{:href => "#", :style => "opacity:0.4"} Post listing as
+        -#%tr
+          %td
+            %a{:href => "#", :target => "_blank"} Brody Hartman
+          %td vitae@tellus.com
+          %td Sep 25, 2019
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %a{:href => "#"} Edit
+            |
+            %a{:href => "#", :target => "_blank"} Post listing as
+        -#%tr
+          %td
+            %a{:href => "#", :target => "_blank"} Brady Coleman (Brad The Man)
+          %td enim.condimentum@Integermollis.com
+          %td
+            %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
+          %td
+            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %a{:href => "#"} Edit
+            |
+            %a{:href => "#", :target => "_blank"} Post listing as
+
+        -#%tr
+          %td
+            %a{:href => "#", :target => "_blank"} Ingrid Harris
+          %td nec.orci@adipiscingelit.net
+          %td Sep 28, 2019
+          %td
+            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %input.form-check-input{:type => "checkbox"}/
+          %td
+            %a{:href => "#"} Edit
+            |
+            %a{:href => "#", :target => "_blank"} Post listing as
+
+  .table-bottom
+    %p
+      Displaying users
+      %strong 1 - 100
+      of
+      %strong 1,217
+      accepted users and 15 other users
+
+    = will_paginate @presenter.memberships
+
+    -#%nav{"aria-label" => "User navigation"}
+      %ul.pagination.justify-content-end
+        %li.page-item
+          %a.page-link{:href => "#"} 1
+        %li.page-item
+          %a.page-link{:href => "#"} 2
+        %li.page-item
+          %a.page-link{:href => "#"} 3
+        %li.page-item
+          %a.page-link{:href => "#"} Next
+
+#userUnconfirmedModal.modal{"aria-hidden" => "true", "aria-labelledby" => "userUnconfirmedModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#userUnconfirmedModalLabel.modal-title Unconfirmed user: $FIRSTNAME $LASTNAME
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        This user hasn't confirmed their email address. It might be possible that the user didn't receive the confirmation email. Click the resend button if you want to send it again.
+      .modal-footer
+        %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+        %button.btn.btn-primary{:type => "button"} Re-send confirmation email

@@ -41,6 +41,7 @@ en:
         display: 'Display'
         experimental: 'Experimental'
       users:
+        manage_users: 'Manage users'
         signup_login: 'Signup & Login'
         user_rights: 'User rights'
       listings:
