@@ -1,0 +1,5 @@
+<% if @error.present? %>
+  alert('<%= j @error %>');
+<% else %>
+  $('.row-member-<%= j @service.membership.id.to_s %>').removeClass('opacity_04');
+<% end %>

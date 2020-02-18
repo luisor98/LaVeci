@@ -228,10 +228,15 @@ Rails.application.routes.draw do
           end
         end
       end
+
       namespace :users do
         resources :manage_users, path: 'manage-users', only: %i[index] do
           member do
             get :resend_confirmation
+            patch :ban
+            patch :unban
+            post :promote_admin
+            post :posting_allowed
           end
         end
 

@@ -71,6 +71,10 @@ en:
         sharetribe: 'Sharetribe analytics'
       advanced:
         custom_script: 'Custom script'
+    manage_users:
+      ban_msg: 'This disables the user account from the marketplace and prevents them from accessing the site again with this account. Are you sure you want to proceed?'
+      unban_msg: 'This enables the user account in the marketplace and allows them to access the site again with this account. Are you sure you want to proceed?'
+      to_admin: 'This makes the user an admin. You should notify the user about their responsibilities and that they should review the Sharetribe terms of use. Are you sure you want to proceed?'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'
