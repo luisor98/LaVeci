@@ -1,0 +1,10 @@
+<% if @error.present? %>
+  showError('<%= j @error %>');
+<% else %>
+  <% if @allow_id %>
+    allowPost(<%= j @id %>);
+  <% end %>
+  <% if @disallow_id %>
+    disallowPost(<%= j @id %>);
+  <% end %>
+<% end %>

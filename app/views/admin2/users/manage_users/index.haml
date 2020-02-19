@@ -1,186 +1,33 @@
 - content_for :title do
   = t('admin2.sidebar.users.manage_users')
 
-.content-card-header.content-table
-  .content-card-header-left
-    %input#searchUsers.search-header{"aria-describedby" => "searchUsers", :placeholder => "Search users by name, display name or email...", :type => "text"}
+= render 'admin2/users/manage_users/filter'
 
-  .content-card-header-right
-    %select#userStatus.tiny-select{"aria-describedby" => "userStatus"}
-      %option All users (1,217)
-      %option Accepted (1,202)
-      %option Admins (3)
-      %option Disabled (9)
-      %option Pending (3)
-      %option Posting allowed (3)
-      %option Unconfirmed (3)
-    %a.content-card-header-link{:href => "#"} Export to CSV
-
-.content-card-section-container{:style => "padding: 0; max-width: none;"}
+.content-card-section-container{style: 'padding: 0; max-width: none;'}
   .table-responsive
     %table.table.table-hover.manageusers
       %thead
         %tr
-          %th{:scope => "col"}
-            = render partial: 'sort_link', locals: { column: "name", direction: sort_link_direction("name"), title: t("admin.communities.manage_members.name") }
-          %th{:scope => "col"}
-            = render partial: 'sort_link', locals: { column: "email", direction: sort_link_direction("email"), title: t("admin.communities.manage_members.email") }
-          %th{:scope => "col"}
-            = render partial: "sort_link", locals: { column: "join_date", direction: sort_link_direction("join_date"), title: t("admin.communities.manage_members.join_date") }
+          %th{scope: :col}
+            = render 'sort_link', column: 'name', direction: sort_link_direction('name'), title: t('admin2.manage_users.name')
+          %th{scope: :col}
+            = render 'sort_link', column: 'email', direction: sort_link_direction('email'), title: t('admin2.manage_users.email')
+          %th{scope: :col}
+            = render 'sort_link', column: 'join_date', direction: sort_link_direction('join_date'), title: t('admin2.manage_users.join_date')
           - if @presenter.require_verification_to_post_listings
-            %th{:scope => "col"}
-              = render partial: 'sort_link', locals: { column: "posting_allowed", direction: sort_link_direction("posting_allowed"), title: 'Posting' }
-          %th{:scope => "col"} Admin
-          %th{:scope => "col"} Disable
-          %th{:scope => "col"} Actions
+            %th{scope: :col}
+              = t('admin2.manage_users.posting')
+          %th{scope: :col}
+            = t('admin2.manage_users.admin')
+          %th{scope: :col}
+            = t('admin2.manage_users.disable')
+          %th{scope: :col}
+            = t('admin2.manage_users.actions')
       %tbody
-        - @presenter.memberships.each do |membership|
-          - accepted_or_banned = membership.accepted? || membership.banned?
-          - banned = membership.banned?
-          - member = membership.person
-          -# - unfinished_transactions = @presenter.has_membership_unfinished_transactions(membership)
-          %tr{class: "row-member-#{membership.id} #{('opacity_04' if banned)}"}
-            %td
-              = link_to @presenter.person_name(member), member, target: :_blank
-            %td
-              - email = member.confirmed_notification_emails.any? ? member.confirmed_notification_email_addresses.first : member.emails.first.try(:address)
-              = mail_to email
-            %td
-              - if accepted_or_banned
-                = l(membership.created_at, format: :short_date)
-              - elsif membership.pending_email_confirmation?
-                = link_to 'Unconfirmed', '#', class: %i[confirm-user], data: { name: "Unconfirmed user: #{@presenter.person_name(member)}", url: resend_confirmation_admin2_users_manage_user_path(membership) }
-
-            - if @presenter.require_verification_to_post_listings
-              %td
-                - if accepted_or_banned
-                  = check_box_tag "posting-allowed[#{member.id}]", member.id, membership.can_post_listings, class: %i[form-check-input admin-members-can-post-listings]
-            %td
-              - if accepted_or_banned
-                = check_box_tag "is_admin[#{member.id}]", member.id, member.is_marketplace_admin?(@presenter.community), class: %i[form-check-input admin-members-is-admin],
-                  data: {url: promote_admin_admin2_users_manage_user_path(membership), msg: t('admin2.manage_users.to_admin')},
-                  disabled: member.eql?(@current_user) || member.banned?
-            %td
-              - if accepted_or_banned
-                = check_box_tag "is_banned[#{member.id}]", member.id, member.banned?,
-                    data: { ban_url: ban_admin2_users_manage_user_path(membership.id),
-                            ban_msg: t('admin2.manage_users.ban_msg'),
-                            unban_url: unban_admin2_users_manage_user_path(membership.id),
-                            unban_msg: t('admin2.manage_users.unban_msg') },
-                    class: %i[form-check-input admin-members-ban-toggle]
-            %td
-              - edit_class = banned ? 'is-disabled' : ''
-              - post_klass = @presenter.can_post_listing(membership) ? '' : 'is-disabled'
-              = link_to 'Edit', person_settings_path(member), class: edit_class
-              |
-              = link_to 'Post listing as', new_person_listing_path(person_id: member.username), class: "#{post_klass} #{edit_class}"
-
-        -#%tr
-          %td
-            %a{:href => "#", :target => "_blank"} Dai Roach
-          %td et.magnis.dis@dapibus.com
-          %td
-            %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
-          %td
-            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %a{:href => "#"} Edit
-            |
-            %a{:href => "#", :target => "_blank"} Post listing as
-        -#%tr
-          %td{:style => "opacity:0.4"}
-            %a{:href => "#", :target => "_blank"} Jin Vang
-          %td{:style => "opacity:0.4"} nulla.at@sed.com
-          %td{:style => "opacity:0.4"} Feb 10, 2019
-          %td{:style => "opacity:0.4"}
-            %input.form-check-input{:type => "checkbox"}/
-          %td{:style => "opacity:0.4"}
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
-          %td
-            %a{:href => "#", :style => "opacity:0.4"} Edit
-            |
-            %a{:href => "#", :style => "opacity:0.4"} Post listing as
-        -#%tr
-          %td
-            %a{:href => "#", :target => "_blank"} Brody Hartman
-          %td vitae@tellus.com
-          %td Sep 25, 2019
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %a{:href => "#"} Edit
-            |
-            %a{:href => "#", :target => "_blank"} Post listing as
-        -#%tr
-          %td
-            %a{:href => "#", :target => "_blank"} Brady Coleman (Brad The Man)
-          %td enim.condimentum@Integermollis.com
-          %td
-            %a{"data-target" => "#userUnconfirmedModal", "data-toggle" => "modal", :href => "#"} Unconfirmed
-          %td
-            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %a{:href => "#"} Edit
-            |
-            %a{:href => "#", :target => "_blank"} Post listing as
-
-        -#%tr
-          %td
-            %a{:href => "#", :target => "_blank"} Ingrid Harris
-          %td nec.orci@adipiscingelit.net
-          %td Sep 28, 2019
-          %td
-            %input.form-check-input{:checked => "checked", :type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %input.form-check-input{:type => "checkbox"}/
-          %td
-            %a{:href => "#"} Edit
-            |
-            %a{:href => "#", :target => "_blank"} Post listing as
+        = render partial: 'admin2/users/manage_users/membership', collection: @presenter.memberships
 
   .table-bottom
-    %p
-      = AdminCommunityMembershipsViewUtils.community_members_entries_info(@presenter.community.id, @presenter.memberships).html_safe
+    %p= AdminCommunityMembershipsViewUtils.community_members_entries_info(@presenter.community.id, @presenter.memberships).html_safe
+    = will_paginate @presenter.memberships, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: t('admin2.next_step'), previous_label: t('admin2.prev_step'), list_classes: %w[pagination justify-content-end]
 
-    = will_paginate @presenter.memberships
-
-    -#%nav{"aria-label" => "User navigation"}
-      %ul.pagination.justify-content-end
-        %li.page-item
-          %a.page-link{:href => "#"} 1
-        %li.page-item
-          %a.page-link{:href => "#"} 2
-        %li.page-item
-          %a.page-link{:href => "#"} 3
-        %li.page-item
-          %a.page-link{:href => "#"} Next
-
-#userUnconfirmedModal.modal{"aria-hidden" => "true", "aria-labelledby" => "userUnconfirmedModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %h5#userUnconfirmedModalLabel.modal-title
-          Unconfirmed user: $FIRSTNAME $LASTNAME
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        This user hasn't confirmed their email address. It might be possible that the user didn't receive the confirmation email. Click the resend button if you want to send it again.
-      .modal-footer
-        %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
-        = link_to 'Re-send confirmation email', '#', remote: true, class: %i[btn btn-primary], id: 'btn-send-confirm-user'
+= render 'admin2/users/manage_users/confirm_popup'

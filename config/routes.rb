@@ -236,7 +236,7 @@ Rails.application.routes.draw do
             patch :ban
             patch :unban
             post :promote_admin
-            post :posting_allowed
+            patch :posting_allowed
           end
         end
 

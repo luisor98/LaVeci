@@ -1,5 +1,5 @@
 <% if @error.present? %>
-  alert('<%= j @error %>');
+  showError('<%= j @error %>');
 <% else %>
-  $('.row-member-<%= j @service.membership.id.to_s %>').addClass('opacity_04');
+  banMembership(<%= j @service.membership.id.to_s %>);
 <% end %>

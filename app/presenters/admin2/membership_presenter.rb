@@ -1,4 +1,4 @@
-class Admin::MembershipPresenter
+class Admin2::MembershipPresenter
   include Collator
 
   private
@@ -14,20 +14,31 @@ class Admin::MembershipPresenter
     @params = params
   end
 
-  def selected_statuses_title
-    if params[:status].present?
-      I18n.t("admin.communities.manage_members.status_filter.selected", count: params[:status].size)
-    else
-      I18n.t("admin.communities.manage_members.status_filter.all")
-    end
-  end
-
   FILTER_STATUSES = %w[admin banned posting_allowed accepted unconfirmed pending]
 
   def sorted_statuses
     FILTER_STATUSES.map {|status|
-      [status, I18n.t("admin.communities.manage_members.status_filter.#{status}"), status_checked?(status)]
-    }.sort_by{|status, translation, checked| collator.get_sort_key(translation) }
+      [status, "#{I18n.t("admin.communities.manage_members.status_filter.#{status}")} (#{count_by_status(status)})" , status_checked?(status)]
+    }.sort_by{ |_status, translation, _checked| collator.get_sort_key(translation) }
+  end
+
+  def count_by_status(status)
+    case status
+    when 'admin'
+      CommunityMembership.admin.count
+    when CommunityMembership::BANNED
+      CommunityMembership.banned.count
+    when 'posting_allowed'
+      CommunityMembership.posting_allowed.count
+    when CommunityMembership::ACCEPTED
+      CommunityMembership.accepted.count
+    when 'unconfirmed'
+      CommunityMembership.pending_email_confirmation.count
+    when 'pending'
+      CommunityMembership.pending_consent.count
+    else
+      0
+    end
   end
 
   def status_checked?(status)
