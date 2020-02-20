@@ -113,8 +113,8 @@
       %ul#emails.collapse.subtitle{class: expand_ul('emails')}
         %li#emailusers
           %a{:href => 'email-users.php'} Email users
-        %li#welcomeemail
-          %a{:href => 'welcome-email.php'} Welcome email
+        %li#welcomeemail{class: active_li('welcome_emails')}
+          = link_to t('admin2.sidebar.emails.welcome_email'), admin2_emails_welcome_emails_path
         %li#automaticnewsletter{class: active_li('newsletters')}
           = link_to t('admin2.sidebar.emails.automatic_newsletter'), admin2_emails_newsletters_path
         %li#customoutgoingaddress
