@@ -25,17 +25,17 @@ class Admin2::MembershipPresenter
   def count_by_status(status)
     case status
     when 'admin'
-      CommunityMembership.admin.count
+      community.community_memberships.admin.count
     when CommunityMembership::BANNED
-      CommunityMembership.banned.count
+      community.community_memberships.banned.count
     when 'posting_allowed'
-      CommunityMembership.posting_allowed.count
+      community.community_memberships.posting_allowed.count
     when CommunityMembership::ACCEPTED
-      CommunityMembership.accepted.count
+      community.community_memberships.accepted.count
     when 'unconfirmed'
-      CommunityMembership.pending_email_confirmation.count
+      community.community_memberships.pending_email_confirmation.count
     when 'pending'
-      CommunityMembership.pending_consent.count
+      community.community_memberships.pending_consent.count
     else
       0
     end
