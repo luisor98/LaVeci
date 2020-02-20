@@ -16,7 +16,7 @@ module Admin2Helper
       listings: %w[listing_approval listing_comments],
       transactions_reviews: %w[config_transactions],
       payment_system: %w[country_currencies],
-      emails: %w[newsletters],
+      emails: %w[newsletters email_users],
       search_location: %w[search locations],
       social_media: %w[image_tags twitter],
       seo: %w[sitemap landing_pages search_pages listing_pages category_pages profile_pages],
@@ -132,5 +132,15 @@ module Admin2Helper
       translation = @community_customizations[locale_value][customization_key] || ""
       translations[locale_value] = { language: locale_name, translation: translation }
     end
+  end
+
+  def admin_email_options
+    options = %i[all_users posting_allowed with_listing with_listing_no_payment with_payment_no_listing no_listing_no_payment]
+    options.delete(:posting_allowed) unless @current_community.require_verification_to_post_listings
+    options.map { |option| [I18n.t("admin.emails.new.recipients.options.#{option}"), option] }
+  end
+
+  def email_languages
+    [[t('admin2.email_users.any_language'), 'any']] | available_locales
   end
 end
