@@ -2,5 +2,6 @@
   showError('<%= j @error %>');
 <% else %>
   unbanMembership(<%= j @service.membership.id.to_s %>);
+  showSuccess('<%= j t('admin2.manage_users.saved') %>');
 <% end %>
 

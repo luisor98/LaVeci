@@ -96,6 +96,7 @@ en:
       post_listing: 'Post listing as'
       ban_me_error: 'You cannot ban yourself'
       cannot_delete_yourself_admin: 'You cannot delete yourself as an admin'
+      saved: 'Saved'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'

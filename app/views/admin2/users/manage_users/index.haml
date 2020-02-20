@@ -5,7 +5,7 @@
 
 .content-card-section-container{style: 'padding: 0; max-width: none;'}
   .table-responsive
-    %table.table.table-hover.manageusers
+    %table.table.table-hover.manageusers#admin_members_list
       %thead
         %tr
           %th{scope: :col}
@@ -26,7 +26,7 @@
       %tbody
         = render partial: 'admin2/users/manage_users/membership', collection: @presenter.memberships
 
-  .table-bottom
+  .table-bottom#admin_members_count
     %p= AdminCommunityMembershipsViewUtils.community_members_entries_info(@presenter.community.id, @presenter.memberships).html_safe
     = will_paginate @presenter.memberships, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: t('admin2.next_step'), previous_label: t('admin2.prev_step'), list_classes: %w[pagination justify-content-end]
 

@@ -1,3 +1,5 @@
 <% if @error.present? %>
   showError('<%= j @error %>');
+<% else %>
+  showSuccess('<%= j t('admin2.manage_users.saved') %>');
 <% end %>

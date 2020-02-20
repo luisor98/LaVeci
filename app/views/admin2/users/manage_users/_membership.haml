@@ -2,7 +2,7 @@
 - banned = membership.banned?
 - member = membership.person
 %tr{class: "row-member-#{membership.id} #{('opacity_04' if banned)}"}
-  %td
+  %td.admin-members-full-name
     = link_to @presenter.person_name(member), member, target: :_blank
   %td
     - email = member.confirmed_notification_emails.any? ? member.confirmed_notification_email_addresses.first : member.emails.first.try(:address)
