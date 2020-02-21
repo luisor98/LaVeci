@@ -43,6 +43,7 @@ en:
       users:
         signup_login: 'Signup & Login'
         user_rights: 'User rights'
+        invitations: 'Invitations'
       listings:
         listing_approval: 'Listing approval'
         listing_comments: 'Listing comments'
@@ -70,6 +71,13 @@ en:
         sharetribe: 'Sharetribe analytics'
       advanced:
         custom_script: 'Custom script'
+    invitations:
+      invite_new_users: 'Invite new users'
+      from: 'From'
+      to: 'To'
+      message: 'Message'
+      accepted: 'Accepted'
+      date_sent: 'Date sent'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'
