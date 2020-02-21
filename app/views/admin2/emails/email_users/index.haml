@@ -34,7 +34,7 @@
         = form.label :content, t('admin2.email_users.content')
         %p.ingress
           = t('admin2.email_users.content_hello')
-        = form.text_area :content, placeholder: t('admin2.email_users.content_placeholder'), class: %i[form-control]
+        = form.text_area :content, placeholder: t('admin2.email_users.content_placeholder'), class: %i[form-control required]
         %small#emailcontent-help.form-text
           = t('admin2.email_users.content_info_text')
 
@@ -44,6 +44,7 @@
 
 - content_for :extra_javascript do
   :javascript
+    validateCustomForm();
     $("#send-test-email").click(function(){
       var form = $('form'), test_email = $('#test_email');
       test_email.val('1');
