@@ -117,7 +117,7 @@ en:
       send_email: 'Send email to users'
     welcome_email:
       title: 'Welcome email content'
-      title_info_text: "The message below will be sent to every new user when they join. You can customize the message to fit your marketplace. By clicking 'Send test message' you can send a preview message to your email address, so you can see how it looks in an email1 client."
+      title_info_text: "The message below will be sent to every new user when they join. You can customize the message to fit your marketplace. By clicking 'Send test message' you can send a preview message to your email address, so you can see how it looks in an email client."
       welcome_email_content: 'Email content'
       hello: 'Hello Firstname,'
       welcome_email_content_placeholder: 'Welcome to Bikerrrs!'
