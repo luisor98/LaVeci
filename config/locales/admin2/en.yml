@@ -46,6 +46,7 @@ en:
       listings:
         listing_approval: 'Listing approval'
         listing_comments: 'Listing comments'
+        manage_listings: 'Manage listings'
       transactions_reviews:
         config_transactions: 'Configure transactions'
       payment_system:

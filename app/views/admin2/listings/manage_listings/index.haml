@@ -1,0 +1,55 @@
+- content_for :title do
+  = t('admin2.sidebar.listings.manage_listings')
+
+.content-card-header.content-table
+  .content-card-header-left
+    %input#marketplaceName.search-header{"aria-describedby" => "marketplaceName", :placeholder => "Search listings by title, user or category...", :type => "text"}
+  .content-card-header-right
+    = select_tag 'status[]', options_for_select(@presenter.statuses.map { |st| [t("admin.communities.listings.status.#{st}"), st] }, params[:status]), prompt: t('admin2.manage_users.all_statuses') , class: %i[tiny-select change-status-filter]
+
+    %a.content-card-header-link{:href => "#"} Export to CSV
+.content-card-section-container{style: 'padding: 0; max-width: none;'}
+  .table-responsive
+    %table.table.table-hover.listings
+      %thead
+        %tr
+          %th{scope: :col} Listing
+          %th{scope: :col} Provider
+          %th{scope: :col}
+            %a{:href => "#"} Created
+          %th{scope: :col}
+            %a{:href => "#"} Updated ▼
+          %th{scope: :col} Category
+          %th{scope: :col} Status
+          %th{scope: :col} Actions
+      %tbody
+        = render partial: 'listing', collection: @presenter.listings, locals: { presenter: @presenter }
+
+    .table-bottom
+      %p= page_entries_info(@presenter.listings, model: 'Listing').html_safe
+
+      %nav{"aria-label" => "User navigation"}
+        %ul.pagination.justify-content-end
+          %li.page-item
+            %a.page-link{:href => "#"} 1
+          %li.page-item
+            %a.page-link{:href => "#"} 2
+          %li.page-item
+            %a.page-link{:href => "#"} 3
+          %li.page-item
+            %a.page-link{:href => "#"} Next
+
+
+#listingPendingModal.modal{"aria-hidden" => "true", "aria-labelledby" => "listingPendingModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#listingPendingModalLabel.modal-title $LISTING_TITLE
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.
+      .modal-footer
+        %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+        %button.btn.btn-ghost{:type => "button"} Reject
+        %button.btn.btn-primary{:type => "button"} Approve
