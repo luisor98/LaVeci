@@ -16,7 +16,8 @@
         = form.fields_for :community_customizations, @community_customization do |cc|
           = cc.label :welcome_email_content, t('admin2.welcome_email.welcome_email_content')
           %br
-          = t('admin2.welcome_email.hello')
+          .ingress
+            = t('admin2.welcome_email.hello')
           = cc.text_area :welcome_email_content, class: %i[form-control], placeholder: t('admin2.welcome_email.welcome_email_content_placeholder')
           %small#welcomeEmailContent-help.form-text
             = t('admin2.welcome_email.welcome_email_content_info_text')
