@@ -36,6 +36,8 @@ class Admin2::MembershipPresenter
       community.community_memberships.pending_email_confirmation.count
     when 'pending'
       community.community_memberships.pending_consent.count
+    when 'all'
+      community.community_memberships.count
     else
       0
     end

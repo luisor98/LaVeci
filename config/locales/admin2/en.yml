@@ -81,7 +81,7 @@ en:
       to_admin: 'This makes the user an admin. You should notify the user about their responsibilities and that they should review the Sharetribe terms of use. Are you sure you want to proceed?'
       search_by: 'Search users by name, display name or email...'
       export_csv: 'Export to CSV'
-      all_statuses: 'All statuses'
+      all_statuses: 'All users (%{count})'
       name: 'Name'
       email: 'Email'
       join_date: 'Joined'
