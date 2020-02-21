@@ -18,7 +18,7 @@
     %td{class: row_member_class}
       - if accepted_or_banned
         = check_box_tag "posting-allowed[#{member.id}]", member.id, membership.can_post_listings, class: %i[form-check-input admin-members-can-post-listings],
-                data: {url: posting_allowed_admin2_users_manage_user_path(membership)}
+                data: {url: posting_allowed_admin2_users_manage_user_path(membership)}, disabled: member.banned?
   %td{class: row_member_class}
     - if accepted_or_banned
       = check_box_tag "is_admin[#{member.id}]", member.id, member.is_marketplace_admin?(@presenter.community), class: %i[form-check-input admin-members-is-admin],

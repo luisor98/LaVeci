@@ -16,6 +16,7 @@ function banMembership(id) {
     var row = $('.row-member-' + id);
     row.addClass('opacity_04');
     row.find('.admin-members-is-admin').prop('disabled', true);
+    row.find('.admin-members-can-post-listings').prop('disabled', true);
     row.find('.edit-membership').addClass('is-disabled');
     var can_post = row.find('.admin-members-can-post-listings');
     if (can_post.length === 0) {
@@ -29,6 +30,7 @@ function unbanMembership(id) {
     var row = $('.row-member-' + id);
     row.removeClass('opacity_04');
     row.find('.admin-members-is-admin').prop('disabled', false);
+    row.find('.admin-members-can-post-listings').prop('disabled', false);
     row.find('.edit-membership').removeClass('is-disabled');
     var can_post = row.find('.admin-members-can-post-listings');
     if (can_post.length === 0) {
