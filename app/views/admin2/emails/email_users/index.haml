@@ -34,7 +34,7 @@
         = form.label :content, t('admin2.email_users.content')
         %p.ingress
           = t('admin2.email_users.content_hello')
-        = form.text_area :content, placeholder: t('admin2.email_users.content_placeholder'), class: %i[form-control required]
+        = form.text_area :content, placeholder: t('admin2.email_users.content_placeholder'), class: %i[form-control required], minlength: 2
         %small#emailcontent-help.form-text
           = t('admin2.email_users.content_info_text')
 
