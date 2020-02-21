@@ -239,7 +239,7 @@ Rails.application.routes.draw do
             patch :posting_allowed
           end
         end
-
+        resources :invitations, only: %i[index]
         resources :signup_login, path: 'signup-and-login', only: %i[index] do
           collection do
             patch :update_signup_login

@@ -46,6 +46,7 @@ en:
         manage_users: 'Manage users'
         signup_login: 'Signup & Login'
         user_rights: 'User rights'
+        invitations: 'Invitations'
       listings:
         listing_approval: 'Listing approval'
         listing_comments: 'Listing comments'
@@ -122,6 +123,13 @@ en:
       welcome_email_content_placeholder: 'Welcome to Bikerrrs!'
       welcome_email_content_info_text: '"Firstname" cannot be removed and will be replaced by the actual first name of each recipient.'
       send_to_yourself: 'Send a test email to yourself'
+    invitations:
+      invite_new_users: 'Invite new users'
+      from: 'From'
+      to: 'To'
+      message: 'Message'
+      accepted: 'Accepted'
+      date_sent: 'Date sent'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'
