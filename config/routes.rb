@@ -282,16 +282,14 @@ Rails.application.routes.draw do
       end
 
       namespace :emails do
-<<<<<<< HEAD
         resources :email_users, path: 'email-users', only: %i[index create]
-=======
+
         resources :welcome_emails, path: 'welcome-email', only: %i[index] do
           collection do
             patch :update_email
           end
         end
 
->>>>>>> admin_v2_welcome_email
         resources :newsletters, path: 'automatic-newsletter', only: %i[index] do
           collection do
             patch :update_newsletter
