@@ -1,17 +1,19 @@
 class Listing::ListPresenter
   include Rails.application.routes.url_helpers
 
-  attr_reader :community, :author, :params, :admin_mode
+  attr_reader :community, :author, :params, :admin_mode, :per_page
 
-  def initialize(community, author, params, admin_mode)
+  def initialize(community, author, params, admin_mode, per_page = 30)
     @author = author
     @community = community
     @params = params
     @admin_mode = admin_mode
+    @per_page = per_page
   end
 
   def listings
-    @listings ||= resource_scope.order("#{sort_column} #{sort_direction}").paginate(:page => params[:page], :per_page => 30)
+    @listings ||= resource_scope.order("#{sort_column} #{sort_direction}")
+                                .paginate(page: params[:page], per_page: per_page)
   end
 
   def reset_search_path

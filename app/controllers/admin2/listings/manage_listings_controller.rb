@@ -33,7 +33,7 @@ module Admin2::Listings
         params: params)
       @presenter = Listing::ListPresenter.new(@current_community,
                                               @current_user, params,
-                                              true)
+                                              true, 100)
     end
   end
 end
