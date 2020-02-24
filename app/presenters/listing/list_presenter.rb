@@ -86,6 +86,10 @@ class Listing::ListPresenter
     scope
   end
 
+  def count_by_status(status)
+
+  end
+
   def sort_column
     case params[:sort]
     when 'started'

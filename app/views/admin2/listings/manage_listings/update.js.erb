@@ -1,2 +1,2 @@
 $('#listingPendingModal').modal('hide');
-$('listing_row_<%= j @service.listing.id %>').html('<%= j render 'admin2/listings/manage_listings/row', listing: @service.listing, presenter: @presenter %>');
+$('.listing_row_<%= j @service.listing.id.to_s %>').html('<%= j render 'admin2/listings/manage_listings/row', listing: @service.listing, presenter: @presenter %>');

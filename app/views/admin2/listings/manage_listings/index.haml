@@ -1,12 +1,7 @@
 - content_for :title do
   = t('admin2.sidebar.listings.manage_listings')
 
-= form_tag '', method: :get, class: %i[content-card-header content-table] do
-  .content-card-header-left
-    = text_field_tag :q, params[:q], placeholder: 'Search listings by title, user or category...', class: %i[search-header]
-  .content-card-header-right
-    = select_tag 'status[]', options_for_select(@presenter.statuses.map { |st| [t("admin.communities.listings.status.#{st}"), st] }, params[:status]), prompt: t('admin2.manage_users.all_statuses') , class: %i[tiny-select change-status-filter-listings]
-    = link_to 'Export to CSV', export_admin2_listings_manage_listings_path, remote: true, id: 'export-as-csv', class: %i[content-card-header-link] << ('opacity_04 is-disabled' if params[:status]&.any?{|s| s.present?} || params[:q].present?)
+= render 'admin2/listings/manage_listings/filter'
 
 .content-card-section-container{style: 'padding: 0; max-width: none;'}
   .table-responsive
@@ -15,10 +10,8 @@
         %tr
           %th{scope: :col} Listing
           %th{scope: :col} Provider
-          %th{scope: :col}
-            = render 'sort_link', column: 'started', direction: sort_link_direction('started'), title: 'Created'
-          %th{scope: :col}
-            = render 'sort_link', column: 'updated', direction: sort_link_direction('updated'), title: 'Updated'
+          %th{scope: :col}= render 'sort_link', column: 'started', direction: sort_link_direction('started'), title: 'Created'
+          %th{scope: :col}= render 'sort_link', column: 'updated', direction: sort_link_direction('updated'), title: 'Updated'
           %th{scope: :col} Category
           %th{scope: :col} Status
           %th{scope: :col} Actions
@@ -29,18 +22,4 @@
       %p= page_entries_info(@presenter.listings, model: 'Listing').html_safe
       = will_paginate @presenter.listings, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: t('admin2.next_step'), previous_label: t('admin2.prev_step'), list_classes: %w[pagination justify-content-end]
 
-#listingPendingModal.modal{"aria-hidden" => "true", "aria-labelledby" => "listingPendingModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    = form_tag admin2_listings_manage_listings_path, method: :patch, remote: true, class: %i[modal-content], id: :form_approve_reject do
-      = hidden_field_tag :id, '', id: :listing_id
-      = hidden_field_tag "listing[state]", '', id: :listing_state
-      .modal-header
-        %h5#listingPendingModalLabel.modal-title $LISTING_TITLE
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.
-      .modal-footer
-        %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
-        = link_to 'Reject', '#', class: %i[reject-listing btn btn-ghost]
-        = link_to 'Approve', '#', class: %i[approve-listing btn btn-primary]
+= render 'admin2/listings/manage_listings/approve_popup'

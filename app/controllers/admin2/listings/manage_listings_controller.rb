@@ -6,6 +6,7 @@ module Admin2::Listings
 
     def update
       @service.update
+      render layout: false
     end
 
     def export
