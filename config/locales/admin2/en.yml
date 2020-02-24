@@ -50,6 +50,7 @@ en:
       listings:
         listing_approval: 'Listing approval'
         listing_comments: 'Listing comments'
+        manage_listings: 'Manage listings'
       transactions_reviews:
         config_transactions: 'Configure transactions'
       payment_system:
@@ -131,6 +132,23 @@ en:
       message: 'Message'
       accepted: 'Accepted'
       date_sent: 'Date sent'
+    manage_listings:
+      search_placeholder: 'Search listings by title, user or category...'
+      export_to_csv: 'Export to CSV'
+      all_listings: 'All listings (%{count})'
+      listing: 'Listing'
+      provider: 'Provider'
+      created: 'Created'
+      updated: 'Updated'
+      category: 'Category'
+      status: 'Status'
+      actions: 'Actions'
+      cancel: 'Cancel'
+      reject: 'Reject'
+      approve: 'Approve'
+      edit: 'Edit'
+      processing_export: "Processing export to CSV..."
+      confirm_popup_body: 'This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'

@@ -252,6 +252,13 @@ Rails.application.routes.draw do
         end
       end
       namespace :listings do
+        resources :manage_listings, path: 'manage-listings', only: %i[index] do
+          collection do
+            patch :update
+            get :export
+            get :export_status
+          end
+        end
         resources :listing_approval, path: 'listing-approval', only: %i[index] do
           collection do
             patch :update_listing_approval

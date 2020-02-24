@@ -46,6 +46,7 @@ fr:
       listings:
         listing_approval: 'lorem ipsum'
         listing_comments: 'lorem ipsum'
+        manage_listings: 'lorem ipsum'
       transactions_reviews:
         config_transactions: 'lorem ipsum'
       payment_system:
@@ -116,6 +117,17 @@ fr:
       welcome_email_content_placeholder: 'lorem ipsum'
       welcome_email_content_info_text: 'lorem ipsum'
       send_to_yourself: 'lorem ipsum'
+    manage_listings:
+      search_placeholder: 'lorem ipsum'
+      export_to_csv: 'lorem ipsum'
+      all_listings: 'lorem ipsum (%{count})'
+      listing: 'lorem ipsum'
+      provider: 'lorem ipsum'
+      created: 'lorem ipsum'
+      updated: 'lorem ipsum'
+      category: 'lorem ipsum'
+      status: 'lorem ipsum'
+      actions: 'lorem ipsum'
     footer:
       footer_enabling: 'lorem ipsum'
       footer_enabling_field: 'lorem ipsum'
