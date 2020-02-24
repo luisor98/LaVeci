@@ -1,15 +1,15 @@
-#listingPendingModal.modal{"aria-hidden" => "true", "aria-labelledby" => "listingPendingModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
+#listingPendingModal.modal{'aria-hidden' => 'true', 'aria-labelledby' => 'listingPendingModalLabel', role: 'dialog', tabindex: '-1'}
+  .modal-dialog{role: 'document'}
     = form_tag admin2_listings_manage_listings_path, method: :patch, remote: true, class: %i[modal-content], id: :form_approve_reject do
       = hidden_field_tag :id, '', id: :listing_id
-      = hidden_field_tag "listing[state]", '', id: :listing_state
+      = hidden_field_tag 'listing[state]', '', id: :listing_state
       .modal-header
-        %h5#listingPendingModalLabel.modal-title $LISTING_TITLE
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
+        %h5#listingPendingModalLabel.modal-title
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', type: :button}
+          %span{'aria-hidden' => 'true'} ×
       .modal-body
-        This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.
+        = t('admin2.manage_listings.confirm_popup_body')
       .modal-footer
-        %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
-        = link_to 'Reject', '#', class: %i[reject-listing btn btn-ghost]
-        = link_to 'Approve', '#', class: %i[approve-listing btn btn-primary]
+        %a.cancel-modal{'data-dismiss' => 'modal', href: '#'}= t('admin2.manage_listings.cancel')
+        = link_to t('admin2.manage_listings.reject'), '#', class: %i[reject-listing btn btn-ghost]
+        = link_to t('admin2.manage_listings.approve'), '#', class: %i[approve-listing btn btn-primary]

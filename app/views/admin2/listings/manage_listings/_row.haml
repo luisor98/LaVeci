@@ -1,10 +1,10 @@
 %td
   = link_to listing.title, listing_path(listing), target: :_blank
-  - if presenter.admin_mode
-    %td
-      - p = listing.author
-      - unless p.deleted
-        = link_to PersonViewUtils.person_display_name(p, presenter.community), person_path(p.username), target: :_blank
+- if presenter.admin_mode
+  %td
+    - p = listing.author
+    - unless p.deleted
+      = link_to PersonViewUtils.person_display_name(p, presenter.community), person_path(p.username), target: :_blank
 %td= l(listing.created_at, format: :short)
 %td= l(listing.updated_at, format: :short)
 %td
@@ -17,8 +17,8 @@
   - else
     = status
 %td
-  = link_to 'Edit', edit_listing_path(listing), target: :_blank
+  = link_to t('admin2.manage_listings.edit'), edit_listing_path(listing), target: :_blank
   |
-  %a{:href => "#", :style => "opacity:0.4"} Close
+  %a{href: '#', style: 'opacity:0.4'} Close
   -#|
   -#%a{"data-target" => "#listingDeleteModal", "data-toggle" => "modal", :href => "#"} Delete
