@@ -105,7 +105,7 @@ en:
       recipients: 'Who do you want to email?'
       learn_segments: 'Learn more about the <a href="%{url}" target="_blank">user segments</a>.'
       receivers_languages: 'Language of the email receivers'
-      any_language: 'Any Language'
+      any_language: 'Any language'
       subject: 'Email subject'
       subject_info_text: 'To improve email deliverability the email subject is generated automatically and cannot be changed.'
       email_subject_text: "A new message from the %{service_name} team"
