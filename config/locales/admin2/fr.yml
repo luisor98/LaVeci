@@ -128,6 +128,12 @@ fr:
       category: 'lorem ipsum'
       status: 'lorem ipsum'
       actions: 'lorem ipsum'
+      cancel: 'lorem ipsum'
+      reject: 'lorem ipsum'
+      approve: 'lorem ipsum'
+      edit: 'lorem ipsum'
+      processing_export: 'lorem ipsum'
+      confirm_popup_body: 'lorem ipsum'
     footer:
       footer_enabling: 'lorem ipsum'
       footer_enabling_field: 'lorem ipsum'
