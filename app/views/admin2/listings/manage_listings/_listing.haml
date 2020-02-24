@@ -1,26 +1,2 @@
-%tr
-  %td
-    = link_to listing.title, listing_path(listing), target: :_blank
-  - if presenter.admin_mode
-    %td
-      - p = listing.author
-      - unless p.deleted
-        = link_to PersonViewUtils.person_display_name(p, presenter.community), person_path(p.username), target: :_blank
-  %td= l(listing.created_at, format: :short)
-  %td= l(listing.updated_at, format: :short)
-  %td
-    - category = listing.category
-    = link_to category.display_name(I18n.locale), search_path(category: category.url), target: :_blank
-  %td
-    - status = t("admin.communities.listings.#{presenter.listing_status(listing)}")
-    - if presenter.show_approval_link?(listing)
-      = link_to status, edit_admin_community_listing_path(presenter.community.id, listing.id), remote: true
-    - else
-      = status
-    -# %a{"data-target" => "#listingPendingModal", "data-toggle" => "modal", :href => "#"} Pending
-  %td
-    = link_to 'Edit', edit_listing_path(listing), target: :_blank
-    |
-    %a{:href => "#", :style => "opacity:0.4"} Close
-    -#|
-    -#%a{"data-target" => "#listingDeleteModal", "data-toggle" => "modal", :href => "#"} Delete
+%tr{class: "listing_row_#{listing.id}"}
+  = render 'admin2/listings/manage_listings/row', listing: listing, presenter: presenter

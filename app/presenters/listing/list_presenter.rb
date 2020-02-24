@@ -76,12 +76,10 @@ class Listing::ListPresenter
       statuses.push(Listing.status_expired) if params[:status].include?('expired')
       statuses.push(Listing.approval_pending) if params[:status].include?(Listing::APPROVAL_PENDING)
       statuses.push(Listing.approval_rejected) if params[:status].include?(Listing::APPROVAL_REJECTED)
-      if statuses.size > 1
+      if statuses.size.positive?
         status_scope = statuses.slice!(0)
-        statuses.map{|x| status_scope = status_scope.or(x)}
+        statuses.map { |x| status_scope = status_scope.or(x) }
         scope = scope.merge(status_scope)
-      else
-        scope = scope.merge(statuses.first)
       end
     end
 
