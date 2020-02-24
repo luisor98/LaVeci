@@ -30,6 +30,10 @@ class Listing::ListPresenter
     @statuses = result
   end
 
+  def statuses_with_count
+    statuses.map { |status| ["#{I18n.t("admin.communities.listings.status.#{status}")} (#{count_by_status(status)}) ", status] }
+  end
+
   def listing_status(listing)
     if listing.approval_pending? || listing.approval_rejected?
       listing.state
@@ -54,6 +58,10 @@ class Listing::ListPresenter
 
   def show_listings_export?
     !has_search? && admin_mode
+  end
+
+  def total_listings
+    count_by_status('all')
   end
 
   private
@@ -87,7 +95,22 @@ class Listing::ListPresenter
   end
 
   def count_by_status(status)
-
+    scope = community.listings.exist
+    scope = case status
+            when 'open'
+              scope.status_open_active
+            when 'closed'
+              scope.status_closed
+            when 'expired'
+              scope.status_expired
+            when Listing::APPROVAL_PENDING
+              scope.approval_pending
+            when Listing::APPROVAL_REJECTED
+              scope.approval_rejected
+            else
+              scope
+            end
+    scope.count
   end
 
   def sort_column
