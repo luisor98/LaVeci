@@ -143,4 +143,9 @@ module Admin2Helper
   def email_languages
     [[t('admin2.email_users.any_language'), 'any']] | available_locales
   end
+  
+  def person_name(person)
+    display_name = person.display_name.present? ? " (#{person.display_name})" : ''
+    "#{person.given_name} #{person.family_name}#{display_name}"
+  end
 end
