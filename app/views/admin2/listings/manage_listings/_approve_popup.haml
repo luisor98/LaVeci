@@ -10,6 +10,6 @@
       .modal-body
         = t('admin2.manage_listings.confirm_popup_body')
       .modal-footer
-        %a.cancel-modal{'data-dismiss' => 'modal', href: '#'}= t('admin2.manage_listings.cancel')
+        = link_to t('admin2.manage_listings.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
         = link_to t('admin2.manage_listings.reject'), '#', class: %i[reject-listing btn btn-ghost]
         = link_to t('admin2.manage_listings.approve'), '#', class: %i[approve-listing btn btn-primary]

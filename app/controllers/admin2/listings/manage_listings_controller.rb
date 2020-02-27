@@ -9,6 +9,11 @@ module Admin2::Listings
       render layout: false
     end
 
+    def close
+      @service.close
+      render layout: false
+    end
+
     def export
       @export_result = ExportTaskResult.create
       Delayed::Job.enqueue(ExportListingsJob.new(@current_user.id, @current_community.id, @export_result.id))
