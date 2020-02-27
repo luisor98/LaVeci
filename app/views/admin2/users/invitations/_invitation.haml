@@ -2,7 +2,7 @@
   %td
     - p = invitation.inviter
     - unless p.deleted
-      = link_to person_name(p), person_path(p.username)
+      = link_to person_name(p), person_path(p.username), target: :_blank
   %td
     = invitation.email
   %td
