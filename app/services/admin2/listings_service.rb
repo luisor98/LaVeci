@@ -20,6 +20,10 @@ class Admin2::ListingsService
     end
   end
 
+  def close
+    listing.update_attribute(:open, false)
+  end
+
   def approve
     listing.update_column(:state, Listing::APPROVED) # rubocop:disable Rails/SkipsModelValidations
     self.class.send_listing_approved(listing.id)
@@ -33,12 +37,12 @@ class Admin2::ListingsService
   def update_by_author_params(update_listing)
     if community.pre_approved_listings? && !person.has_admin_rights?(community)
       if update_listing.approved? || update_listing.approval_rejected?
-        {state: Listing::APPROVAL_PENDING}
+        { state: Listing::APPROVAL_PENDING }
       else
         {}
       end
     else
-      {state: Listing::APPROVED}
+      { state: Listing::APPROVED }
     end
   end
 

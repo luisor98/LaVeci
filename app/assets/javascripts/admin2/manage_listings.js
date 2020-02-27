@@ -10,6 +10,16 @@ $(function() {
         $('#listingPendingModal').modal('show');
     });
 
+    $(document).on('click', '.close-listing', function () {
+        var id = $(this).data('id'),
+            title_popup = $('#listingCloseModalLabel'),
+            listing_name = $(this).data('title');
+
+        title_popup.html(listing_name);
+        $('#listing_close_id').val(id);
+        $('#listingCloseModal').modal('show');
+    });
+
     $(document).on('click', '.approve-listing', function () {
         var listing_state = $('#listing_state');
         listing_state.val('approved');

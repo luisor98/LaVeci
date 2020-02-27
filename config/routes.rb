@@ -244,6 +244,7 @@ Rails.application.routes.draw do
         resources :manage_listings, path: 'manage-listings', only: %i[index] do
           collection do
             patch :update
+            patch :close
             get :export
             get :export_status
           end

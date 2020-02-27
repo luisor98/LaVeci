@@ -19,6 +19,4 @@
 %td
   = link_to t('admin2.manage_listings.edit'), edit_listing_path(listing), target: :_blank
   |
-  %a{href: '#', style: 'opacity:0.4'} Close
-  -#|
-  -#%a{"data-target" => "#listingDeleteModal", "data-toggle" => "modal", :href => "#"} Delete
+  = link_to t('admin2.manage_listings.close'), '#', data: {id: listing.id, title: listing.title}, class: (%i[close-listing] << (%i[opacity_04 is-disabled] if listing.closed?))
