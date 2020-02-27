@@ -1,0 +1,40 @@
+.content-card-header.content-table
+  .content-card-header-left
+    %input#marketplaceName.search-header{"aria-describedby" => "marketplaceName", :placeholder => "Filter conversations by a name, email or keyword...", :type => "text"}/
+.content-card-section-container{:style => "padding: 0; max-width: none;"}
+  .table-responsive
+    %table.table.table-hover
+      %thead
+        %tr
+          %th{:scope => "col"}
+            %a{:href => "#"} Listing
+          %th{:scope => "col"}
+            %a{:href => "#"} Sender
+          %th{:scope => "col"}
+            %a{:href => "#"} Receiver
+          %th{:scope => "col"}
+            %a{:href => "#"} Started
+          %th{:scope => "col"}
+            %a{:href => "#"} Latest activity
+          %th{:scope => "col"}
+            %a{:href => "#"} Status
+      %tbody
+        = render partial: 'admin2/transactions_reviews/conversations/conversation', collection: @service.conversations
+
+    .table-bottom
+      %p
+        Displaying
+        %strong 40
+        reviews in transactions 1 - 30 of
+        %strong 68
+        reviews in total
+      %nav{"aria-label" => "User navigation"}
+        %ul.pagination.justify-content-end
+          %li.page-item
+            %a.page-link{:href => "#"} 1
+          %li.page-item
+            %a.page-link{:href => "#"} 2
+          %li.page-item
+            %a.page-link{:href => "#"} 3
+          %li.page-item
+            %a.page-link{:href => "#"} Next

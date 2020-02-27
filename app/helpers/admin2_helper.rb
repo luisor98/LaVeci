@@ -14,7 +14,7 @@ module Admin2Helper
       design: %w[logos_color landing_page display experimental cover_photos topbar footer],
       users: %w[signup_login user_rights],
       listings: %w[listing_approval listing_comments],
-      transactions_reviews: %w[config_transactions],
+      transactions_reviews: %w[config_transactions conversations],
       payment_system: %w[country_currencies],
       emails: %w[newsletters],
       search_location: %w[search locations],
