@@ -9,6 +9,7 @@ fr:
       marketplace: 'lorem ipsum'
       avatar: 'lorem ipsum'
       logout: 'lorem ipsum'
+      marketplace_id: 'lorem ipsum: %{id}'
     sidebar:
       dashboard: 'lorem ipsum'
       general_group: 'lorem ipsum'
