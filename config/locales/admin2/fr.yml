@@ -72,6 +72,7 @@ fr:
         google_console: 'lorem ipsum'
       analytics:
         google: 'lorem ipsum'
+        google_manager: 'lorem ipsum'
         sharetribe: 'lorem ipsum'
       advanced:
         custom_script: 'lorem ipsum'
@@ -150,6 +151,9 @@ fr:
       not_available: 'lorem ipsum'
       profile: "%{author}'s lorem ipsum"
       conversation: 'lorem ipsum'
+    google_manager:
+      info_text: "lorem ipsum"
+      info_text_2: "lorem ipsum <a href='%{url}' target='_blank'>lorem ipsum</a>."
     google_console:
       info_text: "lorem ipsum"
       info_text_2: "lorem ipsum <a href='%{url}' target='_blank'>lorem ipsum</a>."
