@@ -69,6 +69,7 @@ fr:
         listing_pages: 'lorem ipsum'
         category_pages: 'lorem ipsum'
         profile_pages: 'lorem ipsum'
+        google_console: 'lorem ipsum'
       analytics:
         google: 'lorem ipsum'
         sharetribe: 'lorem ipsum'
@@ -149,6 +150,9 @@ fr:
       not_available: 'lorem ipsum'
       profile: "%{author}'s lorem ipsum"
       conversation: 'lorem ipsum'
+    google_console:
+      info_text: "lorem ipsum"
+      info_text_2: "lorem ipsum <a href='%{url}' target='_blank'>lorem ipsum</a>."
     footer:
       footer_enabling: 'lorem ipsum'
       footer_enabling_field: 'lorem ipsum'
