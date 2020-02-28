@@ -65,11 +65,15 @@ en:
         listing_pages: 'Listing pages meta'
         category_pages: 'Category pages meta'
         profile_pages: 'Profile pages meta'
+        google_console: 'Google Search Console'
       analytics:
         google: 'Google Analytics'
         sharetribe: 'Sharetribe analytics'
       advanced:
         custom_script: 'Custom script'
+    google_console:
+      info_text: "Google Search Console offers tools and reports to help you measure your site's Search traffic and performance and fix issues related to Google Search results."
+      info_text_2: "It's a good idea to add your website to Google Search Console. It takes only a few minutes with <a href='%{url}' target='_blank'>these instructions</a>."
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'
