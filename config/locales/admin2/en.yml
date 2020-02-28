@@ -333,7 +333,7 @@ en:
       default_language: '%{language} is used as default in the marketplace.'
       marketplace_languages: 'Marketplace languages'
       color: 'Color'
-      show_slogan: 'Display the slogan in the homepage for users who are not logged in'
+      show_slogan: 'Display the slogan in the homepage or Custom Landing Page for users who are not logged in'
       show_description: 'Display the description in the homepage for users who are not logged in'
     admin_notifications:
       header: 'Admin notification settings'
