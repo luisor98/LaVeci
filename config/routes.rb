@@ -335,6 +335,7 @@ Rails.application.routes.draw do
       end
 
       namespace :analytics do
+        resources :google_manager, path: 'google-tag-manager', only: %i[index]
         resources :google, path: 'google-analytics', only: %i[index] do
           collection do
             patch :update_google
