@@ -1,7 +1,7 @@
 class Admin2::ConversationsService
   attr_reader :community, :params
 
-  PER_PAGE = 30
+  PER_PAGE = 100
 
   def initialize(community:, params:)
     @params = params
@@ -51,20 +51,20 @@ class Admin2::ConversationsService
 
   def simple_sort_column(sort_column)
     case sort_column
-    when "last_activity"
-      "last_message_at"
+    when 'last_activity'
+      'last_message_at'
     when "started"
-      "created_at"
+      'created_at'
     else
-      "created_at"
+      'created_at'
     end
   end
 
   def sort_direction
-    if params[:direction] == "asc"
-      "asc"
+    if params[:direction] == 'asc'
+      'asc'
     else
-      "desc" #default
+      'desc'
     end
   end
 

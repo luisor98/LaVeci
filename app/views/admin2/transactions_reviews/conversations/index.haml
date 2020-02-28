@@ -1,40 +1,27 @@
+- content_for :title do
+  = t('admin2.sidebar.transactions_reviews.view_conversations')
+
 .content-card-header.content-table
-  .content-card-header-left
-    %input#marketplaceName.search-header{"aria-describedby" => "marketplaceName", :placeholder => "Filter conversations by a name, email or keyword...", :type => "text"}/
-.content-card-section-container{:style => "padding: 0; max-width: none;"}
+  = form_tag '', method: :get, class: %i[content-card-header-left] do
+    = text_field_tag :q, params[:q], placeholder: t('admin2.view_conversations.search_placeholder'), class: %i[search-header]
+
+.content-card-section-container{style: 'padding: 0; max-width: none;'}
   .table-responsive
     %table.table.table-hover
       %thead
         %tr
-          %th{:scope => "col"}
-            %a{:href => "#"} Listing
-          %th{:scope => "col"}
-            %a{:href => "#"} Sender
-          %th{:scope => "col"}
-            %a{:href => "#"} Receiver
-          %th{:scope => "col"}
-            %a{:href => "#"} Started
-          %th{:scope => "col"}
-            %a{:href => "#"} Latest activity
-          %th{:scope => "col"}
-            %a{:href => "#"} Status
+          %th{scope: :col}= t('admin2.view_conversations.listing')
+          %th{scope: :col}= t('admin2.view_conversations.sender')
+          %th{scope: :col}= t('admin2.view_conversations.receiver')
+          %th{scope: :col}
+            = render 'sort_link', column: 'started', direction: sort_link_direction('started'), title: t('admin2.view_conversations.started')
+          %th{scope: :col}
+            = render 'sort_link', column: 'last_activity', direction: sort_link_direction('last_activity'), title: t('admin2.view_conversations.latest_activity')
+          %th{scope: :col}= t('admin2.view_conversations.status')
       %tbody
         = render partial: 'admin2/transactions_reviews/conversations/conversation', collection: @service.conversations
 
     .table-bottom
-      %p
-        Displaying
-        %strong 40
-        reviews in transactions 1 - 30 of
-        %strong 68
-        reviews in total
-      %nav{"aria-label" => "User navigation"}
-        %ul.pagination.justify-content-end
-          %li.page-item
-            %a.page-link{:href => "#"} 1
-          %li.page-item
-            %a.page-link{:href => "#"} 2
-          %li.page-item
-            %a.page-link{:href => "#"} 3
-          %li.page-item
-            %a.page-link{:href => "#"} Next
+      %p= page_entries_info(@service.conversations, model: 'Conversation').html_safe
+      = will_paginate @service.conversations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: t('admin2.next_step'), previous_label: t('admin2.prev_step'), list_classes: %w[pagination justify-content-end]
+
