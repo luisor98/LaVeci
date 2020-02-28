@@ -53,6 +53,7 @@ en:
         manage_listings: 'Manage listings'
       transactions_reviews:
         config_transactions: 'Configure transactions'
+        view_conversations: 'View conversations'
       payment_system:
         country_currency: 'Country & Currency'
       emails:
@@ -151,6 +152,17 @@ en:
       close_info_text: 'This closes the listing. Are you sure you want to proceed?'
       processing_export: "Processing export to CSV..."
       confirm_popup_body: 'This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.'
+    view_conversations:
+      search_placeholder: 'Filter conversations by a name, email or keyword...'
+      listing: 'Listing'
+      sender: 'Sender'
+      receiver: 'Receiver'
+      started: 'Started'
+      latest_activity: 'Latest activity'
+      status: 'Status'
+      not_available: 'Not available'
+      profile: "%{author}'s Profile"
+      conversation: 'Conversation'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'

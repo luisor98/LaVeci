@@ -49,6 +49,7 @@ fr:
         manage_listings: 'lorem ipsum'
       transactions_reviews:
         config_transactions: 'lorem ipsum'
+        view_conversations: 'lorem ipsum'
       payment_system:
         country_currency: 'lorem ipsum'
       emails:
@@ -136,6 +137,17 @@ fr:
       close_info_text: 'lorem ipsum'
       processing_export: 'lorem ipsum'
       confirm_popup_body: 'lorem ipsum'
+    view_conversations:
+      search_placeholder: 'lorem ipsum'
+      listing: 'lorem ipsum'
+      sender: 'lorem ipsum'
+      receiver: 'lorem ipsum'
+      started: 'lorem ipsum'
+      latest_activity: 'lorem ipsum'
+      status: 'lorem ipsum'
+      not_available: 'lorem ipsum'
+      profile: "%{author}'s lorem ipsum"
+      conversation: 'lorem ipsum'
     footer:
       footer_enabling: 'lorem ipsum'
       footer_enabling_field: 'lorem ipsum'
