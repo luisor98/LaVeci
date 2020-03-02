@@ -5,7 +5,7 @@ module Admin2::Listings
     def index; end
 
     def update
-      @service.update
+      @status = @service.update
       render layout: false
     end
 

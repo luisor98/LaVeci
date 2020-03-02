@@ -33,7 +33,7 @@ class Listing::ListPresenter
   end
 
   def statuses_with_count
-    statuses.map { |status| ["#{I18n.t("admin.communities.listings.status.#{status}")} (#{count_by_status(status)}) ", status] }
+    statuses.map { |status| row_status(status) }
   end
 
   def listing_status(listing)
@@ -64,6 +64,14 @@ class Listing::ListPresenter
 
   def total_listings
     count_by_status('all')
+  end
+
+  def row_status(status)
+    [row_status_text(status), status]
+  end
+
+  def row_status_text(status)
+    "#{I18n.t("admin.communities.listings.status.#{status}")} (#{count_by_status(status)}) "
   end
 
   private

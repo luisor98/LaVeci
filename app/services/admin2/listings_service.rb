@@ -1,4 +1,5 @@
 class Admin2::ListingsService
+
   attr_reader :community, :params, :person
 
   def initialize(community:, params:, person: nil)
@@ -18,6 +19,7 @@ class Admin2::ListingsService
     when Listing::APPROVAL_REJECTED
       reject
     end
+    params[:listing][:state]
   end
 
   def close
