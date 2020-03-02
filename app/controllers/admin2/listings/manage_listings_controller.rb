@@ -14,6 +14,14 @@ module Admin2::Listings
       render layout: false
     end
 
+    def delete
+      @service.delete
+    rescue StandardError => e
+      @error = e.message
+    ensure
+      render layout: false
+    end
+
     def export
       @export_result = ExportTaskResult.create
       Delayed::Job.enqueue(ExportListingsJob.new(@current_user.id, @current_community.id, @export_result.id))

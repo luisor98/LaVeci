@@ -20,6 +20,16 @@ $(function() {
         $('#listingCloseModal').modal('show');
     });
 
+    $(document).on('click', '.delete-listing', function () {
+        var id = $(this).data('id'),
+            title_popup = $('#listingDeleteModalLabel'),
+            listing_name = $(this).data('title');
+
+        title_popup.html(listing_name);
+        $('#listing_delete_id').val(id);
+        $('#listingDeleteModal').modal('show');
+    });
+
     $(document).on('click', '.approve-listing', function () {
         var listing_state = $('#listing_state');
         listing_state.val('approved');
@@ -32,7 +42,7 @@ $(function() {
         $('#form_approve_reject').submit();
     });
 
-    $('.change-status-filter-listings').on('change', function () {
+    $(document).on('change', '.change-status-filter-listings', function () {
         $(this).parents('form').submit();
     });
 });
