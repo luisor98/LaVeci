@@ -85,10 +85,12 @@ en:
       actions: 'Actions'
       cancel: 'Cancel'
       reject: 'Reject'
+      delete: 'Delete the listing forever'
       approve: 'Approve'
       edit: 'Edit'
       close: 'Close'
       close_info_text: 'This closes the listing. Are you sure you want to proceed?'
+      delete_info_text: 'Deleting a listing cannot be undone. Are you sure you want to proceed?'
       processing_export: "Processing export to CSV..."
       confirm_popup_body: 'This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.'
     footer:
