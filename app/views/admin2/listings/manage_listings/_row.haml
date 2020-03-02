@@ -21,4 +21,4 @@
   |
   = link_to t('admin2.manage_listings.close'), '#', data: {id: listing.id, title: listing.title}, class: (%i[close-listing] << (%i[opacity_04 is-disabled] if (listing.closed? || presenter.show_approval_link?(listing))))
   |
-  = link_to 'Delete', '#', data: {id: listing.id, title: listing.title}, class: %i[delete-listing]
+  = link_to t('admin2.manage_listings.delete'), '#', data: {id: listing.id, title: listing.title}, class: %i[delete-listing]
