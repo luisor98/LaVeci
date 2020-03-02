@@ -27,7 +27,7 @@ class Admin2::ListingsService
   end
 
   def delete
-    listing.update_attribute!(:deleted, true)
+    listing.update!(deleted: true)
   end
 
   def approve

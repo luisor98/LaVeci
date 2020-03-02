@@ -16,9 +16,10 @@ module Admin2::Listings
 
     def delete
       @service.delete
-      render layout: false
-    rescue => e
+    rescue StandardError => e
       @error = e.message
+    ensure
+      render layout: false
     end
 
     def export

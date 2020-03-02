@@ -42,7 +42,7 @@ $(function() {
         $('#form_approve_reject').submit();
     });
 
-    $('.change-status-filter-listings').on('change', function () {
+    $(document).on('change', '.change-status-filter-listings', function () {
         $(this).parents('form').submit();
     });
 });
