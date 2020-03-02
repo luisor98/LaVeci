@@ -1,17 +1,3 @@
-function showError(text) {
-    if ($('.ajax-update-notification').length) {
-        $('.ajax-update-notification').remove();
-    }
-    $('.topnav').after('<div class="alert alert-danger ajax-update-notification" role="alert"><button class="close" data-dismiss="alert">x</button>'+ text +'</div>');
-}
-
-function showSuccess(text) {
-    if ($('.ajax-update-notification').length) {
-        $('.ajax-update-notification').remove();
-    }
-    $('.topnav').after('<div class="alert alert-info ajax-update-notification" role="alert"><button class="close" data-dismiss="alert">x</button>'+ text +'</div>');
-}
-
 function banMembership(id) {
     var row = $('.row-member-' + id);
     row.addClass('opacity_04');
