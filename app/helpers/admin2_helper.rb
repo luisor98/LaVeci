@@ -133,4 +133,9 @@ module Admin2Helper
       translations[locale_value] = { language: locale_name, translation: translation }
     end
   end
+
+  def person_name(person)
+    display_name = person.display_name.present? ? " (#{person.display_name})" : ''
+    "#{person.given_name} #{person.family_name}#{display_name}"
+  end
 end
