@@ -135,6 +135,7 @@ fr:
       cancel: 'lorem ipsum'
       reject: 'lorem ipsum'
       delete: 'lorem ipsum'
+      delete_confirm: 'lorem ipsum'
       approve: 'lorem ipsum'
       edit: 'lorem ipsum'
       close: 'lorem ipsum'
