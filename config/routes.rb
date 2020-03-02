@@ -245,6 +245,7 @@ Rails.application.routes.draw do
           collection do
             patch :update
             patch :close
+            delete :delete
             get :export
             get :export_status
           end

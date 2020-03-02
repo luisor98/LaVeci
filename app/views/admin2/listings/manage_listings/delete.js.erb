@@ -1,0 +1,5 @@
+$('#listingDeleteModal').modal('hide');
+$('.listing_row_<%= j @service.listing.id.to_s %>').remove();
+<% @presenter.statuses.each do |status| %>
+  $('*[data-type="<%= j status %>"]').text('<%= j @presenter.row_status_text(status) %>');
+<% end %>

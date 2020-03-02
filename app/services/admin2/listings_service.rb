@@ -26,6 +26,10 @@ class Admin2::ListingsService
     listing.update_attribute(:open, false)
   end
 
+  def delete
+    listing.update_attribute!(:deleted, true)
+  end
+
   def approve
     listing.update_column(:state, Listing::APPROVED) # rubocop:disable Rails/SkipsModelValidations
     self.class.send_listing_approved(listing.id)

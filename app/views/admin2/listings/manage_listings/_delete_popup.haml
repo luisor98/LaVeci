@@ -1,0 +1,13 @@
+#listingDeleteModal.modal{'aria-hidden' => 'true', 'aria-labelledby' => 'listingDeleteModalLabel', role: 'dialog', tabindex: '-1'}
+  .modal-dialog{role: 'document'}
+    = form_tag delete_admin2_listings_manage_listings_path, method: :delete, remote: true, class: %i[modal-content] do
+      = hidden_field_tag :id, '', id: :listing_delete_id
+      .modal-header
+        %h5#listingDeleteModalLabel.modal-title
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', type: :button}
+          %span{'aria-hidden' => 'true'} ×
+      .modal-body
+        Deleting a listing cannot be undone. Are you sure you want to proceed?
+      .modal-footer
+        = link_to t('admin2.manage_listings.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
+        = button_tag 'Delete the listing forever', class: %i[btn btn-primary]
