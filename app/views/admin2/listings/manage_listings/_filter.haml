@@ -2,5 +2,5 @@
   .content-card-header-left
     = text_field_tag :q, params[:q], placeholder: t('admin2.manage_listings.search_placeholder'), class: %i[search-header]
   .content-card-header-right
-    = select_tag 'status[]', options_for_select(@presenter.statuses_with_count.map { |text, key| [text, key] }, params[:status]), prompt: t('admin2.manage_listings.all_listings', count: @presenter.total_listings), class: %i[tiny-select change-status-filter-listings]
+    = select_tag 'status[]', options_for_select(@presenter.statuses_with_count.map { |text, key| [text, key, data: {type: key}] }, params[:status]), prompt: t('admin2.manage_listings.all_listings', count: @presenter.total_listings), class: %i[tiny-select change-status-filter-listings]
     = link_to t('admin2.manage_listings.export_to_csv'), export_admin2_listings_manage_listings_path, remote: true, id: 'export-as-csv', class: %i[content-card-header-link] << ('opacity_04 is-disabled' if params[:status]&.any? { |s| s.present? } || params[:q].present?)
