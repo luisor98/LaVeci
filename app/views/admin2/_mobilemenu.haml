@@ -65,7 +65,7 @@
           %li#userrights-mobile{class: active_li('user_rights')}
             = link_to t('admin2.sidebar.users.user_rights'), admin2_users_user_rights_path
           %li#invitations-mobile{class: active_li('invitations')}
-            = link_to t('admin2.sidebar.users.invitations'), admin2_users_invitations_path
+            = link_to t('admin2.sidebar.users.invitations'), admin2_users_invitations_path(direction: :desc, sort: :started)
         / Listings
         %ul.category-title
           %li
