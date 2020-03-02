@@ -134,10 +134,12 @@ fr:
       actions: 'lorem ipsum'
       cancel: 'lorem ipsum'
       reject: 'lorem ipsum'
+      delete: 'lorem ipsum'
       approve: 'lorem ipsum'
       edit: 'lorem ipsum'
       close: 'lorem ipsum'
       close_info_text: 'lorem ipsum'
+      delete_info_text: 'lorem ipsum'
       processing_export: 'lorem ipsum'
       confirm_popup_body: 'lorem ipsum'
     view_conversations:
