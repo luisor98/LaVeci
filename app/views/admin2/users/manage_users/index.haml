@@ -31,3 +31,4 @@
     = will_paginate @presenter.memberships, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: t('admin2.next_step'), previous_label: t('admin2.prev_step'), list_classes: %w[pagination justify-content-end]
 
 = render 'admin2/users/manage_users/confirm_popup'
+= render 'admin2/users/manage_users/delete_popup'

@@ -24,7 +24,10 @@ module Admin2::Users
       if @service.membership_current_user?
         raise t('admin2.manage_users.ban_me_error')
       end
+
       @service.ban
+      @can_delete = @presenter.can_delete(@service.membership)
+      @delete_title = @presenter.delete_member_title(@service.membership)
     rescue StandardError => e
       @error = e.message
     ensure
@@ -35,6 +38,7 @@ module Admin2::Users
       if @service.removes_itself?
         raise t('admin2.manage_users.cannot_delete_yourself_admin')
       end
+
       @service.promote_admin
     rescue StandardError => e
       @error = e.message
@@ -55,6 +59,17 @@ module Admin2::Users
 
     def unban
       @service.unban
+      @can_delete = @presenter.can_delete(@service.membership)
+      @delete_title = @presenter.delete_member_title(@service.membership)
+    rescue StandardError => e
+      @error = e.message
+    ensure
+      render layout: false
+    end
+
+    def destroy
+      @service.destroy
+      @error = @service.error_message
     rescue StandardError => e
       @error = e.message
     ensure

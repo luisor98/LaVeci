@@ -1,17 +1,3 @@
-function showError(text) {
-    if ($('.ajax-update-notification').length) {
-        $('.ajax-update-notification').remove();
-    }
-    $('.topnav').after('<div class="alert alert-danger ajax-update-notification" role="alert"><button class="close" data-dismiss="alert">x</button>'+ text +'</div>');
-}
-
-function showSuccess(text) {
-    if ($('.ajax-update-notification').length) {
-        $('.ajax-update-notification').remove();
-    }
-    $('.topnav').after('<div class="alert alert-info ajax-update-notification" role="alert"><button class="close" data-dismiss="alert">x</button>'+ text +'</div>');
-}
-
 function banMembership(id) {
     var row = $('.row-member-' + id);
     row.addClass('opacity_04');
@@ -42,6 +28,18 @@ function unbanMembership(id) {
     }
 }
 
+function processDeleteUser(id, can_delete, message) {
+    var link = $('.membership-row-' + id).find('.delete-user');
+    link.prop('title', message);
+    if (can_delete) {
+        link.removeClass('opacity_04');
+        link.tooltip('dispose');
+    } else {
+        link.addClass('opacity_04');
+        link.attr('data-original-title', message).tooltip();
+    }
+}
+
 function allowPost(id) {
     var row = $('.row-member-' + id);
     row.find('.post-membership').removeClass('is-disabled');
@@ -53,6 +51,26 @@ function disallowPost(id) {
 }
 
 $(function() {
+
+    $(document).on('click', '.confirm-user', function () {
+        var name = $(this).data('name'),
+            url = $(this).data('url');
+        $('#userUnconfirmedModalLabel').html(name);
+        $('#btn-send-confirm-user').attr('href', url);
+        $('#userUnconfirmedModal').modal('show');
+    });
+
+    $(document).on('click', '.delete-user', function () {
+        if($(this).hasClass('opacity_04')) {
+            return false
+        }
+        var name = $(this).data('name'),
+            url = $(this).data('url');
+        $('#userDeleteModalLabel').html(name);
+        $('#btn-delete-user').attr('href', url);
+        $('#userDeleteModal').modal('show');
+    });
+
     $(document).on("click", ".admin-members-ban-toggle", function () {
         var banned = this.checked, url, msg;
         if (banned) {

@@ -82,11 +82,9 @@ class Admin2::MembershipPresenter
   end
 
   def delete_member_title(membership)
-    if can_delete_pending(membership)
-      nil
-    else
-      title = has_membership_unfinished_transactions(membership) ? I18n.t('admin.communities.manage_members.have_ongoing_transactions') : nil
-      title ||= membership.banned? ? nil : I18n.t('admin.communities.manage_members.only_delete_disabled')
-    end
+    return if can_delete_pending(membership)
+
+    title = has_membership_unfinished_transactions(membership) ? I18n.t('admin.communities.manage_members.have_ongoing_transactions') : nil
+    title ||= membership.banned? ? nil : I18n.t('admin.communities.manage_members.only_delete_disabled')
   end
 end

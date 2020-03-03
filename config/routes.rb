@@ -230,7 +230,7 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
-        resources :manage_users, path: 'manage-users', only: %i[index] do
+        resources :manage_users, path: 'manage-users', only: %i[index destroy] do
           member do
             get :resend_confirmation
             patch :ban

@@ -101,10 +101,21 @@ en:
       unconfirmed: 'Unconfirmed'
       unconfirmed_user: 'Unconfirmed user: %{username}'
       edit: 'Edit'
+      delete: 'Delete'
       post_listing: 'Post listing as'
       ban_me_error: 'You cannot ban yourself'
       cannot_delete_yourself_admin: 'You cannot delete yourself as an admin'
       saved: 'Saved'
+      delete_user: 'Delete user: %{username}'
+      delete_forever: 'Delete the user account forever'
+      delete_user_text: >
+        If you delete this account, the personal information (name, phone number, address, email, profile picture, etc.) will be deleted permanently and can't be recovered. All the listings that they have created will be removed.
+        <br>
+        <br>
+        Information where other members are involved (conversations with other people, transactions they've made, reviews they've given to others, etc) is not removed when you delete this account. However, the name will no longer be displayed next to this information.
+        <br>
+        <br>
+        You will not be able to reactivate this account after it has been deleted.
     email_users:
       compose_email: 'Compose email'
       recipients: 'Who do you want to email?'

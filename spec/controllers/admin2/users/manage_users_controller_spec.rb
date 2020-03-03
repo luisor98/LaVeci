@@ -177,4 +177,20 @@ describe Admin2::Users::ManageUsersController, type: :controller do
     end
   end
 
+  describe "#destroy" do
+    it 'works' do
+      membership = person_banned.community_membership
+      delete :destroy, params: {id: membership.id, format: :js}
+      person_banned.reload
+      expect(person_banned.deleted).to eq true
+    end
+
+    it 'does not delete if person is not banned' do
+      membership = person1.community_membership
+      delete :destroy, params: {id: membership.id, format: :js}
+      person1.reload
+      expect(person1.deleted).to eq false
+    end
+  end
+
 end
