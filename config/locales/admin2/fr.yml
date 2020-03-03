@@ -84,6 +84,7 @@ fr:
       cancel: 'lorem ipsum'
       reject: 'lorem ipsum'
       delete: 'lorem ipsum'
+      delete_title: 'lorem ipsum %{title}'
       delete_confirm: 'lorem ipsum'
       approve: 'lorem ipsum'
       edit: 'lorem ipsum'
