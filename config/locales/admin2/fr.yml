@@ -88,8 +88,12 @@ fr:
       unconfirmed: 'lorem ipsum'
       unconfirmed_user: 'lorem ipsum %{username}'
       edit: 'lorem ipsum'
+      delete: 'Delete'
       post_listing: 'lorem ipsum'
       ban_me_error: 'lorem ipsum'
+      delete_user: 'lorem ipsum %{username}'
+      delete_forever: 'lorem ipsum'
+      delete_user_text: 'lorem ipsum'
     footer:
       footer_enabling: 'lorem ipsum'
       footer_enabling_field: 'lorem ipsum'

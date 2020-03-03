@@ -2,7 +2,8 @@
 - banned = membership.banned?
 - member = membership.person
 - row_member_class = "row-member-#{membership.id} #{('opacity_04' if banned)}"
-%tr
+
+%tr{class: "membership-row-#{membership.id}"}
   %td.admin-members-full-name{class: row_member_class}
     = link_to @presenter.person_name(member), member, target: :_blank
   %td{class: row_member_class}
@@ -32,9 +33,13 @@
                         unban_url: unban_admin2_users_manage_user_path(membership.id),
                         unban_msg: t('admin2.manage_users.unban_msg') },
                 class: %i[form-check-input admin-members-ban-toggle]
-  %td{class: row_member_class}
-    - edit_class = banned ? 'edit-membership is-disabled' : 'edit-membership '
+  %td
+    - edit_class = banned ? 'edit-membership is-disabled' : 'edit-membership'
     - post_klass = @presenter.can_post_listing(membership) ? 'post-membership' : 'post-membership is-disabled'
-    = link_to t('admin2.manage_users.edit'), person_settings_path(member), class: edit_class
+    = link_to t('admin2.manage_users.edit'), person_settings_path(member), class: "#{edit_class} #{row_member_class}"
     |
-    = link_to t('admin2.manage_users.post_listing'), new_person_listing_path(person_id: member.username), class: "#{post_klass} #{edit_class}"
+    = link_to t('admin2.manage_users.post_listing'), new_person_listing_path(person_id: member.username), class: "#{post_klass} #{edit_class} #{row_member_class}"
+    |
+    = link_to t('admin2.manage_users.delete'), '#', 'data-toggle' => 'tooltip', class: @presenter.can_delete(membership) ? 'delete-user' : 'delete-user opacity_04',
+      title: @presenter.delete_member_title(membership), data: { name: t('admin2.manage_users.delete_user', username: @presenter.person_name(member)),
+                                                                 url: admin2_users_manage_user_path(membership) }
