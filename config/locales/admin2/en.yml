@@ -150,6 +150,7 @@ en:
       cancel: 'Cancel'
       reject: 'Reject'
       delete: 'Delete'
+      delete_title: 'Delete %{title}'
       delete_confirm: 'Delete the listing forever'
       approve: 'Approve'
       edit: 'Edit'
