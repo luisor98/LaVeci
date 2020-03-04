@@ -13,4 +13,5 @@
 //= require analytics
 //= require admin2/manage_users
 //= require admin/domains
+//= require admin2/manage_transactions
 //= require admin2/export

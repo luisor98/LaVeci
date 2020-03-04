@@ -55,6 +55,7 @@ en:
       transactions_reviews:
         config_transactions: 'Configure transactions'
         view_conversations: 'View conversations'
+        manage_transactions: 'Manage transactions'
       payment_system:
         country_currency: 'Country & Currency'
       emails:
@@ -189,6 +190,20 @@ en:
     google_console:
       info_text: "Google Search Console offers tools and reports to help you measure your site's Search traffic and performance and fix issues related to Google Search results."
       info_text_2: "It's a good idea to add your website to Google Search Console. It takes only a few minutes with <a href='%{url}' target='_blank'>these instructions</a>."
+    manage_transactions:
+      export_to_csv: 'Processing export to CSV'
+      search_placeholder: 'Search transactions by listing title or users...'
+      listing: 'Listing'
+      customer: 'Customer'
+      provider: 'Provider'
+      started: 'Started'
+      latest_activity: 'Latest activity'
+      status: 'Status'
+      amount: 'Amount'
+      actions: 'Actions'
+      view_details: 'View details'
+      all_transactions: 'All transactions (%{count})'
+      not_available: 'Not available'
     footer:
       footer_enabling: 'Footer enabling'
       footer_enabling_field: 'Enable the footer in all pages of your marketplace'
