@@ -74,7 +74,7 @@ en:
       advanced:
         custom_script: 'Custom script'
     manage_transactions:
-      export_to_csv: 'Processing export to CSV'
+      export_to_csv: 'Export to CSV'
       search_placeholder: 'Search transactions by listing title or users...'
       listing: 'Listing'
       customer: 'Customer'
