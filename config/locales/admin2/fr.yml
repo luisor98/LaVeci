@@ -73,6 +73,8 @@ fr:
       unban_msg: 'lorem ipsum'
       to_admin: 'lorem ipsum'
       search_by: 'lorem ipsum'
+      have_ongoing_transactions: 'lorem ipsum'
+      only_delete_disabled: 'lorem ipsum'
       export_csv: 'lorem ipsum'
       all_statuses: 'lorem ipsum'
       name: 'lorem ipsum'

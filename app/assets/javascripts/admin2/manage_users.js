@@ -1,6 +1,6 @@
 function banMembership(id) {
-    var row = $('.row-member-' + id);
-    row.addClass('opacity_04');
+    var row = $('.membership-row-' + id);
+    $('.row-member-' + id).addClass('opacity_04');
     row.find('.admin-members-is-admin').prop('disabled', true);
     row.find('.admin-members-can-post-listings').prop('disabled', true);
     row.find('.edit-membership').addClass('is-disabled');
@@ -13,8 +13,8 @@ function banMembership(id) {
 }
 
 function unbanMembership(id) {
-    var row = $('.row-member-' + id);
-    row.removeClass('opacity_04');
+    var row = $('.membership-row-' + id);
+    $('.row-member-' + id).removeClass('opacity_04');
     row.find('.admin-members-is-admin').prop('disabled', false);
     row.find('.admin-members-can-post-listings').prop('disabled', false);
     row.find('.edit-membership').removeClass('is-disabled');
@@ -41,12 +41,12 @@ function processDeleteUser(id, can_delete, message) {
 }
 
 function allowPost(id) {
-    var row = $('.row-member-' + id);
+    var row = $('.membership-row-' + id);
     row.find('.post-membership').removeClass('is-disabled');
 }
 
 function disallowPost(id) {
-    var row = $('.row-member-' + id);
+    var row = $('.membership-row-' + id);
     row.find('.post-membership').addClass('is-disabled');
 }
 
