@@ -191,7 +191,7 @@ en:
       info_text: "Google Search Console offers tools and reports to help you measure your site's Search traffic and performance and fix issues related to Google Search results."
       info_text_2: "It's a good idea to add your website to Google Search Console. It takes only a few minutes with <a href='%{url}' target='_blank'>these instructions</a>."
     manage_transactions:
-      export_to_csv: 'Processing export to CSV'
+      export_to_csv: 'Export to CSV'
       search_placeholder: 'Search transactions by listing title or users...'
       listing: 'Listing'
       customer: 'Customer'
