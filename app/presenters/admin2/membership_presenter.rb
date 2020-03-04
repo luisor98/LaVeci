@@ -23,21 +23,22 @@ class Admin2::MembershipPresenter
   end
 
   def count_by_status(status)
+    users = community.community_memberships.not_deleted_user
     case status
     when 'admin'
-      community.community_memberships.admin.count
+      users.admin.count
     when CommunityMembership::BANNED
-      community.community_memberships.banned.count
+      users.banned.count
     when 'posting_allowed'
-      community.community_memberships.posting_allowed.count
+      users.posting_allowed.count
     when CommunityMembership::ACCEPTED
-      community.community_memberships.accepted.count
+      users.accepted.count
     when 'unconfirmed'
-      community.community_memberships.pending_email_confirmation.count
+      users.pending_email_confirmation.count
     when 'pending'
-      community.community_memberships.pending_consent.count
+      users.pending_consent.count
     when 'all'
-      community.community_memberships.count
+      users.count
     else
       0
     end
@@ -84,7 +85,7 @@ class Admin2::MembershipPresenter
   def delete_member_title(membership)
     return if can_delete_pending(membership)
 
-    title = has_membership_unfinished_transactions(membership) ? I18n.t('admin.communities.manage_members.have_ongoing_transactions') : nil
-    title ||= membership.banned? ? nil : I18n.t('admin.communities.manage_members.only_delete_disabled')
+    title = has_membership_unfinished_transactions(membership) ? I18n.t('admin2.manage_users.have_ongoing_transactions') : nil
+    title ||= membership.banned? ? nil : I18n.t('admin2.manage_users.only_delete_disabled')
   end
 end

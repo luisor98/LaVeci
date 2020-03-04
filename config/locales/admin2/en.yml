@@ -86,6 +86,8 @@ en:
       unban_msg: 'This enables the user account in the marketplace and allows them to access the site again with this account. Are you sure you want to proceed?'
       to_admin: 'This makes the user an admin. You should notify the user about their responsibilities and that they should review the Sharetribe terms of use. Are you sure you want to proceed?'
       search_by: 'Search users by name, display name or email...'
+      have_ongoing_transactions: "This account can't be deleted because they have ongoing transactions. Please complete all transactions before deleting the account."
+      only_delete_disabled: "You can only delete users that have been disabled. Disable a user first in order to delete their account."
       export_csv: 'Export to CSV'
       all_statuses: 'All users (%{count})'
       name: 'Name'
