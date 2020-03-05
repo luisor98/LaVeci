@@ -27,7 +27,7 @@ module Admin2::Users
 
       @service.ban
       @can_delete = @presenter.can_delete(@service.membership)
-      @delete_title = @presenter.delete_member_title(@service.membership).html_safe
+      @delete_title = @presenter.delete_member_title(@service.membership).to_s.html_safe
     rescue StandardError => e
       @error = e.message
     ensure
@@ -60,7 +60,7 @@ module Admin2::Users
     def unban
       @service.unban
       @can_delete = @presenter.can_delete(@service.membership)
-      @delete_title = @presenter.delete_member_title(@service.membership).html_safe
+      @delete_title = @presenter.delete_member_title(@service.membership).to_s.html_safe
     rescue StandardError => e
       @error = e.message
     ensure
