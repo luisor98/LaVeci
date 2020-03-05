@@ -22,7 +22,7 @@ class Admin2::TransactionsPresenter
     statuses = FILTER_STATUSES
     statuses.map {|status|
       ["#{I18n.t("admin.communities.transactions.status_filter.#{status}")} (#{count_by_status(status)})", status]
-    }.sort_by{|_status, translation| collator.get_sort_key(translation) }
+    }.sort_by{|translation, _status| collator.get_sort_key(translation) }
   end
 
   def count_by_status(status = nil)
