@@ -1,0 +1,24 @@
+- content_for :title do
+  = t('admin2.sidebar.advanced.delete_marketplace')
+
+.content-card-header
+  %h1.content-card-header-title
+    = t('admin2.sidebar.advanced.delete_marketplace')
+
+.content-card-section-container
+  %form.content-card-section-form
+    %section.content-card-section
+      %h2 Delete your marketplace
+      %p.ingress Once you delete the marketplace, you will not be able to access it anymore. This cannot be undone.
+      %p.ingress
+        %b Be careful.
+      %p.ingress Please note that after deletion, you and your marketplace users may still receive the last marketplace update emails.
+      %p.ingress To delete your marketplace forever, you must type your Sharetribe marketplace domain (bikerrrs) in the text field below.
+      .form-group
+        %input#deleteMarketplaceDomain.form-control{"aria-describedby" => "deleteMarketplaceDomain", :placeholder => "Type your Sharetribe marketplace domain here...", :type => "text"}/
+      %p.ingress
+        One last thing before you delete your marketplace: is there anything we can do to help? Don't hesitate to
+        %a{:href => "#"} contact the Sharetribe team
+        if you have any question. We'll be happy to help you get the most of Sharetribe Go!
+    %section.content-card-terminal
+      = button_tag "Delete your marketplace forever", class: %i[btn btn-primary]
