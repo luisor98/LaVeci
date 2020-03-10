@@ -4,7 +4,22 @@ module Admin2::Advanced
 
     def index; end
 
+    def delete_marketplace
+      if can_delete_marketplace? && params[:delete_confirmation] == @current_community.ident
+        @current_community.update(deleted: true)
+
+        redirect_to Maybe(delete_redirect_url(APP_CONFIG)).or_else(:community_not_found)
+      else
+        flash[:error] = "Could not delete marketplace."
+        redirect_to admin_setting_path
+      end
+    end
+
     private
+
+    def can_delete_marketplace?
+      PlanService::API::Api.plans.get_current(community_id: @current_community.id).data[:features][:deletable]
+    end
 
     def set_service
       @service = Admin::SettingsService.new(
