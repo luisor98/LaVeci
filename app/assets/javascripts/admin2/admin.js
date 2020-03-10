@@ -8,6 +8,10 @@
 //= require admin2/custom
 //= require select2
 //= require admin2/sortable
+//= require admin2/manage_listings
 //= require cocoon
 //= require analytics
+//= require admin2/manage_users
 //= require admin/domains
+//= require admin2/manage_transactions
+//= require admin2/export

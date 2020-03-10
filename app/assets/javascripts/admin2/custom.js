@@ -1,3 +1,17 @@
+function showError(text) {
+    if ($('.ajax-update-notification').length) {
+        $('.ajax-update-notification').remove();
+    }
+    $('.topnav').after('<div class="alert alert-danger ajax-update-notification" role="alert"><button class="close" data-dismiss="alert">x</button>'+ text +'</div>');
+}
+
+function showSuccess(text) {
+    if ($('.ajax-update-notification').length) {
+        $('.ajax-update-notification').remove();
+    }
+    $('.topnav').after('<div class="alert alert-info ajax-update-notification" role="alert"><button class="close" data-dismiss="alert">x</button>'+ text +'</div>');
+}
+
 function validateCommunityEdit(community_id) {
     $("#edit_community_" + community_id).validate({
         errorPlacement: function (error, element) {
@@ -9,6 +23,18 @@ function validateCommunityEdit(community_id) {
             else {
                 element.after(error);
             }
+        },
+        onkeyup: false,
+        onclick: false,
+        onfocusout: false,
+        onsubmit: true
+    });
+}
+
+function validateCustomForm() {
+    $('form').validate({
+        errorPlacement: function (error, element) {
+           element.after(error);
         },
         onkeyup: false,
         onclick: false,
