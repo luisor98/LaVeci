@@ -230,6 +230,7 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
+        resources :invitations, only: %i[index]
         resources :manage_users, path: 'manage-users', only: %i[index destroy] do
           member do
             get :resend_confirmation
@@ -239,7 +240,6 @@ Rails.application.routes.draw do
             patch :posting_allowed
           end
         end
-        resources :invitations, only: %i[index]
         resources :signup_login, path: 'signup-and-login', only: %i[index] do
           collection do
             patch :update_signup_login
@@ -299,13 +299,11 @@ Rails.application.routes.draw do
 
       namespace :emails do
         resources :email_users, path: 'email-users', only: %i[index create]
-
         resources :welcome_emails, path: 'welcome-email', only: %i[index] do
           collection do
             patch :update_email
           end
         end
-
         resources :newsletters, path: 'automatic-newsletter', only: %i[index] do
           collection do
             patch :update_newsletter
@@ -384,6 +382,7 @@ Rails.application.routes.draw do
       end
 
       namespace :advanced do
+        resources :delete_marketplaces, path: 'delete-marketplace', only: %i[index destroy]
         resources :custom_scripts, path: 'custom-script', only: %i[index] do
           collection do
             patch :update_script

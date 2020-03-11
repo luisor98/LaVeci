@@ -21,7 +21,7 @@ module Admin2Helper
       social_media: %w[image_tags twitter],
       seo: %w[sitemap landing_pages search_pages listing_pages category_pages profile_pages google_console],
       analytics: %w[google sharetribe google_manager],
-      advanced: %w[custom_scripts]
+      advanced: %w[custom_scripts delete_marketplaces]
     }
   end
 
@@ -133,7 +133,7 @@ module Admin2Helper
       translations[locale_value] = { language: locale_name, translation: translation }
     end
   end
-  
+
   def admin_email_options
     options = %i[all_users posting_allowed with_listing with_listing_no_payment with_payment_no_listing no_listing_no_payment]
     options.delete(:posting_allowed) unless @current_community.require_verification_to_post_listings
