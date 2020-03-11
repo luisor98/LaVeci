@@ -1,0 +1,37 @@
+.content-card-header.content-table
+  .content-card-header-left
+    %input#searchReviews.search-header{"aria-describedby" => "searchReviews", :placeholder => "Search reviews by user, email or keyword...", :type => "text"}/
+  .content-card-header-right
+    %select#reviewStatus.form-control.tiny-select{"aria-describedby" => "reviewStatus"}
+      %option All transactions (5)
+      %option Positive review (2)
+      %option Negative review (2)
+      %option Skipped review (2)
+      %option Waiting for the review (3)
+      %option Blocked review (1)
+.content-card-section-container{:style => "padding: 0; max-width: none;"}
+  .table-responsive
+    %table.table.table-hover.managereviews
+      %thead
+        %tr
+          %th{:scope => "col"}
+            %a{:href => "#"} Transaction
+          %th{:scope => "col"} Customer
+          %th{:scope => "col"} Customer rating
+          %th{:scope => "col"} Provider
+          %th{:scope => "col"} Provider rating
+          %th{:scope => "col"} Actions
+      %tbody
+        - index = 0
+        - @service.transactions.each do |tx|
+          -# = render 'review', tx: tx
+          - [:starter, :author].each do |participant|
+            = render 'review', tx: tx, participant: participant, index: index
+            - index += 1
+    .table-bottom
+      %p
+        Displaying
+        %strong 5
+        transactions with reviews in transaction with reviews 1 - 5 of
+        %strong 5
+        transactions with reviews in total

@@ -274,6 +274,7 @@ Rails.application.routes.draw do
       end
 
       namespace :transactions_reviews, path: 'transactions-and-reviews' do
+        resources :manage_reviews, path: 'manage-reviews', only: %i[index]
         resources :conversations, path: 'view-conversations', only: %i[index]
         resources :manage_transactions, path: 'manage-transactions', only: %i[index] do
           collection do
