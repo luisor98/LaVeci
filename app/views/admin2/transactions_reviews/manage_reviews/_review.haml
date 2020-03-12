@@ -1,67 +1,53 @@
-- for_author = participant == :author
-- testimonial = for_author ? tx.testimonial_from_author : tx.testimonial_from_starter
--# - testimonial_index = defined?(index) ? "new-#{index}" : (Time.current.to_f * 1000).to_i
--# - id = testimonial.try(:persisted?) ? testimonial.id : testimonial_index
+- provider = tx.testimonial_from_author
+- customer = tx.testimonial_from_starter
 
 %tr
-  - if testimonial
-    %td
-      - listing_title = tx.listing_title || t("admin.communities.transactions.not_available")
-      - price = MoneyViewUtils.to_humanized(tx.payment_total)
-      = link_to admin_community_transaction_path(id: tx.id, community_id: @current_community) do
-        = "#{listing_title} #{price} #{l(tx.created_at, format: :short_date)}"
-    %td
-      - p = testimonial.author
-      - if p.deleted
-        = ''
-      - else
-        = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
-    %td
-      - if testimonial.blocked?
-        = t("admin.communities.testimonials.status.blocked")
-      - else
-        - if tx.author_skipped_feedback
-          = t("admin.communities.testimonials.status.skipped")
-        - else
-          = testimonial.positive? ? 'Positive' : 'Negative'
-    %td
-      - p = testimonial.receiver
-      - if p.deleted
-        = ''
-      - else
-        = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
-    %td
-      - if testimonial.blocked?
+  %td
+    - listing_title = tx.listing_title || t("admin.communities.transactions.not_available")
+    - price = MoneyViewUtils.to_humanized(tx.payment_total)
+    = link_to admin_community_transaction_path(id: tx.id, community_id: @current_community) do
+      = "#{listing_title} #{price} #{l(tx.created_at, format: :short_date)}"
+  %td
+    - p = tx.starter
+    - if p.deleted
+      = ''
+    - else
+      = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
+  %td
+    - if customer
+      - if customer.blocked?
         = t("admin.communities.testimonials.status.blocked")
       - else
         - if tx.starter_skipped_feedback
           = t("admin.communities.testimonials.status.skipped")
         - else
-          = testimonial.positive? ? 'Positive' : 'Negative'
-    %td
-      %a{"data-target" => "#reviewRead", "data-toggle" => "modal", :href => "#"} Read review comments
-      |
-      %a{"data-target" => "#reviewEdit", "data-toggle" => "modal", :href => "#"} Edit
-      |
-      %a{"data-target" => "#reviewDeleteBlock", "data-toggle" => "modal", :href => "#"} Delete and block
-  -# - else
-    %td
-      - p = for_author ? tx.author : tx.starter
-      - if p.deleted
-        = ''
+          = customer.positive? ? 'Positive' : 'Negative'
+    - elsif tx.starter_skipped_feedback
+      = t("admin.communities.testimonials.status.skipped")
+    - else
+      = t("admin.communities.testimonials.status.waiting")
+  %td
+    - p = tx.listing_author
+    - if p.deleted
+      = ''
+    - else
+      = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
+  %td
+    - if provider
+      - if provider.blocked?
+        = t("admin.communities.testimonials.status.blocked")
       - else
-        = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
-    %td
-      - skipped_feedback = for_author ? tx.author_skipped_feedback : tx.starter_skipped_feedback
-      - if skipped_feedback
-        = t("admin.communities.testimonials.status.skipped")
-      - else
-        = t("admin.communities.testimonials.status.waiting")
-    %td
-    %td
-    %td
-      %a{"data-target" => "#reviewRead", "data-toggle" => "modal", :href => "#"} Read review comments
-      |
-      %a{"data-target" => "#reviewEdit", "data-toggle" => "modal", :href => "#"} Edit
-      |
-      %a{"data-target" => "#reviewDeleteBlock", "data-toggle" => "modal", :href => "#"} Delete and block
+        - if tx.author_skipped_feedback
+          = t("admin.communities.testimonials.status.skipped")
+        - else
+          = provider.positive? ? 'Positive' : 'Negative'
+    - elsif tx.author_skipped_feedback
+      = t("admin.communities.testimonials.status.skipped")
+    - else
+      = t("admin.communities.testimonials.status.waiting")
+  %td
+    %a{"data-target" => "#reviewRead", "data-toggle" => "modal", :href => "#"} Read review comments
+    |
+    %a{"data-target" => "#reviewEdit", "data-toggle" => "modal", :href => "#"} Edit
+    |
+    %a{"data-target" => "#reviewDeleteBlock", "data-toggle" => "modal", :href => "#"} Delete and block

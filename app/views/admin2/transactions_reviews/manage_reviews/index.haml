@@ -22,12 +22,7 @@
           %th{:scope => "col"} Provider rating
           %th{:scope => "col"} Actions
       %tbody
-        - index = 0
-        - @service.transactions.each do |tx|
-          -# = render 'review', tx: tx
-          - [:starter, :author].each do |participant|
-            = render 'review', tx: tx, participant: participant, index: index
-            - index += 1
+        = render partial: 'review', collection: @service.transactions, as: :tx
     .table-bottom
       %p
         Displaying
