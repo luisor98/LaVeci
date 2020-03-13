@@ -15,3 +15,4 @@
 //= require admin/domains
 //= require admin2/manage_transactions
 //= require admin2/export
+//= require admin2/manage_reviews

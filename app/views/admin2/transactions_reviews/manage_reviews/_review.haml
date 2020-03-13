@@ -1,53 +1,21 @@
-- provider = tx.testimonial_from_author
-- customer = tx.testimonial_from_starter
-
 %tr
   %td
-    - listing_title = tx.listing_title || t("admin.communities.transactions.not_available")
     - price = MoneyViewUtils.to_humanized(tx.payment_total)
     = link_to admin_community_transaction_path(id: tx.id, community_id: @current_community) do
-      = "#{listing_title} #{price} #{l(tx.created_at, format: :short_date)}"
+      = "#{tx.title_listing} #{price} #{l(tx.created_at, format: :short_date)}"
   %td
-    - p = tx.starter
-    - if p.deleted
-      = ''
-    - else
-      = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
+    - if tx.customer_title
+      = link_to tx.customer_title, person_path(tx.starter.username)
   %td
-    - if customer
-      - if customer.blocked?
-        = t("admin.communities.testimonials.status.blocked")
-      - else
-        - if tx.starter_skipped_feedback
-          = t("admin.communities.testimonials.status.skipped")
-        - else
-          = customer.positive? ? 'Positive' : 'Negative'
-    - elsif tx.starter_skipped_feedback
-      = t("admin.communities.testimonials.status.skipped")
-    - else
-      = t("admin.communities.testimonials.status.waiting")
+    = tx.customer_status
   %td
-    - p = tx.listing_author
-    - if p.deleted
-      = ''
-    - else
-      = link_to PersonViewUtils.person_display_name(p, @current_community), person_path(p.username)
+    - if tx.provider_title
+      = link_to tx.provider_title, person_path(tx.listing_author.username)
   %td
-    - if provider
-      - if provider.blocked?
-        = t("admin.communities.testimonials.status.blocked")
-      - else
-        - if tx.author_skipped_feedback
-          = t("admin.communities.testimonials.status.skipped")
-        - else
-          = provider.positive? ? 'Positive' : 'Negative'
-    - elsif tx.author_skipped_feedback
-      = t("admin.communities.testimonials.status.skipped")
-    - else
-      = t("admin.communities.testimonials.status.waiting")
+    = tx.provider_status
   %td
-    %a{"data-target" => "#reviewRead", "data-toggle" => "modal", :href => "#"} Read review comments
+    = link_to 'Read review comments', show_review_admin2_transactions_reviews_manage_review_path(tx), remote: true
     |
-    %a{"data-target" => "#reviewEdit", "data-toggle" => "modal", :href => "#"} Edit
+    = link_to 'Edit', edit_review_admin2_transactions_reviews_manage_review_path(tx), remote: true
     |
-    %a{"data-target" => "#reviewDeleteBlock", "data-toggle" => "modal", :href => "#"} Delete and block
+    = link_to 'Delete and block', delete_review_admin2_transactions_reviews_manage_review_path(tx), remote: true

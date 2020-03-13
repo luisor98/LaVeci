@@ -1,0 +1,58 @@
+#reviewEdit.modal{"aria-hidden" => "true", "aria-labelledby" => "reviewEditLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-md{:role => "document"}
+    .modal-content
+      .modal-header
+        %h2#reviewEditLabel.modal-title
+          = "Reviews for the transaction for '#{tx.title_listing}'"
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      = form_tag update_review_admin2_transactions_reviews_manage_review_path(tx), method: :patch do
+        .modal-body
+          %h1
+            = "Customer review from #{tx.customer_title}"
+          - if tx.starter_skipped_feedback
+            .form-group
+              %p If you unskip the review, the user will be able to post one. They will not be notified automatically.
+              .form-check
+                = check_box_tag :customer_unskip, 1, false, class: %i[form-check-input]
+                = label_tag :customer_unskip, 'Unskip the review', class: %i[form-check-label]
+          - else
+            .form-group
+              %label Rating
+              .form-radiobutton-wrapper
+                .form-radiobutton.form-check-inline
+                  = radio_button_tag :customer_rating, 1, (tx.customer_positive? || !tx.testimonial_from_starter.present?), class: 'form-check-input'
+                  = label_tag :customer_rating_1, 'Positive', class: %i[form-check-label]
+                .form-radiobutton.form-check-inline
+                  = radio_button_tag :customer_rating, 0, tx.customer_negative?, class: 'form-check-input'
+                  = label_tag :customer_rating_0, 'Negative', class: %i[form-check-label]
+            .form-group
+              = label_tag :customer_comment, 'Comment'
+              = text_area_tag :customer_comment, tx.customer_text, class: %i[form-control]
+
+          %h1
+            = "Provider review from #{tx.provider_title}"
+
+          - if tx.author_skipped_feedback
+            .form-group
+              %p If you unskip the review, the user will be able to post one. They will not be notified automatically.
+              .form-check
+                = check_box_tag :provider_unskip, 1, false, class: %i[form-check-input]
+                = label_tag :provider_unskip, 'Unskip the review', class: %i[form-check-label]
+          - else
+            .form-group
+              %label Rating
+              .form-radiobutton-wrapper
+                .form-radiobutton.form-check-inline
+                  = radio_button_tag :provider_rating, 1, (tx.provider_positive? || !tx.testimonial_from_author.present?), class: 'form-check-input'
+                  = label_tag :provider_rating_1, 'Positive', class: %i[form-check-label]
+                .form-radiobutton.form-check-inline
+                  = radio_button_tag :provider_rating, 0, tx.provider_negative?, class: 'form-check-input'
+                  = label_tag :provider_rating_0, 'Negative', class: %i[form-check-label]
+            .form-group
+              = label_tag :provider_comment, 'Comment'
+              = text_area_tag :provider_comment, tx.provider_text, class: %i[form-control]
+
+        .modal-footer
+          %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+          = button_tag 'Save', class: %i[btn btn-primary]

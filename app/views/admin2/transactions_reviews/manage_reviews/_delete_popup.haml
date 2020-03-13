@@ -1,0 +1,37 @@
+#reviewDeleteBlock.modal{"aria-hidden" => "true", "aria-labelledby" => "reviewDeleteBlockLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-md{:role => "document"}
+    .modal-content
+      .modal-header
+        %h2#reviewDeleteBlockLabel.modal-title
+          = "Delete and block reviews for the transaction for '#{tx.title_listing}'"
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+
+      = form_tag admin2_transactions_reviews_manage_review_path(tx), method: :delete do
+        .modal-body
+          %p Deleting a review allows its author to leave another one for the same transaction. Deleting a review cannot be undone.
+          %p Blocking the review prevents its author from leaving another one for the same transaction.
+
+          %h1
+            = "Customer review from #{tx.customer_title}"
+          .form-group
+            .form-check
+              %input#reviewCustomerDelete.form-check-input{:disabled => "disabled", :type => "checkbox"}/
+              %label.form-check-label{:for => "reviewCustomerDelete"} Delete customer review from Garth Albert (Big G)
+            .form-check
+              %input#reviewCustomerBlock.form-check-input{:disabled => "disabled", :type => "checkbox"}/
+              %label.form-check-label{:for => "reviewCustomerBlock"} Block future customer review from Garth Albert (Big G)
+
+          %h1
+            = "Provider review from #{tx.provider_title}"
+          .form-group
+            .form-check
+              %input#reviewProviderDelete.form-check-input{:type => "checkbox"}
+              %label.form-check-label{:for => "reviewProviderDelete"} Delete provider review from Josephine Hartman
+            .form-check
+              %input#reviewProviderDeleteBlock.form-check-input{:disabled => "disabled", :type => "checkbox"}
+              %label.form-check-label{:for => "reviewProviderDeleteBlock"} Block future provider review from Josephine Hartman
+
+        .modal-footer
+          %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+          = button_tag 'Save', class: %i[btn btn-primary]

@@ -1,0 +1,11 @@
+.content-card-header.content-table
+  .content-card-header-left
+    %input#searchReviews.search-header{"aria-describedby" => "searchReviews", :placeholder => "Search reviews by user, email or keyword...", :type => "text"}/
+  .content-card-header-right
+    %select#reviewStatus.form-control.tiny-select{"aria-describedby" => "reviewStatus"}
+      %option All transactions (5)
+      %option Positive review (2)
+      %option Negative review (2)
+      %option Skipped review (2)
+      %option Waiting for the review (3)
+      %option Blocked review (1)
