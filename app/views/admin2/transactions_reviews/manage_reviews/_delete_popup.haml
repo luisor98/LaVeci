@@ -16,21 +16,21 @@
             = "Customer review from #{tx.customer_title}"
           .form-group
             .form-check
-              %input#reviewCustomerDelete.form-check-input{:disabled => "disabled", :type => "checkbox"}/
-              %label.form-check-label{:for => "reviewCustomerDelete"} Delete customer review from Garth Albert (Big G)
+              = check_box_tag :customer_delete_review, 1, false, disabled: !tx.testimonial_from_starter.present?, class: %i[form-check-input]
+              = label_tag :customer_delete_review, "Delete customer review from #{tx.customer_title}", class: %i[form-check-label]
             .form-check
-              %input#reviewCustomerBlock.form-check-input{:disabled => "disabled", :type => "checkbox"}/
-              %label.form-check-label{:for => "reviewCustomerBlock"} Block future customer review from Garth Albert (Big G)
+              = check_box_tag :customer_blocked_review, 1, tx.testimonial_from_starter&.blocked?, disabled: !tx.testimonial_from_starter.present?, class: %i[form-check-input]
+              = label_tag :customer_blocked_review, "Block future customer review from #{tx.customer_title}", class: %i[form-check-label], disabled: !tx.testimonial_from_starter.present?
 
           %h1
             = "Provider review from #{tx.provider_title}"
           .form-group
             .form-check
-              %input#reviewProviderDelete.form-check-input{:type => "checkbox"}
-              %label.form-check-label{:for => "reviewProviderDelete"} Delete provider review from Josephine Hartman
+              = check_box_tag :provider_delete_review, 1, false, disabled: !tx.testimonial_from_author.present?, class: %i[form-check-input]
+              = label_tag :provider_delete_review, 'Delete provider review from Garth Albert (Big G)', class: %i[form-check-label]
             .form-check
-              %input#reviewProviderDeleteBlock.form-check-input{:disabled => "disabled", :type => "checkbox"}
-              %label.form-check-label{:for => "reviewProviderDeleteBlock"} Block future provider review from Josephine Hartman
+              = check_box_tag :provider_blocked_review, 1, tx.testimonial_from_author&.blocked?, disabled: !tx.testimonial_from_author.present?, class: %i[form-check-input]
+              = label_tag :provider_blocked_review, 'Block future provider review from Garth Albert (Big G)', class: %i[form-check-label]
 
         .modal-footer
           %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel

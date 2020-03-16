@@ -44,7 +44,7 @@
               %label Rating
               .form-radiobutton-wrapper
                 .form-radiobutton.form-check-inline
-                  = radio_button_tag :provider_rating, 1, (tx.provider_positive? || !tx.testimonial_from_author.present?), class: 'form-check-input'
+                  = radio_button_tag :provider_rating, 1,  (tx.provider_positive? || !tx.testimonial_from_author.present?), class: 'form-check-input'
                   = label_tag :provider_rating_1, 'Positive', class: %i[form-check-label]
                 .form-radiobutton.form-check-inline
                   = radio_button_tag :provider_rating, 0, tx.provider_negative?, class: 'form-check-input'
