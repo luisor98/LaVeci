@@ -31,26 +31,32 @@ class Admin2::TestimonialsService
     @transaction ||= transactions_scope.find(params[:id])
   end
 
+  def count_by_status(status = nil)
+    scope = transactions_scope
+    tx_statuses = []
+    tx_statuses.push(Transaction.skipped_feedback) if status == 'skipped'
+    tx_statuses.push(Transaction.waiting_feedback) if status == 'waiting'
+    tx_statuses_present = tx_statuses.any?
+    scope = merge_statuses(scope, tx_statuses)
+    review_statuses = []
+    review_statuses.push(Testimonial.non_blocked.positive) if status == 'positive'
+    review_statuses.push(Testimonial.non_blocked.negative) if status == 'negative'
+    review_statuses.push(Testimonial.blocked) if status == 'blocked'
+    review_statuses.push(Testimonial.non_blocked) if status == 'published'
+    if review_statuses.present?
+      review_scope = merge_statuses(Testimonial.by_community(community), review_statuses)
+      scope =
+        if tx_statuses_present
+          scope.or(Transaction.for_testimonials.where(id: review_scope.select('transaction_id')))
+        else
+          scope.where(id: review_scope.select('transaction_id'))
+        end
+    end
+    scope.count
+  end
+
   def testimonial
     @testimonial ||= testimonials_scope.find(params[:id])
-  end
-
-  def update
-    if params[:delete_review] &&
-       (params[:testimonial][:blocked].nil? || params[:testimonial][:blocked] == '0')
-      testimonial.destroy && testimonial.tx.reload
-    else
-      testimonial.update(testimonial_params) &&
-        testimonial.tx.reload
-    end
-  end
-
-  def testimonial_participant
-    testimonial.author_id == testimonial.tx.author.id ? :author : :starter
-  end
-
-  def testimonial_errors?
-    testimonial.errors.any?
   end
 
   def testimonial_blocked_disabled?
@@ -86,6 +92,22 @@ class Admin2::TestimonialsService
     testimonial.save!
   end
 
+  def destroy_block_customer
+    if params[:customer_delete_review] && !params[:customer_blocked_review].present?
+      transaction.testimonial_from_starter.destroy
+    else
+      transaction.testimonial_from_starter&.update!(blocked: params[:customer_blocked_review].present?)
+    end
+  end
+
+  def destroy_block_provider
+    if params[:provider_delete_review] && !params[:provider_blocked_review].present?
+      transaction.testimonial_from_author.destroy
+    else
+      transaction.testimonial_from_author&.update!(blocked: params[:provider_blocked_review].present?)
+    end
+  end
+
   def update_provider_rating
     return unless params[:provider_rating].present?
 
@@ -97,23 +119,11 @@ class Admin2::TestimonialsService
     testimonial.save!
   end
 
-  def filter?
-    params[:q].present? || params[:status].present?
-  end
-
-  def selected_statuses_title
-    if params[:status].present?
-      I18n.t("admin.communities.testimonials.status_filter.selected", count: params[:status].size)
-    else
-      I18n.t("admin.communities.testimonials.status_filter.all")
-    end
-  end
-
-  FILTER_STATUSES = %w[published positive negative skipped waiting blocked]
+  FILTER_STATUSES = %w[positive negative skipped waiting blocked]
 
   def sorted_statuses
     FILTER_STATUSES.map {|status|
-      [status, I18n.t("admin.communities.testimonials.status_filter.#{status}"), status_checked?(status)]
+      [status, "#{I18n.t("admin2.manage_reviews.status_filter.#{status}")} (#{count_by_status(status)})", status_checked?(status)]
     }
   end
 
@@ -177,15 +187,7 @@ class Admin2::TestimonialsService
   end
 
   def sort_direction
-    if params[:direction] == "asc"
-      "asc"
-    else
-      "desc" #default
-    end
-  end
-
-  def testimonial_params
-    params.require(:testimonial).permit(:text, :grade, :blocked)
+    params[:direction] == 'asc' ? 'asc' : 'desc'
   end
 
   def params_true?(key)

@@ -6,11 +6,11 @@ module Admin2::TransactionsReviews
 
     def show_review
       tx = @service.transaction
-      @review = { reviewReadLabel: "Reviews for the transaction for '#{tx.title_listing}'",
-                  customer_title: "Customer review from #{tx.customer_title}",
+      @review = { reviewReadLabel: t('admin2.manage_reviews.review_label', title: tx.title_listing),
+                  customer_title: t('admin2.manage_reviews.customer_title', title: tx.customer_title),
                   customer_status: tx.customer_status,
                   customer_text: tx.customer_text,
-                  provider_title: "Provider review from #{tx.provider_title}",
+                  provider_title: t('admin2.manage_reviews.provider_title', title: tx.provider_title),
                   provider_status: tx.provider_status,
                   provider_text: tx.provider_text }
       render layout: false
@@ -27,7 +27,9 @@ module Admin2::TransactionsReviews
     end
 
     def destroy
-
+      @service.destroy_block_customer
+      @service.destroy_block_provider
+      redirect_to admin2_transactions_reviews_manage_reviews_path
     end
 
     def update_review

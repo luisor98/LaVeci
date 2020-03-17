@@ -11,4 +11,24 @@ function showReview(data) {
 
 $(function() {
 
+    $(document).on('change', '.customer-delete-review', function () {
+        if ($(this).prop('checked')) {
+            $('.customer-blocked-review').prop('disabled', false);
+        } else {
+            if ($('#customer_blocked_disable').val() === 'true') {
+                $('.customer-blocked-review').prop('disabled', true);
+            }
+        }
+    });
+
+    $(document).on('change', '.provider-delete-review', function () {
+        if ($(this).prop('checked')) {
+            $('.provider-blocked-review').prop('disabled', false);
+        } else {
+            if ($('#provider_blocked_disable').val() === 'true') {
+                $('.provider-blocked-review').prop('disabled', true);
+            }
+        }
+    });
+
 });
