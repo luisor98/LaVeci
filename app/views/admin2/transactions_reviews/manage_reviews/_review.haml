@@ -16,6 +16,6 @@
   %td
     = link_to 'Read review comments', show_review_admin2_transactions_reviews_manage_review_path(tx), remote: true
     |
-    = link_to 'Edit', edit_review_admin2_transactions_reviews_manage_review_path(tx), remote: true
+    = link_to 'Edit', edit_review_admin2_transactions_reviews_manage_review_path(tx), remote: true, class: %i[edit-tx]
     |
     = link_to 'Delete and block', delete_review_admin2_transactions_reviews_manage_review_path(tx), remote: true
