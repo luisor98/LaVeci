@@ -93,7 +93,7 @@
           %li#viewconversations-mobile{class: active_li('conversations')}
             = link_to t('admin2.sidebar.transactions_reviews.view_conversations'), admin2_transactions_reviews_conversations_path(direction: :desc, sort: :last_activity)
           %li#managereviews-mobile{class: active_li('manage_reviews')}
-            = link_to t('admin2.sidebar.transactions_reviews.manage_reviews'), admin2_transactions_reviews_manage_reviews_path(direction: :desc, sort: :last_activity)
+            = link_to t('admin2.sidebar.transactions_reviews.manage_reviews'), admin2_transactions_reviews_manage_reviews_path
           %li#configuretransactions-mobile{class: active_li('config_transactions')}
             = link_to t('admin2.sidebar.transactions_reviews.config_transactions'), admin2_transactions_reviews_config_transactions_path
         / Divider

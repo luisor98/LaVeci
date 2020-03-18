@@ -3,7 +3,7 @@ module Testimonials
   include Admin2Helper
 
   def title_listing
-    listing_title || t("admin.communities.transactions.not_available")
+    listing_title || t('admin.communities.transactions.not_available')
   end
 
   def customer_title
@@ -13,19 +13,31 @@ module Testimonials
     end
   end
 
-  def customer_status
+  def customer_status(popup = false)
     customer = testimonial_from_starter
     if starter_skipped_feedback
-      I18n.t("admin.communities.testimonials.status.skipped")
+      I18n.t('admin2.manage_reviews.statuses.skipped') + ('.' if popup).to_s
     elsif customer.present?
       if customer.blocked?
-        I18n.t("admin.communities.testimonials.status.blocked")
+        I18n.t('admin2.manage_reviews.statuses.blocked') + ('.' if popup).to_s
       else
-        customer.positive? ? 'Positive' : 'Negative'
+        status_string(customer.positive?, popup)
       end
     else
-      I18n.t("admin.communities.testimonials.status.waiting")
+      I18n.t('admin2.manage_reviews.statuses.waiting') + ('.' if popup).to_s
     end
+  end
+
+  def status_string(positive, popup)
+    rating = if positive
+               I18n.t('admin2.manage_reviews.statuses.positive')
+             else
+               I18n.t('admin2.manage_reviews.statuses.negative')
+             end
+    if popup
+      rating = I18n.t('admin2.manage_reviews.rating', rating: rating)
+    end
+    rating
   end
 
   def customer_positive?
@@ -59,18 +71,18 @@ module Testimonials
     end
   end
 
-  def provider_status
+  def provider_status(popup = false)
     provider = testimonial_from_author
     if author_skipped_feedback
-      I18n.t("admin.communities.testimonials.status.skipped")
+      I18n.t('admin2.manage_reviews.statuses.skipped') + ('.' if popup).to_s
     elsif provider.present?
       if provider.blocked?
-        I18n.t("admin.communities.testimonials.status.blocked")
+        I18n.t('admin2.manage_reviews.statuses.blocked') + ('.' if popup).to_s
       else
-        provider.positive? ? 'Positive' : 'Negative'
+        status_string(provider.positive?, popup)
       end
     else
-      I18n.t("admin.communities.testimonials.status.waiting")
+      I18n.t('admin2.manage_reviews.statuses.waiting') + ('.' if popup).to_s
     end
   end
 

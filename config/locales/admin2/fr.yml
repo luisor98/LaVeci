@@ -104,6 +104,20 @@ fr:
       delete_review_provider: "lorem ipsum %{title}"
       save: 'lorem ipsum'
       cancel: 'lorem ipsum'
+      edit: 'lorem ipsum'
+      rating_string: 'lorem ipsum'
+      delete_block: 'lorem ipsum'
+      read_review_comments: 'lorem ipsum'
+      rating: '%{rating} lorem ipsum'
+      unskip: 'lorem ipsum'
+      comment: 'lorem ipsum'
+      unskip_notice: 'lorem ipsum'
+      statuses:
+        positive: 'lorem ipsum'
+        negative: 'lorem ipsum'
+        skipped: 'lorem ipsum'
+        waiting: 'lorem ipsum'
+        blocked: 'lorem ipsum'
       status_filter:
         positive: 'lorem ipsum'
         negative: 'lorem ipsum'
