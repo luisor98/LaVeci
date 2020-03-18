@@ -95,16 +95,30 @@ en:
       all_transactions: 'All transactions (%{count})'
       customer_title: "Customer review from %{title}"
       provider_title: "Provider review from %{title}"
-      review_label: "Reviews for the transaction for '%{title}'"
+      review_label: 'Reviews for the transaction for "%{title}"'
       delete_notice: 'Deleting a review allows its author to leave another one for the same transaction. Deleting a review cannot be undone.'
       blocked_notice: 'Blocking the review prevents its author from leaving another one for the same transaction.'
-      delete_title: "Delete and block reviews for the transaction for '%{title}'"
+      delete_title: 'Delete and block reviews for the transaction for "%{title}"'
       block_review_customer: "Block future customer from %{title}"
       block_review_provider: "Block future provider from %{title}"
       delete_review_customer: "Delete customer review from %{title}"
       delete_review_provider: "Delete provider review from %{title}"
       save: 'Save'
       cancel: 'Cancel'
+      edit: 'Edit'
+      rating_string: 'Rating'
+      delete_block: 'Delete and block'
+      read_review_comments: 'Read review comments'
+      rating: '%{rating} rating.'
+      unskip: 'Unskip the review'
+      comment: 'Comment'
+      unskip_notice: 'If you unskip the review, the user will be able to post one. They will not be notified automatically.'
+      statuses:
+        positive: 'Positive'
+        negative: 'Negative'
+        skipped: 'Skipped'
+        waiting: 'Waiting for the review'
+        blocked: 'Blocked'
       status_filter:
         positive: 'Positive review'
         negative: 'Negative review'
