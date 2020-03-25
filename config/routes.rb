@@ -252,6 +252,9 @@ Rails.application.routes.draw do
         end
       end
       namespace :listings do
+        resources :order_types, path: 'order-types' do
+
+        end
         resources :manage_listings, path: 'manage-listings', only: %i[index] do
           collection do
             patch :update

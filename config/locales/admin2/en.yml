@@ -52,6 +52,7 @@ en:
         listing_approval: 'Listing approval'
         listing_comments: 'Listing comments'
         manage_listings: 'Manage listings'
+        order_types: 'Order types'
       transactions_reviews:
         config_transactions: 'Configure transactions'
         view_conversations: 'View conversations'

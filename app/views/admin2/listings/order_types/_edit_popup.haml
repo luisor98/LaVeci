@@ -1,0 +1,89 @@
+#orderTypesEditModal.modal{"aria-hidden" => "true", "aria-labelledby" => "orderTypesEditModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg{:role => "document"}
+    .modal-content
+      %form.content-card-section-form
+        .modal-header
+          %h2#orderTypesEditModalLabel.modal-title Edit order type: $ORDER_TYPE_NAME
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          .form-group
+            %label{:for => "orderTypeName"} Name
+            .multiple-languages-container
+              .multiple-languages-language
+                %span.language English
+              .multiple-languages-input
+                %input#orderTypeName.form-control{"aria-describedby" => "orderTypeName", :placeholder => "Rent", :type => "text", :value => "Free"}/
+              .multiple-languages-language
+                %span.language French
+              .multiple-languages-input
+                %input#orderTypeName.form-control{"aria-describedby" => "orderTypeName", :placeholder => "Louer", :type => "text", :value => "Gratuit"}/
+              .multiple-languages-language
+                %span.language Spanish
+              .multiple-languages-input
+                %input#orderTypeName.form-control{"aria-describedby" => "orderTypeName", :placeholder => "Alquilar", :type => "text", :value => "Gratis"}/
+          .form-group
+            %label{:for => "orderTypeCheckoutButtonLabel"} Checkout button label
+            .multiple-languages-container
+              .multiple-languages-language
+                %span.language English
+              .multiple-languages-input
+                %input#orderTypeCheckoutButtonLabel.form-control{"aria-describedby" => "orderTypeCheckoutButtonLabel", :placeholder => "Rent now!", :type => "text", :value => "Rent now!"}/
+              .multiple-languages-language
+                %span.language French
+              .multiple-languages-input
+                %input#orderTypeCheckoutButtonLabel.form-control{"aria-describedby" => "orderTypeCheckoutButtonLabel", :placeholder => "Louer sans attendre !", :type => "text", :value => "Louer sans attendre !"}/
+              .multiple-languages-language
+                %span.language Spanish
+              .multiple-languages-input
+                %input#orderTypeCheckoutButtonLabel.form-control{"aria-describedby" => "orderTypeCheckoutButtonLabel", :placeholder => "¡Alquilar inmediatamente!", :type => "text", :value => "¡Alquilar inmediatamente!"}/
+          .form-group
+            %label{:for => "orderTypeOnlinePayments"} Pricing and checkout
+            .form-check
+              %input#orderTypePrice.form-check-input{:checked => "checked", :type => "checkbox"}/
+              %label.form-check-label{:for => "orderTypePrice"} Allow sellers to add a price to their listings
+            .form-check
+              %input#orderTypeOnlinePayments.form-check-input{:checked => "checked", :type => "checkbox"}/
+              %label.form-check-label{:for => "orderTypeOnlinePayments"} Allow sellers to accept payments online
+            .form-check
+              %input#orderTypeAvailability.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "orderTypeAvailability"} Allow sellers to manage their availability from a calendar
+            .form-check
+              %input#orderTypeShipping.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "orderTypeShipping"} Allow sellers to define a shipping fee
+          .form-group
+            %label{:for => "availabilityPerHour", :style => "opacity:0.4;"} Pricing units with availability
+            .form-radiobutton-wrapper
+              .form-radiobutton.form-check-inline
+                %input#availabilityPerHour.form-check-input{:disabled => "disabled", :type => "radio"}/
+                %label.form-check-label{:for => "availabilityPerHour"} "Per hour" availability
+              .form-radiobutton.form-check-inline
+                %input#availabilityPerDay.form-check-input{:disabled => "disabled", :type => "radio"}/
+                %label.form-check-label{:for => "availabilityPerDay"} "Per day" availability
+              .form-radiobutton.form-check-inline
+                %input#availabilityPerNight.form-check-input{:disabled => "disabled", :type => "radio"}/
+                %label.form-check-label{:for => "availabilityPerNight"} "Per night" availability
+          .form-group
+            %label{:for => "pricingUnitPerUnit"} Pricing units without availability
+            .form-check
+              %input#pricingUnitPerUnit.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "pricingUnitPerUnit"} Per unit
+            .form-check
+              %input#pricingUnitPerHour.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "pricingUnitPerHour"} Per hour
+            .form-check
+              %input#pricingUnitPerDay.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "pricingUnitPerDay"} Per day
+            .form-check
+              %input#pricingUnitPerNight.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "pricingUnitPerNight"} Per night
+            .form-check
+              %input#pricingUnitPerWeek.form-check-input{:checked => "checked", :type => "checkbox"}/
+              %label.form-check-label{:for => "pricingUnitPerWeek"} Per week
+            .form-check
+              %input#pricingUnitPerMonth.form-check-input{:type => "checkbox"}/
+              %label.form-check-label{:for => "pricingUnitPerMonth"} Per month
+            + ADDING MORE CUSTOM PRICING UNIT STILL MISSING HERE, WIP.
+        .modal-footer
+          %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+          %button.btn.btn-primary{:type => "button"} Save changes

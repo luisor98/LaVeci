@@ -1,0 +1,13 @@
+#orderTypesDeleteModal.modal{"aria-hidden" => "true", "aria-labelledby" => "orderTypesDeleteModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-md{:role => "document"}
+    .modal-content
+      %form.content-card-section-form
+        .modal-header
+          %h2#orderTypesDeleteModalLabel.modal-title Delete order type: $ORDER_TYPE_NAME
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          $NUMBER_OF_LISTINGS listings use this order type. If you delete it, those listings will be closed. Are you sure you want to proceed?
+        .modal-footer
+          %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+          %button.btn.btn-primary{:type => "button"} Delete the order type
