@@ -24,7 +24,8 @@
               %span.handle-move{"aria-hidden" => "true"}
               - unless @listing_shapes.size == 1
                 %span.remove{"aria-hidden" => "true", "data-target" => "#orderTypesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true", "data-target" => "#orderTypesEditModal", "data-toggle" => "modal"}
+                = link_to edit_admin2_listings_order_type_path(shape), remote: true do
+                  %span.edit
 
     %p.ingress
       %a{"data-target" => "#orderTypesAddModal", "data-toggle" => "modal", :href => "#"} + Add a new order type

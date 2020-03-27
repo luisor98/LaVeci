@@ -68,7 +68,6 @@ class Admin::ListingShapesController < Admin::AdminBaseController
                       process_summary: process_summary,
                       available_locs: available_locales())
     end
-
   end
 
   def update
