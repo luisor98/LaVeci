@@ -1,11 +1,12 @@
-#orderTypesEditModal.modal{"aria-hidden" => "true", "aria-labelledby" => "orderTypesEditModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg{:role => "document"}
+#orderTypesEditModal.modal{'aria-hidden' => true, 'aria-labelledby' => 'orderTypesEditModalLabel', role: :dialog, tabindex: -1}
+  .modal-dialog.modal-lg{role: :document}
     .modal-content
-      = form_tag admin2_listings_order_type_path(locals[:id]), id: 'edit_listing_shape_form', method: :patch, class: %i[content-card-section-form] do
+      = form_tag admin2_listings_order_type_path(locals[:id]), id: :edit_listing_shape_form, method: :patch, class: %i[content-card-section-form] do
         .modal-header
-          %h2#orderTypesEditModalLabel.modal-title Edit order type: $ORDER_TYPE_NAME
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
+          %h2#orderTypesEditModalLabel.modal-title
+            = t('admin2.order_types.edit_order_type', type: locals[:name])
+          %button.close{'aria-label' => 'Close', 'data-dismiss' => :modal, type: :button}
+            %span{'aria-hidden' => true} ×
         .modal-body
           = render 'admin2/listings/order_types/category_body', locals: locals
         .modal-footer

@@ -10,7 +10,9 @@ module Admin2::Listings
     end
 
     def new
-      @template = ListingShapeTemplates.new(process_summary).find(params[:type_id], available_locales.map(&:second))
+      @template = ListingShapeTemplates.new(process_summary)
+                                       .find(params[:type_id],
+                                             available_locales.map(&:second))
       @locals = common_locals(form: @template,
                               count: 0,
                               process_summary: process_summary,
@@ -25,37 +27,32 @@ module Admin2::Listings
         name: url_name,
         locales: available_locales.map { |_, locale| locale }
       ).data
-      can_delete_res = can_delete_shape?(url_name, @current_community.shapes)
-      cant_delete = !can_delete_res.success
-      cant_delete_reason = cant_delete ? can_delete_res.error_msg : nil
       count = @current_community.listings.currently_open.where(listing_shape_id: form[:id]).count
       @locals = common_locals(form: form, count: count,
                               process_summary: process_summary,
-                              available_locs: available_locales).merge(
-        id: params[:id],
-        name: pick_translation(form[:name]),
-        cant_delete: cant_delete,
-        cant_delete_reason: cant_delete_reason)
+                              available_locs: available_locales).merge(id: params[:id],
+                                                                       name: pick_translation(form[:name]))
       render layout: false
     end
 
     def update
+      params[:id] = params[:id].to_i
       shape = filter_uneditable_fields(FormViewLayer.params_to_shape(params), process_summary)
-
       url_name = ListingShape.find(params[:id]).name
       update_result = validate_shape(shape).and_then { |s|
         ShapeService.new(processes).update(
           community: @current_community,
           name: url_name,
-          opts: s
-        )
-      }
-      if update_result.success
-        flash[:notice] = t("admin.listing_shapes.edit.update_success", shape: pick_translation(shape[:name]))
-      else
-        flash[:error] = t("admin.listing_shapes.edit.update_failure", error_msg: update_result.error_msg)
+          opts: s) }
+      unless update_result.success
+        raise t('admin2.order_types.update_failure', error_msg: update_result.error_msg)
       end
-      redirect_to admin2_listings_order_types
+
+      flash[:notice] = t('admin2.order_types.update_success', shape: pick_translation(shape[:name]))
+    rescue StandardError => e
+      flash[:error] = e.message
+    ensure
+      redirect_to admin2_listings_order_types_path
     end
 
     def create
@@ -66,20 +63,46 @@ module Admin2::Listings
           community: @current_community,
           default_locale: @current_community.default_locale,
           opts: s) }
-      if create_result.success
-        flash[:notice] = t("admin.listing_shapes.new.create_success", shape: pick_translation(shape[:name]))
-      else
-        flash[:error] = t("admin.listing_shapes.new.create_failure", error_msg: create_result.error_msg)
+      unless create_result.success
+        raise t('admin2.order_types.create_failure', error_msg: create_result.error_msg)
       end
-      redirect_to admin2_listings_order_types
+
+      flash[:notice] = t('admin2.order_types.create_success', shape: pick_translation(shape[:name]))
+    rescue StandardError => e
+      flash[:error] = e.message
+    ensure
+      redirect_to admin2_listings_order_types_path
+    end
+
+    def destroy
+      shape = ListingShape.find(params[:id])
+      url_name = shape.name
+      raise "Cannot delete order type, error: #{shape.delete_shape_msg}" unless shape.can_delete_shape?
+
+      @current_community.listings.where(listing_shape_id: shape.id).update_all(open: false, listing_shape_id: nil)
+      deleted_shape = @current_community.shapes.by_name(url_name).first
+      raise "Cannot delete order type" unless deleted_shape
+
+      deleted_shape.update(deleted: true)
+      flash[:notice] = t('admin2.order_types.successfully_deleted', order_type: t(deleted_shape[:name_tr_key]))
+    rescue StandardError => e
+      flash[:error] = e.message
+    ensure
+      redirect_to admin2_listings_order_types_path
+    end
+
+    def order
+      params[:ids]&.each do |index, object|
+        ListingShape.find(object['id']).update(sort_priority: object['position'])
+      end
+      head :ok
     end
 
     def process_summary
       @process_summary ||= processes.reduce({}) { |info, process|
-        info[:preauthorize_available] = true if process.process == :preauthorize
-        info[:request_available] = true if process.author_is_seller == false
-        info
-      }
+        info[:preauthorize_available] = process.process == :preauthorize
+        info[:request_available] = !process.author_is_seller
+        info }
     end
 
     def processes
@@ -88,37 +111,9 @@ module Admin2::Listings
 
     private
 
-    def can_delete_shape?(current_shape_name, shapes)
-      listing_shapes_categories_map = shapes.map { |shape|
-        [shape.name, shape.category_ids]
-      }
-
-      categories_listing_shapes_map = HashUtils.transpose(listing_shapes_categories_map)
-
-      last_in_category_ids = categories_listing_shapes_map.select { |category_id, shape_names|
-        shape_names.size == 1 && shape_names.include?(current_shape_name)
-      }.keys
-
-      shape = shapes.find { |s| s.name == current_shape_name }
-
-      if !shape
-        Result::Error.new(t("admin.listing_shapes.can_not_find_name", name: current_shape_name))
-      elsif shapes.length == 1
-        Result::Error.new(t("admin.listing_shapes.edit.can_not_delete_last"))
-      elsif !last_in_category_ids.empty?
-        categories = @current_community.categories
-        category_names = pick_category_names(categories, last_in_category_ids, I18n.locale)
-
-        Result::Error.new(t("admin.listing_shapes.edit.can_not_delete_only_one_in_categories", categories: category_names.join(", ")))
-      else
-        Result::Success.new(shape)
-      end
-    end
-
     def pick_translation(translations)
-      translations.find { |(locale, translation)|
-        locale.to_s == I18n.locale.to_s
-      }.second
+      translations.find { |(locale, _translation)|
+        locale.to_s == I18n.locale.to_s }.second
     end
 
     def validate_shape(form)

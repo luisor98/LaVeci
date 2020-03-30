@@ -1,14 +1,14 @@
-#orderTypesAddModal.modal{"aria-hidden" => "true", "aria-labelledby" => "orderTypesAddModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg{:role => "document"}
+#orderTypesAddModal.modal{'aria-hidden' => true, 'aria-labelledby' => 'orderTypesAddModalLabel', role: :dialog, tabindex: -1}
+  .modal-dialog.modal-lg{role: 'document'}
     .modal-content
       = form_tag admin2_listings_order_types_path, id: 'listing_shape_form', class: %i[content-card-section-form] do
         .modal-header
-          %h2#orderTypesEditModalLabel.modal-title Add a new order type
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
+          %h2#orderTypesEditModalLabel.modal-title= t('admin2.order_types.add_new_order_type')
+          %button.close{'aria-label' => 'Close', 'data-dismiss' => :modal, type: :button}
+            %span{'aria-hidden' => true} ×
         .modal-body
           .form-group
-            %label{:for => "newOrderTypeTemplate"} New order type template
+            = label_tag :template_order_type, t('admin2.order_types.new_order_type')
             = select_tag :template_order_type, options_for_select([[t("admin.listing_shapes.index.select_template"), nil]].concat(templates.map { |(label_tr_key, template_name)| [t(label_tr_key), template_name]})), class: %i[form-control], data: {url: new_admin2_listings_order_type_path}
           %span#category-body
         .modal-footer
