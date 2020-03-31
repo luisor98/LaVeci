@@ -10295,11 +10295,16 @@ body {
 .dropdown-toggle:hover::after {
   background-image: url(image_path("svg/arrow-down-hover.svg")); }
 
+.disabled {
+  opacity: 0.1 !important;
+  cursor: not-allowed !important; }
+
 .handle-move {
   width: 48px;
   height: 48px;
   float: right;
   top: -48px;
+  opacity: 0.8;
   margin-bottom: -24px;
   position: relative;
   display: block;
@@ -10310,7 +10315,7 @@ body {
 .handle-move:active, .handle-move:focus, .handle-move:hover {
   cursor: move; }
 .handle-move:hover {
-  opacity: 0.5; }
+  opacity: 1; }
 
 .edit {
   width: 48px;
@@ -10320,7 +10325,7 @@ body {
   margin-bottom: -24px;
   position: relative;
   display: block;
-  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='16px' height='16px' viewBox='0 0 16 16' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 61.2 (89653) - https://sketch.com --%3E%3Ctitle%3EShape%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cdefs%3E%3Crect id='path-1' x='280' y='112' width='1036' height='1208' rx='4'%3E%3C/rect%3E%3Cfilter x='-5.5%25' y='-3.4%25' width='110.9%25' height='109.4%25' filterUnits='objectBoundingBox' id='filter-2'%3E%3CfeMorphology radius='0.5' operator='dilate' in='SourceAlpha' result='shadowSpreadOuter1'%3E%3C/feMorphology%3E%3CfeOffset dx='0' dy='16' in='shadowSpreadOuter1' result='shadowOffsetOuter1'%3E%3C/feOffset%3E%3CfeGaussianBlur stdDeviation='16' in='shadowOffsetOuter1' result='shadowBlurOuter1'%3E%3C/feGaussianBlur%3E%3CfeComposite in='shadowBlurOuter1' in2='SourceAlpha' operator='out' result='shadowBlurOuter1'%3E%3C/feComposite%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0' type='matrix' in='shadowBlurOuter1'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Cg id='1---General' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='6.3.1---Top-Bar---One-language' transform='translate(-1201.000000, -1218.000000)'%3E%3Cg id='Menu-Base' transform='translate(798.000000, 716.000000) scale(-1, 1) translate(-798.000000, -716.000000) '%3E%3Cuse fill='black' fill-opacity='1' filter='url(%23filter-2)' xlink:href='%23path-1'%3E%3C/use%3E%3Cuse stroke='%23EAEDF3' stroke-width='1' fill='%23FFFFFF' fill-rule='evenodd' xlink:href='%23path-1'%3E%3C/use%3E%3C/g%3E%3Cg id='Group-2' transform='translate(280.000000, 144.000000)'%3E%3Cg id='stripe' transform='translate(0.000000, 52.000000)'%3E%3C/g%3E%3C/g%3E%3Cpath d='M1207.02509,1230.8474 L1202,1233 L1204.15361,1227.97389 L1213.12852,1219 L1216,1221.87148 L1207.02509,1230.8474 Z M1213.66667,1223.66667 L1211.33333,1221.33333 M1206.66667,1230.66667 L1204.33333,1228.33333' id='Shape' stroke='%235E6977' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M6.02509428 12.8474035L1 15l2.15361183-5.02610966L12.1285176 1 15 3.87148245 6.02509428 12.8474035zm6.64157242-7.18073683l-2.3333334-2.33333334M5.66666667 12.6666667l-2.33333334-2.3333334' stroke='%235E6977' stroke-width='1.25' fill='none' fill-rule='evenodd' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center center;
   opacity: 0.8;
@@ -10336,7 +10341,7 @@ body {
   margin-bottom: -24px;
   position: relative;
   display: block;
-  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cfilter x='-5.5%25' y='-2.7%25' width='110.9%25' height='107.6%25' filterUnits='objectBoundingBox' id='a'%3E%3CfeMorphology radius='.5' operator='dilate' in='SourceAlpha' result='shadowSpreadOuter1'/%3E%3CfeOffset dy='16' in='shadowSpreadOuter1' result='shadowOffsetOuter1'/%3E%3CfeGaussianBlur stdDeviation='16' in='shadowOffsetOuter1' result='shadowBlurOuter1'/%3E%3CfeComposite in='shadowBlurOuter1' in2='SourceAlpha' operator='out' result='shadowBlurOuter1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0' in='shadowBlurOuter1'/%3E%3C/filter%3E%3Crect id='b' x='280' y='112' width='1036' height='1488' rx='4'/%3E%3C/defs%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg transform='matrix(-1 0 0 1 506 -1002)'%3E%3Cuse fill='%23000' filter='url(%23a)' xlink:href='%23b'/%3E%3Cuse stroke='%23EAEDF3' fill='%23FFF' xlink:href='%23b'/%3E%3C/g%3E%3Cg fill='%23FF4E36'%3E%3Crect transform='rotate(45 6 6)' x='-1' y='5' width='14' height='2' rx='1'/%3E%3Crect transform='rotate(-45 6 6)' x='-1' y='5' width='14' height='2' rx='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 11 11'%3E%3Cg fill='%23FF4E36' fill-rule='evenodd'%3E%3Crect transform='rotate(45 5.656854 5.656854)' x='-1.34314575' y='4.65685425' width='14' height='2' rx='1'/%3E%3Crect transform='rotate(-45 5.656854 5.656854)' x='-1.34314575' y='4.65685425' width='14' height='2' rx='1'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center center;
   opacity: 0.5;
@@ -11399,7 +11404,7 @@ span.color {
   margin-right: 2%; }
 .field-titles div,
 .field-data div {
-  width: 25%; }
+  width: 40%; }
 
 .field-data {
   -webkit-box-align: center;
@@ -11442,9 +11447,6 @@ span.color {
 
 .list-group .field-data div:first-of-type {
   width: 100%; }
-
-.list-group .field-data:last-of-type {
-  border-bottom: none; }
 
 .table {
   margin-top: 21px; }
