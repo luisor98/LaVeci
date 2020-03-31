@@ -77,11 +77,11 @@ module Admin2::Listings
     def destroy
       shape = ListingShape.find(params[:id])
       url_name = shape.name
-      raise "Cannot delete order type, error: #{shape.delete_shape_msg}" unless shape.can_delete_shape?
+      raise t('admin2.order_types.errors.cannot_delete_msg', error_msg: shape.delete_shape_msg) unless shape.can_delete_shape?
 
       @current_community.listings.where(listing_shape_id: shape.id).update_all(open: false, listing_shape_id: nil)
       deleted_shape = @current_community.shapes.by_name(url_name).first
-      raise "Cannot delete order type" unless deleted_shape
+      raise t('admin2.order_types.errors.cannot_delete') unless deleted_shape
 
       deleted_shape.update(deleted: true)
       flash[:notice] = t('admin2.order_types.successfully_deleted', order_type: t(deleted_shape[:name_tr_key]))
@@ -118,21 +118,16 @@ module Admin2::Listings
 
     def validate_shape(form)
       form = Shape.call(form)
-
       errors = []
-
       if form[:shipping_enabled] && !form[:online_payments]
-        errors << "Shipping cannot be enabled without online payments"
+        errors << t('admin2.order_types.errors.without_online_payments')
       end
-
       if form[:online_payments] && !form[:price_enabled]
-        errors << "Online payments cannot be enabled without price"
+        errors << t('admin2.order_types.errors.enabled_without_price')
       end
-
       if (form[:units].present? || form[:custom_units].present?) && !form[:price_enabled]
-        errors << "Price units cannot be used without price field"
+        errors << t('admin2.order_types.errors.used_without_price')
       end
-
       if errors.empty?
         Result::Success.new(form)
       else
@@ -149,8 +144,8 @@ module Admin2::Listings
       { uneditable_fields: uneditable_fields(process_summary, form[:author_is_seller]),
         shape: FormViewLayer.shape_to_locals(form),
         count: count,
-        harmony_in_use: APP_CONFIG.harmony_api_in_use.to_s == "true",
-        display_knowledge_base_articles: APP_CONFIG.display_knowledge_base_articles.to_s == "true",
+        harmony_in_use: APP_CONFIG.harmony_api_in_use.to_s == 'true',
+        display_knowledge_base_articles: APP_CONFIG.display_knowledge_base_articles.to_s == 'true',
         locale_name_mapping: available_locs.map { |name, l| [l, name] }.to_h }
     end
 

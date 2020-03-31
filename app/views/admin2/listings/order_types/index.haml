@@ -32,9 +32,9 @@
                 - if shape.can_delete_shape?
                   - count = @current_community.listings.currently_open.where(listing_shape_id: shape.id).count
                   - confirm_opts = count.positive? ? { confirm: t('admin2.order_types.confirm_delete_order_type', count: count) } : {}
-                  = link_to admin2_listings_order_type_path(shape), method: :delete, class: %i[listing-shape-delete-link], data: confirm_opts do
+                  = link_to admin2_listings_order_type_path(shape), method: :delete, class: %i[listing-shape-delete-link] << "delete_shape_#{shape.name}", data: confirm_opts do
                     %span.remove
-                = link_to edit_admin2_listings_order_type_path(shape), remote: true do
+                = link_to edit_admin2_listings_order_type_path(shape), remote: true, class: "shape_#{shape.name}" do
                   %span.edit
 
     %p.ingress

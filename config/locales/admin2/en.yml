@@ -114,6 +114,15 @@ en:
       create_success: "New order type '%{shape}' created"
       create_failure: "Could not create new order type. Error: %{error_msg}"
       successfully_deleted: "Successfully deleted order type '%{order_type}'"
+      errors:
+        without_online_payments: 'Shipping cannot be enabled without online payments'
+        enabled_without_price: 'Online payments cannot be enabled without price'
+        used_without_price: 'Price units cannot be used without price field'
+        cannot_delete_msg: 'Cannot delete order type, error: %{error_msg}'
+        cannot_delete: 'Cannot delete order type'
+        can_not_delete_only_one_in_categories: "You can't delete this order type because in following categories this order type is the only one in use: %{categories}"
+        can_not_delete_last: "You can't delete this order type because it's the only type in your marketplace."
+        can_not_find_name: "Can not find order type with given name: %{name}"
       units:
         piece: "Per piece"
         hour: "Per hour"
