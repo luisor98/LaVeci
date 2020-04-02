@@ -113,6 +113,8 @@ fr:
       create_success: "lorem ipsum '%{shape}' lorem ipsum"
       create_failure: "lorem ipsum: %{error_msg}"
       successfully_deleted: "lorem ipsum '%{order_type}'"
+      delete: 'lorem ipsum'
+      delete_caption: 'lorem ipsum: %{order_type}'
       errors:
         without_online_payments: 'lorem ipsum'
         enabled_without_price: 'lorem ipsum'
