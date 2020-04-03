@@ -114,6 +114,8 @@ en:
       create_success: "New order type '%{shape}' created"
       create_failure: "Could not create new order type. Error: %{error_msg}"
       successfully_deleted: "Successfully deleted order type '%{order_type}'"
+      delete: 'Delete the order type'
+      delete_caption: 'Delete order type: %{order_type}'
       errors:
         without_online_payments: 'Shipping cannot be enabled without online payments'
         enabled_without_price: 'Online payments cannot be enabled without price'
@@ -132,8 +134,8 @@ en:
         month: "Per month"
         unit: "Per unit"
       confirm_delete_order_type:
-        one: "There is %{count} listing with this order type. If you delete the order type, this listing will be closed. Are you sure you want to delete the order type?"
-        other: "There are %{count} listings with this order type. If you delete the order type, those listings will be closed. Are you sure you want to delete the order type?"
+        one: "%{count} listing use this order type. If you delete it, this listing will be closed. Are you sure you want to proceed?"
+        other: "%{count} listings use this order type. If you delete it, those listings will be closed. Are you sure you want to proceed?"
     manage_reviews:
       transaction: 'Transaction'
       customer: 'Customer'

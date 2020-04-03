@@ -5,8 +5,8 @@ module Admin2::Listings
 
     def index
       @category_count = @current_community.categories.count
-      @listing_shapes = @current_community.shapes
       @templates = ListingShapeTemplates.new(process_summary).label_key_list
+      @listing_shapes = @current_community.shapes
     end
 
     def new
@@ -100,8 +100,8 @@ module Admin2::Listings
 
     def process_summary
       @process_summary ||= processes.reduce({}) { |info, process|
-        info[:preauthorize_available] = process.process == :preauthorize
-        info[:request_available] = !process.author_is_seller
+        info[:preauthorize_available] = true if process.process == :preauthorize
+        info[:request_available] = true if process.author_is_seller == false
         info }
     end
 

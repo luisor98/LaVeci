@@ -1,5 +1,21 @@
 $(function() {
 
+    $('#orderTypesAddModal'). on('show.bs.modal', function() {
+        $('#template_order_type').prop('selectedIndex', 0);
+        $('#category-body').html('');
+        $('.order-type-footer').hide();
+    });
+
+    $(document).on('click', '.confirm-order-type-true', function () {
+        var caption = $(this).data('caption'),
+            url = $(this).data('url'),
+            notice = $(this).data('notice');
+        $('#delete-order-type-body').html(notice);
+        $('#delete-order-form').attr('action', url);
+        $('#orderTypesDeleteModalLabel').html(caption);
+        $('#orderTypesDeleteModal').modal('show');
+    });
+
     $('#template_order_type').on('change', function(){
         var url = $(this).data('url'),
             id = $(this).val();
