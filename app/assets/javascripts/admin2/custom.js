@@ -104,6 +104,18 @@ $(function(){
         });
     }
 
+    if ($('#nestedList').length) {
+        Sortable.create(nestedList, {
+            handle: '.handle-move',
+            animation: 250,
+            onEnd: function (/**Event*/evt) {
+                $('.one-social-link').each(function( index ) {
+                    $(this).find('.social-link-sort-prior').val(index);
+                });
+            },
+        });
+    }
+
 
     $('.for-hide-content').on('change', function () {
        var checked = $(this).prop('checked'),

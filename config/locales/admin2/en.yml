@@ -49,6 +49,7 @@ en:
         user_rights: 'User rights'
         invitations: 'Invitations'
       listings:
+        categories: 'Categories'
         listing_approval: 'Listing approval'
         listing_comments: 'Listing comments'
         manage_listings: 'Manage listings'
