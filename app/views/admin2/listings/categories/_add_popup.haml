@@ -1,38 +1,17 @@
-#categoriesAddModal.modal{"aria-hidden" => "true", "aria-labelledby" => "categoriesAddModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg{:role => "document"}
+#categoriesAddModal.modal{'aria-hidden' => true, 'aria-labelledby' => 'categoriesAddModalLabel', role: :dialog, tabindex: '-1'}
+  .modal-dialog.modal-lg{role: :document}
     .modal-content
       = form_for [:admin2, :listings, category], class: %i[content-card-section-form] do |form|
         .modal-header
-          %h2#categoriesAddModalLabel.modal-title Add a new category
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
-          .form-group
-            = form.label :name_attributes, 'Category name'
-            .multiple-languages-container
-              - available_locales.each do |locale_name, locale_value|
-                .multiple-languages-language
-                  %span.language
-                    = locale_name
-                .multiple-languages-input
-                  = text_field_tag "category[translation_attributes][#{locale_value}][name]", category.display_name(locale_value), class: 'required form-control'
-          .form-group{:style => "margin-left:0;"}
-            - top_level_categories = @current_community.top_level_categories.reject { |c| c.id == @category.id }
-            - if category.children.empty? && top_level_categories.size > 0
-              %label{:for => "categoryAddParent"} Parent category
-              = form.select :parent_id, options_for_select([[t(".no_parent"), nil]] + top_level_categories.collect { |c| [c.display_name(I18n.locale), c.id] }, category.parent_id), {}, class: %i[form-control]
-
-          .form-group
-            - if shapes.size > 1
-              %label{:for => "categoriesOrderTypes"} Order types
-              - shapes.each do |shape|
-                - checkbox_id = "listing_shape_checkbox_#{shape[:id].to_s}"
-                .form-check
-                  = check_box_tag "category[listing_shapes][][listing_shape_id]", "#{shape[:id]}", selected_shape_ids.include?(shape[:id]), id: checkbox_id, class: %i[form-check-input]
-                  = label_tag checkbox_id, t(shape[:name_tr_key]), class: %i[form-check-label]
+          %h2#categoriesAddModalLabel.modal-title
+            - if category.new_record?
+              = t('admin2.categories.add_category_popup')
             - else
-              = hidden_field_tag "category[listing_shapes][][listing_shape_id]", shapes.first[:id]
-
+              = t('admin2.categories.edit_category', category: category.display_name(I18n.locale))
+          %button.close{'aria-label' => 'Close', 'data-dismiss' => :modal, type: :button}
+            %span{'aria-hidden' => true} ×
+        .modal-body
+          = render 'form', form: form, category: category, shapes: shapes, selected_shape_ids: selected_shape_ids
         .modal-footer
-          = link_to t('admin2.manage_listings.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
+          = link_to t('admin2.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
           = button_tag t('admin2.save_changes'), class: %i[btn btn-primary]

@@ -255,6 +255,10 @@ Rails.application.routes.draw do
       end
       namespace :listings do
         resources :categories do
+          member do
+            get :remove_popup
+            delete :destroy_and_move
+          end
           collection do
             post :order
           end
