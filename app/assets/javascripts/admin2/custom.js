@@ -105,17 +105,30 @@ $(function(){
     }
 
     if ($('#nestedList').length) {
-        Sortable.create(nestedList, {
-            handle: '.handle-move',
-            animation: 250,
-            onEnd: function (/**Event*/evt) {
-                $('.one-social-link').each(function( index ) {
-                    $(this).find('.social-link-sort-prior').val(index);
-                });
-            },
-        });
-    }
+        var nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
 
+        for (var i = 0; i < nestedSortables.length; i++) {
+            new Sortable(nestedSortables[i], {
+                group: 'nested',
+                animation: 250,
+                fallbackOnBody: true,
+                swapThreshold: 0.65,
+                handle: '.handle-move',
+                onEnd: function (/**Event*/evt) {
+                    var array = [],
+                        url = $('#nestedList').data('url');
+
+                    $('.nested-1').each(function( index ) {
+                        array.push($(this).data('id'));
+                    });
+                    $('.nested-2').each(function( index ) {
+                        array.push($(this).data('id'));
+                    });
+                    $.post(url, {order: array});
+            }
+            });
+        }
+    }
 
     $('.for-hide-content').on('change', function () {
        var checked = $(this).prop('checked'),

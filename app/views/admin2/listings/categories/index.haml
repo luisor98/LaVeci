@@ -5,74 +5,8 @@
     %h2 Categories
     %p.ingress Here you can edit the categories that providers have to put listing in, and visitors use to browse your marketplace.
     .form-group
-      #nestedList.list-group.nested-sortable
-        .list-group-item.nested-1
-          %div Category 1
-          .actions
-            %span.handle-move{"aria-hidden" => "true"}
-            %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-            %span.edit{"aria-hidden" => "true", "data-target" => "#categoriesEditModal", "data-toggle" => "modal"}
-          .list-group.nested-sortable
-            .list-group-item.nested-2.field-data
-              %div Category 1.1
-              .actions
-                %span.handle-move{"aria-hidden" => "true"}
-                %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true"}
-            .list-group-item.nested-2.field-data
-              %div Category 1.2
-              .actions
-                %span.handle-move{"aria-hidden" => "true"}
-                %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true"}
-            .list-group-item.nested-2.field-data
-              %div Category 1.3
-              .actions
-                %span.handle-move{"aria-hidden" => "true"}
-                %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true"}
-            .list-group-item.nested-2.field-data
-              %div Category 1.4
-              .actions
-                %span.handle-move{"aria-hidden" => "true"}
-                %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true"}
-        .list-group-item.nested-1
-          %div Category 2
-          .actions
-            %span.handle-move{"aria-hidden" => "true"}
-            %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-            %span.edit{"aria-hidden" => "true"}
-        .list-group-item.nested-1
-          %div Category 3
-          .actions
-            %span.handle-move{"aria-hidden" => "true"}
-            %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-            %span.edit{"aria-hidden" => "true"}
-          .list-group.nested-sortable
-            .list-group-item.nested-2.field-data
-              %div Category 3.1
-              .actions
-                %span.handle-move{"aria-hidden" => "true"}
-                %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true"}
-            .list-group-item.nested-2.field-data
-              %div Category 3.2
-              .actions
-                %span.handle-move{"aria-hidden" => "true"}
-                %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-                %span.edit{"aria-hidden" => "true"}
-        .list-group-item.nested-1
-          %div Category 4
-          .actions
-            %span.handle-move{"aria-hidden" => "true"}
-            %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-            %span.edit{"aria-hidden" => "true"}
-        .list-group-item.nested-1
-          %div Category 5
-          .actions
-            %span.handle-move{"aria-hidden" => "true"}
-            %span.remove{"aria-hidden" => "true", "data-target" => "#categoriesDeleteModal", "data-toggle" => "modal"}
-            %span.edit{"aria-hidden" => "true"}
+      #nestedList.list-group.nested-sortable{data: {url: order_admin2_listings_categories_path}}
+        = render partial: 'category', collection: @categories
+
     %p.ingress
-      %a{"data-target" => "#categoriesAddModal", "data-toggle" => "modal", :href => "#"} + Add a new category
+      = link_to '+ Add a new category', new_admin2_listings_category_path, remote: true
