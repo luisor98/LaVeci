@@ -187,6 +187,17 @@ en:
       delete_confirmation_placeholder: 'Type your Sharetribe marketplace domain here...'
       delete: 'Delete your marketplace forever'
       cannot_delete: 'Could not delete marketplace.'
+    view_conversations:
+      search_placeholder: 'Filter conversations by a name, email or keyword...'
+      started_from: 'Started from'
+      sender: 'Starter'
+      receiver: 'Provider'
+      started: 'Started'
+      latest_activity: 'Latest activity'
+      actions: 'Actions'
+      not_available: 'Not available'
+      profile: "%{author}'s Profile"
+      read: 'Read'
     email_users:
       compose_email: 'Compose email'
       recipients: 'Who do you want to email?'
@@ -233,17 +244,6 @@ en:
       delete_info_text: 'Deleting a listing cannot be undone. Are you sure you want to proceed?'
       processing_export: "Processing export to CSV..."
       confirm_popup_body: 'This listing has not been approved yet. You can now decide to approve or reject the listing. If you approve the listing it will be public and visible to all users. If you reject the listing it will not be public.'
-    view_conversations:
-      search_placeholder: 'Filter conversations by a name, email or keyword...'
-      listing: 'Listing'
-      sender: 'Sender'
-      receiver: 'Receiver'
-      started: 'Started'
-      latest_activity: 'Latest activity'
-      status: 'Status'
-      not_available: 'Not available'
-      profile: "%{author}'s Profile"
-      conversation: 'Conversation'
     google_manager:
       info_text: "Using a tag manager such as GTM is a great way to manage and deploy snippets of code or tracking pixels on your website without having to modify the code."
       info_text_2: "Because Sharetribe also relies on Google Tag Manager, you should <a href='%{url}' target='_blank'>learn how to configure GTM for your Go marketplace</a>."

@@ -134,6 +134,15 @@ module Admin2Helper
     end
   end
 
+  def person_name(person)
+    if person.present? && !person.deleted?
+      display_name = person.display_name.present? ? " (#{person.display_name})" : ''
+      "#{person.given_name} #{person.family_name}#{display_name}"
+    else
+      t('common.removed_user')
+    end
+  end
+
   def admin_email_options
     options = %i[all_users posting_allowed with_listing with_listing_no_payment with_payment_no_listing no_listing_no_payment]
     options.delete(:posting_allowed) unless @current_community.require_verification_to_post_listings
@@ -142,10 +151,5 @@ module Admin2Helper
 
   def email_languages
     [[t('admin2.email_users.any_language'), 'any']] | available_locales
-  end
-
-  def person_name(person)
-    display_name = person.display_name.present? ? " (#{person.display_name})" : ''
-    "#{person.given_name} #{person.family_name}#{display_name}"
   end
 end
