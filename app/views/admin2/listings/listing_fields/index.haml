@@ -1,0 +1,85 @@
+.content-card-header
+  %h1.content-card-header-title Listing fields
+.content-card-section-container
+  %form.content-card-section-form
+    %section.content-card-section
+      %h2 Manage existing listing fields
+      %p.ingress Here you can edit the fields that users have to fill in when they create a new listing. Please note that some fields are predefined and cannot be edited.
+      .form-group
+        .field-titles
+          %div Field title
+          %div Field type
+        .list-group
+          .field-data
+            %div Listing title
+            %div Text
+            .actions
+              %span.handle-move.disabled{"aria-hidden" => "true"}
+              %span.remove.disabled{"aria-hidden" => "true"}
+              %span.edit.disabled{"aria-hidden" => "true"}
+          .field-data
+            %div Price
+            %div Price
+            .actions
+              %span.handle-move.disabled{"aria-hidden" => "true"}
+              %span.remove.disabled{"aria-hidden" => "true"}
+              %span.edit.disabled{"aria-hidden" => "true"}
+          .field-data
+            %div Detailed description
+            %div Text
+            .actions
+              %span.handle-move.disabled{"aria-hidden" => "true"}
+              %span.remove.disabled{"aria-hidden" => "true"}
+              %span.edit.disabled{"aria-hidden" => "true"}
+          .field-data
+            %div Expiration date
+            %div Date
+            .actions
+              %span.handle-move.disabled{"aria-hidden" => "true"}
+              %span.remove.disabled{"aria-hidden" => "true"}
+              %span.edit.disabled{"aria-hidden" => "true"}
+          .field-data
+            %div Location
+            %div Location
+            .actions
+              %span.handle-move.disabled{"aria-hidden" => "true"}
+              %span.remove.disabled{"aria-hidden" => "true"}
+              %span.edit.disabled{"aria-hidden" => "true"}
+        #simpleList.list-group
+          .field-data
+            %div A text listing field
+            %div Text
+            .actions
+              %span.handle-move{"aria-hidden" => "true"}
+              %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+              %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsTextEditModal", "data-toggle" => "modal"}
+          .field-data
+            %div A number listing field
+            %div Number
+            .actions
+              %span.handle-move{"aria-hidden" => "true"}
+              %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+              %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsNumberEditModal", "data-toggle" => "modal"}
+          .field-data
+            %div A dropdown listing field
+            %div Dropdown
+            .actions
+              %span.handle-move{"aria-hidden" => "true"}
+              %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+              %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsDropdownEditModal", "data-toggle" => "modal"}
+          .field-data
+            %div A checkbox listing field
+            %div Checkbox group
+            .actions
+              %span.handle-move{"aria-hidden" => "true"}
+              %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+              %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsCheckboxEditModal", "data-toggle" => "modal"}
+          .field-data
+            %div A date listing field
+            %div Date
+            .actions
+              %span.handle-move{"aria-hidden" => "true"}
+              %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+              %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsDateEditModal", "data-toggle" => "modal"}
+      %p.ingress
+        %a{"data-target" => "#listingFieldsAddModal", "data-toggle" => "modal", :href => "#"} + Add a new listing field
