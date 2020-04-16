@@ -1,0 +1,9 @@
+.field-data{data: {:"field-id" => custom_field.id}}
+  %div
+    = custom_field.name(I18n.locale)
+  %div
+    = field_type_translation(custom_field.type)
+  .actions
+    %span.handle-move{"aria-hidden" => "true"}
+    %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+    %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsTextEditModal", "data-toggle" => "modal"}
