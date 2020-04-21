@@ -16,6 +16,8 @@
               %option Dropdown
               %option Checkbox group
               %option Date
+          #body_type
+            = render 'admin2/listings/listing_fields/checkbox'
         .modal-footer
           %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
           %button.btn.btn-primary{:type => "button"} Save changes
