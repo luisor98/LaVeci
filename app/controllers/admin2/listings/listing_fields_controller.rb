@@ -7,5 +7,9 @@ module Admin2::Listings
       @price_in_use = shapes.any? { |s| s[:price_enabled] }
     end
 
+    def create
+
+    end
+
   end
 end
