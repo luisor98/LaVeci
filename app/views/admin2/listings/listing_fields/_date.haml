@@ -1,0 +1,34 @@
+.form-group
+  %label Field name
+  .multiple-languages-container
+    .multiple-languages-language
+      %span.language English
+    .multiple-languages-input
+      %input#listingFieldsNumberName.form-control{"aria-describedby" => "listingFieldsNumberName", :type => "text", :value => "A date listing field"}/
+    .multiple-languages-language
+      %span.language French
+    .multiple-languages-input
+      %input#listingFieldsNumberName.form-control{"aria-describedby" => "listingFieldsNumberName", :type => "text", :value => "Un champ d'annonce de type date"}/
+    .multiple-languages-language
+      %span.language Spanish
+    .multiple-languages-input
+      %input#listingFieldsNumberName.form-control{"aria-describedby" => "listingFieldsNumberName", :type => "text", :value => ""}/
+.form-group
+  %label Required field
+  .form-check
+    %input#listingFieldsDateRequired.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDateRequired"} Make it mandatory to fill in this field when creating a new listing
+.form-group
+  %label Listing categories where the field is used
+  .form-check
+    %input#listingFieldsDateCategory1.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDateCategory1"} Category x.a
+  .form-check
+    %input#listingFieldsDateCategory2.form-check-input{:type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDateCategory2"} Category x.b
+  .form-check
+    %input#listingFieldsDateCategory3.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDateCategory3"} Category x.c
+  .form-check
+    %input#listingFieldsDateCategory4.form-check-input{:type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDateCategory4"} Category x.d

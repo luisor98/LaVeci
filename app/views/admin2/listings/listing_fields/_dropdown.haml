@@ -1,0 +1,42 @@
+.form-group
+  %label Field name
+  .multiple-languages-container
+    .multiple-languages-language
+      %span.language English
+    .multiple-languages-input
+      %input#listingFieldsDropdownName.form-control{"aria-describedby" => "listingFieldsDropdownName", :type => "text", :value => "A dropdown listing field"}/
+    .multiple-languages-language
+      %span.language French
+    .multiple-languages-input
+      %input#listingFieldsDropdownName.form-control{"aria-describedby" => "listingFieldsDropdownName", :type => "text", :value => "Un champ d'annonce de type liste déroulante"}/
+    .multiple-languages-language
+      %span.language Spanish
+    .multiple-languages-input
+      %input#listingFieldsDropdownName.form-control{"aria-describedby" => "listingFieldsDropdownName", :type => "text", :value => ""}/
+.form-group
+  %label Required field
+  .form-check
+    %input#listingFieldsDropdownRequired.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDropdownRequired"} Make it mandatory to fill in this field when creating a new listing
+.form-group
+  %label Filter
+  .form-check
+    %input#listingFieldsDropdownFilter.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDropdownFilter"} Display a filter based on this field on the homepage
+.form-group
+  %label Dropdown list options
+  %div THIS IS A WORK IN PROGRESS
+.form-group
+  %label Listing categories where the field is used
+  .form-check
+    %input#listingFieldsDropdownCategory1.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDropdownCategory1"} Category x.a
+  .form-check
+    %input#listingFieldsDropdownCategory2.form-check-input{:type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDropdownCategory2"} Category x.b
+  .form-check
+    %input#listingFieldsDropdownCategory3.form-check-input{:checked => "checked", :type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDropdownCategory3"} Category x.c
+  .form-check
+    %input#listingFieldsDropdownCategory4.form-check-input{:type => "checkbox"}/
+    %label.form-check-label{:for => "listingFieldsDropdownCategory4"} Category x.d

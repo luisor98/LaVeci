@@ -1,0 +1,12 @@
+#listingFieldsDeleteModal.modal{"aria-hidden" => "true", "aria-labelledby" => "listingFieldsDeleteModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-md{:role => "document"}
+    .modal-content
+      .modal-header
+        %h2#listingFieldsDeleteModalLabel.modal-title Delete listing field: $LISTING_FIELD_NAME
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        Are you sure you want to remove the field $LISTING_FIELD_NAME and all its data? This cannot be undone.
+      .modal-footer
+        %a.cancel-modal{"data-dismiss" => "modal", :href => "#"} Cancel
+        %button.btn.btn-primary{:type => "button"} Delete the listing field
