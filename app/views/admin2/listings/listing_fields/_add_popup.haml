@@ -1,7 +1,7 @@
 #listingFieldsAddModal.modal{"aria-hidden" => "true", "aria-labelledby" => "listingFieldsModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-lg{:role => "document"}
     .modal-content
-      = form_tag admin2_listings_listing_fields_path, class: %i[content-card-section-form] do
+      .content-card-section-form
         .modal-header
           %h2#listingFieldsAddModalLabel.modal-title Add a new listing field
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
@@ -9,9 +9,8 @@
         .modal-body
           .form-group
             %label{:for => "newListingFieldType"} New listing field type
-            = select_tag :field_type, options_for_select(custom_field_dropdown_options(CustomField::VALID_TYPES)), class: %i[form-control]
+            = select_tag :field_type, options_for_select(custom_field_dropdown_options(CustomField::VALID_TYPES)), class: %i[form-control], data: {url: new_admin2_listings_listing_field_path}
           #body_type
-            -# = render 'admin2/listings/listing_fields/checkbox'
         .modal-footer
           = link_to t('admin2.manage_reviews.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
-          = button_tag t('admin2.manage_reviews.save'), class: %i[btn btn-primary]
+          = button_tag t('admin2.manage_reviews.save'), class: %i[btn btn-primary], onclick: "document.getElementById('submit_listing_field').submit();"

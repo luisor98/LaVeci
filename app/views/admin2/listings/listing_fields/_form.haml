@@ -1,0 +1,14 @@
+= form_for custom_field, url: admin2_listings_listing_fields_path(field_type: custom_field.type), html: { id: :submit_listing_field, class: %i[content-card-section-form] } do |form|
+  = render 'admin2/listings/listing_fields/field_name', form: form
+  = render 'admin2/listings/listing_fields/field_required', form: form
+  = render 'admin2/listings/listing_fields/search_filter', form: form, custom_field: custom_field
+
+  - custom_field.with(:numeric) do
+    = render 'admin2/listings/listing_fields/field_min_max', form: form
+
+  = render 'admin2/listings/listing_fields/field_categories', form: form, custom_field: custom_field
+
+  - custom_field.with(:dropdown) do
+    = render 'admin2/listings/listing_fields/field_options', form: form
+  - custom_field.with(:checkbox) do
+    = render 'admin2/listings/listing_fields/field_options', form: form

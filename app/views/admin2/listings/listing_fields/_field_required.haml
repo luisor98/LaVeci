@@ -1,0 +1,5 @@
+.form-group
+  %label Required field
+  .form-check
+    = form.check_box :required, class: %i[form-check-input]
+    = form.label :required, 'Make it mandatory to fill in this field when creating a new listing', class: %i[form-check-label]
