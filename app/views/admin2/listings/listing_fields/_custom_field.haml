@@ -6,4 +6,5 @@
   .actions
     %span.handle-move{"aria-hidden" => "true"}
     %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
-    %span.edit{"aria-hidden" => "true", "data-target" => "#listingFieldsTextEditModal", "data-toggle" => "modal"}
+    = link_to edit_admin2_listings_listing_field_path(custom_field), remote: true do
+      %span.edit

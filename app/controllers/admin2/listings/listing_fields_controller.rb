@@ -79,7 +79,7 @@ module Admin2::Listings
     def new
       @custom_field = params[:field_type].constantize.new
 
-      if params[:field_type] == "CheckboxField"
+      if params[:field_type] == 'CheckboxField'
         @min_option_count = 1
         @custom_field.options = [CustomFieldOption.new(sort_priority: 1)]
       else
@@ -87,6 +87,33 @@ module Admin2::Listings
         @custom_field.options = [CustomFieldOption.new(sort_priority: 1), CustomFieldOption.new(sort_priority: 2)]
       end
       render layout: false
+    end
+
+    def edit
+      @min_option_count = params[:field_type] == 'CheckboxField' ? 1 : 2
+      @custom_field = @current_community.custom_fields.find(params[:id])
+      render layout: false
+    end
+
+    def update
+      @custom_field = @current_community.custom_fields.find(params[:id])
+
+      # Hack for comma/dot issue. Consider creating an app-wide comma/dot handling mechanism
+      params[:custom_field][:min] = ParamsService.parse_float(params[:custom_field][:min]) if params[:custom_field][:min].present?
+      params[:custom_field][:max] = ParamsService.parse_float(params[:custom_field][:max]) if params[:custom_field][:max].present?
+
+      custom_field_params = params[:custom_field].merge(
+        sort_priority: @custom_field.sort_priority
+      )
+
+      custom_field_entity = build_custom_field_entity(@custom_field.type, custom_field_params)
+
+      @custom_field.update(custom_field_entity)
+
+    rescue StandardError => e
+      flash[:error] = e.message
+    ensure
+      redirect_to admin2_listings_listing_fields_path
     end
 
     def create
