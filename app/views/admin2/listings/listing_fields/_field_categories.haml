@@ -1,5 +1,5 @@
 .form-group
-  %label Listing categories where the field is used
+  %label= t('admin2.listing_fields.listing_categories')
   - if @current_community.categories.size > 1
     - @current_community.leaf_categories.each do |category|
       .form-check

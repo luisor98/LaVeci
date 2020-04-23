@@ -1,13 +1,14 @@
-#listingFieldsEditModal.modal{"aria-hidden" => "true", "aria-labelledby" => "listingFieldsEditModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg{:role => "document"}
+#listingFieldsEditModal.modal{'aria-hidden' => true, 'aria-labelledby' => 'listingFieldsEditModalLabel', role: :dialog, tabindex: '-1'}
+  .modal-dialog.modal-lg{role: :document}
     .modal-content
       .content-card-section-form
         .modal-header
-          %h2#listingFieldsEditModalLabel.modal-title Edit listing field: $LISTING_FIELD_NAME (date)
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
+          %h2#listingFieldsEditModalLabel.modal-title
+            = t('admin2.listing_fields.edit_field_type', name: custom_field.name(I18n.locale), field_type: field_type_translation(custom_field.type).downcase)
+          %button.close{'aria-label' => 'Close', 'data-dismiss' => :modal, type: :button}
+            %span{'aria-hidden' => true} ×
         .modal-body
           = render 'admin2/listings/listing_fields/form', custom_field: custom_field, id: :submit_edit_listing_field
         .modal-footer
-          = link_to t('admin2.manage_reviews.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
-          = button_tag t('admin2.manage_reviews.save'), class: %i[btn btn-primary], onclick: "document.getElementById('submit_edit_listing_field').submit();"
+          = link_to t('admin2.cancel'), '#', class: %i[cancel-modal], 'data-dismiss': :modal
+          = button_tag t('admin2.save_changes'), class: %i[btn btn-primary], onclick: "document.getElementById('submit_edit_listing_field').submit();"

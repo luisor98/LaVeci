@@ -1,10 +1,7 @@
 - custom_field.with_type do |type|
-  - case type
-  - when :date_field
-  - when :text
-  - else
+  - unless %i[date_field text].include?(type)
     .form-group
-      %label Filter
+      %label= t('admin2.listing_fields.filter')
       .form-check
         = form.check_box :search_filter, class: %i[form-check-input]
-        = form.label :search_filter, 'Display a filter based on this field on the homepage',class: %i[form-check-label]
+        = form.label :search_filter, t('admin2.listing_fields.display_on_homepage'), class: %i[form-check-label]

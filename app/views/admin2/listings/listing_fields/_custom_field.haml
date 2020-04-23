@@ -5,6 +5,7 @@
     = field_type_translation(custom_field.type)
   .actions
     %span.handle-move{"aria-hidden" => "true"}
-    %span.remove{"aria-hidden" => "true", "data-target" => "#listingFieldsDeleteModal", "data-toggle" => "modal"}
+    = link_to delete_popup_admin2_listings_listing_field_path(custom_field), remote: true do
+      %span.remove
     = link_to edit_admin2_listings_listing_field_path(custom_field), remote: true do
       %span.edit

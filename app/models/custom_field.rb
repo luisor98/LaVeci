@@ -58,7 +58,7 @@ class CustomField < ApplicationRecord
 
   enum assignment: ASSIGNMENTS
 
-  VALID_TYPES = ["TextField", "NumericField", "DropdownField", "CheckboxField","DateField"]
+  VALID_TYPES = %w[TextField NumericField DropdownField CheckboxField DateField]
 
   validates_length_of :names, minimum: 1
   validates :category_custom_fields, length: { minimum: 1 }, if: proc { |field| field.for_listing? }

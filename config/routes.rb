@@ -255,6 +255,9 @@ Rails.application.routes.draw do
       end
       namespace :listings do
         resources :listing_fields do
+          member do
+            get :delete_popup
+          end
           collection do
             post :order
           end
