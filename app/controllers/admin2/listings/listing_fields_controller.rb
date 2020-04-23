@@ -1,6 +1,8 @@
 module Admin2::Listings
   class ListingFieldsController < Admin2::AdminBaseController
 
+    before_action :field_type_is_valid, only: %i[new create]
+
     CHECKBOX_TO_BOOLEAN = ->(v) {
       if v == false || v == true
         v
@@ -141,6 +143,35 @@ module Admin2::Listings
       redirect_to admin2_listings_listing_fields_path
     end
 
+    def order
+      sort_priorities = params[:order].each_with_index.map do |custom_field_id, index|
+        [custom_field_id, index]
+      end.inject({}) do |hash, ids|
+        custom_field_id, sort_priority = ids
+        hash.merge(custom_field_id.to_i => sort_priority)
+      end
+
+      @current_community.custom_fields.each do |custom_field|
+        custom_field.update(:sort_priority => sort_priorities[custom_field.id])
+      end
+
+      head :ok
+    end
+
+    def destroy
+      @custom_field = CustomField.find(params[:id])
+
+      success = if custom_field_belongs_to_community?(@custom_field, @current_community)
+                  @custom_field.destroy
+                end
+
+      raise "Field doesn't belong to current community" unless success
+    rescue StandardError => e
+      flash[:error] = e.message
+    ensure
+      redirect_to admin2_listings_listing_fields_path
+    end
+
     private
 
     def valid_categories?(community, category_attributes)
@@ -149,6 +180,10 @@ module Admin2::Listings
       end
 
       is_community_category.all?
+    end
+
+    def field_type_is_valid
+      redirect_to admin2_listings_listing_fields_path unless CustomField::VALID_TYPES.include?(params[:field_type])
     end
 
     def build_custom_field_entity(type, params)
