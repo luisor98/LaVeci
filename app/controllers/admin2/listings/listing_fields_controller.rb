@@ -13,14 +13,16 @@ module Admin2::Listings
     end
 
     def new
-      @custom_field = params[:field_type].constantize.new
-      if params[:field_type] == 'CheckboxField'
-        @min_option_count = 1
-        @custom_field.options = [CustomFieldOption.new(sort_priority: 1)]
-      else
-        @min_option_count = 2
-        @custom_field.options = [CustomFieldOption.new(sort_priority: 1),
-                                 CustomFieldOption.new(sort_priority: 2)]
+      if params[:field_type].present?
+        @custom_field = params[:field_type].constantize.new
+        if params[:field_type] == 'CheckboxField'
+          @min_option_count = 1
+          @custom_field.options = [CustomFieldOption.new(sort_priority: 1)]
+        else
+          @min_option_count = 2
+          @custom_field.options = [CustomFieldOption.new(sort_priority: 1),
+                                   CustomFieldOption.new(sort_priority: 2)]
+        end
       end
       render layout: false
     end
@@ -49,6 +51,8 @@ module Admin2::Listings
     end
 
     def create
+      return unless params[:field_type].present?
+
       min_max
       custom_field_entity = build_custom_field_entity(params[:field_type], params[:custom_field])
       @custom_field = params[:field_type].constantize.new(custom_field_entity)
@@ -102,7 +106,9 @@ module Admin2::Listings
     end
 
     def field_type_is_valid
-      redirect_to admin2_listings_listing_fields_path unless CustomField::VALID_TYPES.include?(params[:field_type])
+      if params[:field_type].present? && !CustomField::VALID_TYPES.include?(params[:field_type])
+        redirect_to admin2_listings_listing_fields_path
+      end
     end
 
     def build_custom_field_entity(type, params)
@@ -122,7 +128,7 @@ module Admin2::Listings
     end
 
     def find_custom_field
-      @custom_field = @current_community.custom_fields.find(params[:id])
+      @custom_field = @current_community.custom_fields.find_by(id: params[:id])
     end
   end
 end

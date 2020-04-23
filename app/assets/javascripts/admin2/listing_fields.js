@@ -16,16 +16,12 @@ $(function() {
             handle: '.handle-move',
             animation: 250,
             onEnd: function (/**Event*/evt) {
-
                 var array = [],
                     url = $('#customList').data('url');
-
                 $('#customList > .nested').each(function( index ) {
                     array.push($(this).data('id'));
                 });
-
                 $.post(url, {order: array});
-
             },
         });
     }
