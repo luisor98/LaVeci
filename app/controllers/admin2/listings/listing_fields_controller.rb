@@ -14,13 +14,13 @@ module Admin2::Listings
 
     def new
       @custom_field = params[:field_type].constantize.new
-
       if params[:field_type] == 'CheckboxField'
         @min_option_count = 1
         @custom_field.options = [CustomFieldOption.new(sort_priority: 1)]
       else
         @min_option_count = 2
-        @custom_field.options = [CustomFieldOption.new(sort_priority: 1), CustomFieldOption.new(sort_priority: 2)]
+        @custom_field.options = [CustomFieldOption.new(sort_priority: 1),
+                                 CustomFieldOption.new(sort_priority: 2)]
       end
       render layout: false
     end
@@ -37,6 +37,7 @@ module Admin2::Listings
       )
       custom_field_entity = build_custom_field_entity(@custom_field.type, custom_field_params)
       @custom_field.update(custom_field_entity)
+      flash[:notice] = t('admin2.notifications.listing_field_updated')
     rescue StandardError => e
       flash[:error] = e.message
     ensure
@@ -54,10 +55,11 @@ module Admin2::Listings
       @custom_field.entity_type = :for_listing
       @custom_field.community = @current_community
       if valid_categories?(@current_community, params[:custom_field][:category_attributes])
-        @custom_field.save
+        @custom_field.save!
       else
-        raise "Listing field saving failed"
+        raise t('admin2.notifications.listing_field_saving_failed')
       end
+      flash[:notice] = t('admin2.notifications.listing_field_created')
     rescue StandardError => e
       flash[:error] = e.message
     ensure
@@ -106,15 +108,15 @@ module Admin2::Listings
     def build_custom_field_entity(type, params)
       params = params.respond_to?(:to_unsafe_hash) ? params.to_unsafe_hash : params
       case type
-      when "TextField"
+      when 'TextField'
         TextFieldEntity.call(params)
-      when "NumericField"
+      when 'NumericField'
         NumericFieldEntity.call(params)
-      when "DropdownField"
+      when 'DropdownField'
         DropdownFieldEntity.call(params)
-      when "CheckboxField"
+      when 'CheckboxField'
         CheckboxFieldEntity.call(params)
-      when "DateField"
+      when 'DateField'
         DateFieldEntity.call(params)
       end
     end

@@ -603,6 +603,9 @@ en:
       test_email_sent: 'Test email was sent to your inbox'
       welcome_email_updated: 'Welcome email settings were updated'
       welcome_email_updated_and_sent: 'Welcome email settings were updated and a test email was sent to %{email}'
+      listing_field_updated: 'Listing field updated'
+      listing_field_saving_failed: 'Listing field saving failed'
+      listing_field_created: 'Listing field created'
     seo:
       title: '%{title} | %{service_name} Go Admin panel'
       description: 'Manage the %{title} settings of your %{service_name} Sharetribe Go marketplace'
