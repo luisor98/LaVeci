@@ -1,0 +1,16 @@
+.field-data
+  %div
+    = custom_field.name(I18n.locale)
+  %div
+    = field_type_translation(custom_field.type)
+  %div
+    - if custom_field.required?
+      = image_tag 'svg/checkmark-blue.svg', alt: 'checkmark'
+  %div
+    - if custom_field.public?
+      = image_tag 'svg/checkmark-blue.svg', alt: 'checkmark'
+  .actions
+    %span.handle-move{"aria-hidden" => "true"}
+    %span.remove{"aria-hidden" => "true", "data-target" => "#userFieldsDeleteModal", "data-toggle" => "modal"}
+    = link_to edit_admin2_users_user_field_path(custom_field), remote: true do
+      %span.edit

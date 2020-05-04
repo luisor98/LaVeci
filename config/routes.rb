@@ -250,7 +250,7 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :user_fields, path: 'user-fields', only: %i[index] do
+        resources :user_fields, path: 'user-fields' do
           collection do
 
           end

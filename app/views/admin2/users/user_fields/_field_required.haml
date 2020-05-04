@@ -1,0 +1,12 @@
+.form-group
+  %label Required field
+  .form-check
+    = form.check_box :required, class: %i[form-check-input]
+    = form.label :required, 'Make it mandatory to fill this field when signing up to the marketplace'
+
+.form-group
+  %label Public field
+  .form-check
+    - disabled = form.object.phone_number?
+    = form.check_box :public, class: %i[form-check-input], disabled: disabled
+    = form.label :public, 'Show this field in the public profile page', class: %i[form-check-label]

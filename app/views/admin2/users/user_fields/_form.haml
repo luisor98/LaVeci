@@ -1,0 +1,11 @@
+- custom_field = service.custom_field
+- path = service.edit? ? admin2_users_user_field_path(custom_field) : admin2_users_user_fields_path(field_type: custom_field.type)
+= form_for custom_field, url: path, html: { id: id, class: %i[content-card-section-form] } do |form|
+  = render 'admin2/users/user_fields/field_name', form: form, service: service
+  = render 'admin2/users/user_fields/field_required', form: form, service: service
+  - custom_field.with(:numeric) do
+    = render 'admin2/users/user_fields/field_min_max', form: form, service: service
+  - custom_field.with(:dropdown) do
+    = render 'admin2/users/user_fields/field_options', form: form, service: service
+  - custom_field.with(:checkbox) do
+    = render 'admin2/users/user_fields/field_options', form: form, service: service

@@ -3,6 +3,7 @@ en:
     save_changes: 'Save changes'
     next_step: 'Next'
     prev_step: 'Prev'
+    cancel: 'Cancel'
     topnav:
       admin_menu: 'Admin menu'
       logo: 'Sharetribe Go Admin Panel'

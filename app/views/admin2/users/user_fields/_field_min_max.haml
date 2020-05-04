@@ -1,0 +1,16 @@
+- min = form.object.display_min || service.number_min
+- max = form.object.display_max || service.number_max
+
+.form-group
+  %label Decimal
+  .form-check
+    = form.check_box :allow_decimals, class: %i[form-check-input]
+    = form.label :allow_decimals, 'Allow decimals', class: %i[form-check-label]
+
+.form-group
+  = form.label :min, 'Minimum value allowed'
+  = text_field_tag 'custom_field[min]', min, class: %i[form-control required]
+
+.form-group
+  = form.label :max, 'Maximum value allowed'
+  = text_field_tag 'custom_field[max]', max, class: %i[form-control required]
