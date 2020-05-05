@@ -252,7 +252,10 @@ Rails.application.routes.draw do
 
         resources :user_fields, path: 'user-fields' do
           collection do
-
+            post :order
+          end
+          member do
+            get :delete_popup
           end
         end
       end

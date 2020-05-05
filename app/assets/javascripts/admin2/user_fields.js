@@ -12,14 +12,14 @@ $(function() {
         $('#field_type').val('');
     });
 
-    if ($('#customList').length) {
-        Sortable.create(customList, {
+    if ($('#userCustomList').length) {
+        Sortable.create(userCustomList, {
             handle: '.handle-move',
             animation: 250,
             onEnd: function (/**Event*/evt) {
                 var array = [],
-                    url = $('#customList').data('url');
-                $('#customList > .nested').each(function( index ) {
+                    url = $('#userCustomList').data('url');
+                $('#userCustomList > .nested').each(function( index ) {
                     array.push($(this).data('id'));
                 });
                 $.post(url, {order: array});

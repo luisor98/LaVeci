@@ -4,12 +4,12 @@
       .content-card-section-form
         .modal-header
           %h2#userFieldsAddModalLabel.modal-title
-            Add a new user field
+            = t('admin2.user_fields.add_new_user_field')
           %button.close{'aria-label' => 'Close', 'data-dismiss' => :modal, type: :button}
             %span{'aria-hidden' => true} ×
         .modal-body
           .form-group
-            = label_tag :field_type, 'New user field type'
+            = label_tag :field_type, t('admin2.user_fields.new_user_field_type')
             = select_tag :field_type, options_for_select(custom_field_dropdown_options(CustomField::VALID_TYPES)), class: %i[form-control], data: {url: new_admin2_users_user_field_path}
           #body_type
         .modal-footer{style: 'display:none'}
