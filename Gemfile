@@ -28,7 +28,7 @@ gem 'paperclip', '~> 6.0.0'
 gem 'delayed_paperclip', '~> 3.0.1'
 
 # Active Storage
-gem 'image_processing', '~> 1.9.3'
+gem 'image_processing', '~> 1.12.2'
 gem 'mini_magick', '~> 4.9.5'
 
 gem 'aws-sdk-s3', '~> 1'
