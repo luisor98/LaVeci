@@ -96,7 +96,7 @@
     "eslint-plugin-babel": "4.1.2",
     "eslint-plugin-react": "6.4.1",
     "ignore-styles": "5.0.1",
-    "jsdom": "9.8.3",
+    "jsdom": "16.5.0",
     "json": "9.0.4",
     "mocha": "6.1.4",
     "mocha-circleci-reporter": "0.0.3",
